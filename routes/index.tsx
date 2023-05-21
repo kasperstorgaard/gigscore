@@ -1,25 +1,35 @@
 import { Head } from "$fresh/runtime.ts";
-import Counter from "../islands/Counter.tsx";
 
-export default function Home() {
+import { Handler, PageProps } from "$fresh/server.ts";
+import { WithSession } from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
+import { generateId } from "~/utils.ts";
+
+type Data = {
+  sid: string;
+}
+
+export const handler: Handler<Data, WithSession> = (req, ctx) => {
+  const { session } = ctx.state;
+  
+  let sid = session.get("sid");
+
+  if (!sid) {
+    sid = generateId();
+    session.set("sid", sid);
+  }
+
+  return ctx.render({
+    sid,
+  });
+};
+
+// TODO: add 404 handler
+export default function Home(props: PageProps<Data>) {
   return (
     <>
-      <Head>
-        <title>Fresh App</title>
-      </Head>
-      <div>
-        <img
-          src="/logo.svg"
-          width="128"
-          height="128"
-          alt="the fresh logo: a sliced lemon dripping with juice"
-        />
-        <p>
-          Welcome to `fresh`. Try updating this message in the ./routes/index.tsx
-          file, and refresh.
-        </p>
-        <Counter start={3} />
-      </div>
+      <section>
+        <a href={"/" + props.data.sid}>Start rating!</a>
+      </section>
     </>
   );
 }
