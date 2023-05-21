@@ -9,8 +9,8 @@ export function generateId() {
 
 export function computeScore(scores: Gig["scores"]) {
   return (
-    (scores.track +
-      scores.lead +
+    (scores.catchyness +
+      scores.vocals +
       scores.sound +
       scores.immersion +
       scores.performance) /

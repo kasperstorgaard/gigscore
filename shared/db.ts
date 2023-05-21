@@ -6,9 +6,13 @@ export type Gig = {
   name: string;
   id: string;
   sid: string;
+  location: {
+    name: string;
+    latLng?: [number, number];
+  };
   scores: {
-    track: number;
-    lead: number;
+    catchyness: number;
+    vocals: number;
     performance: number;
     sound: number;
     immersion: number;
