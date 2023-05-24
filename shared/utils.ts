@@ -1,19 +1,26 @@
-import { Gig } from "~/db.ts";
-
-export function generateId() {
-  // We stick to a simple short id, to make it easier to copy and share urls.
-  // This has collision risk, but all data is scoped to a session id,
-  // and we collect no user data, so users are not at risk from crawling.
-  return crypto.randomUUID().slice(-6);
+export class APIError extends Error {
+  constructor(public status: number, public statusText: string) {
+    super(`${status}: ${statusText}`);
+  }
 }
 
-export function computeScore(scores: Gig["scores"]) {
+export function getAverageScore(scoreCategories: {
+  catchyness: number;
+  vocals: number;
+  sound: number;
+  immersion: number;
+  performance: number;
+}) {
   return (
-    (scores.catchyness +
-      scores.vocals +
-      scores.sound +
-      scores.immersion +
-      scores.performance) /
+    (scoreCategories.catchyness +
+      scoreCategories.vocals +
+      scoreCategories.sound +
+      scoreCategories.immersion +
+      scoreCategories.performance) /
     5
   );
+}
+
+export function getSlug(name = "") {
+  return name.replace(/[_\s\n.,;]+/g, "-").toLowerCase();
 }

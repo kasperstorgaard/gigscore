@@ -1,34 +1,65 @@
-import { Head } from "$fresh/runtime.ts";
-
-import { Handler, PageProps } from "$fresh/server.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { WithSession } from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
-import { generateId } from "~/utils.ts";
+import { createGroup } from "~/db/groups.ts";
+import { APIError } from "../shared/utils.ts";
 
-type Data = {
-  sid: string;
-}
+export const handler: Handlers<null, WithSession> = {
+  GET: (req, ctx) => {
+    const { session } = ctx.state;
 
-export const handler: Handler<Data, WithSession> = (req, ctx) => {
-  const { session } = ctx.state;
-  
-  let sid = session.get("sid");
+    const groupSlug = session.get("groupSlug");
 
-  if (!sid) {
-    sid = generateId();
-    session.set("sid", sid);
-  }
+    if (!groupSlug) return ctx.render();
 
-  return ctx.render({
-    sid,
-  });
+    return new Response("", {
+      status: 303,
+      headers: { Location: `/${groupSlug}` },
+    });
+  },
+  POST: async (req, ctx) => {
+    const { session } = ctx.state;
+
+    const data: Partial<{
+      name: string;
+    }> = Object.fromEntries(await req.formData());
+
+    if (!data.name) {
+      return new Response("", {
+        status: 422,
+        statusText: ""
+      });
+    }
+
+    try {
+      const [err, group] = await createGroup({ name: data.name });
+      if (err) throw err;
+
+      session.set("groupSlug", group.slug);
+
+      return new Response("", {
+        status: 303,
+        headers: { Location: `/${group.slug}` },
+      });
+    } catch (err) {
+      return new Response("", {
+        status: (err as APIError).status ?? 500,
+        statusText: (err as APIError).statusText ?? err.message,
+      });
+    }
+  },
 };
 
 // TODO: add 404 handler
-export default function Home(props: PageProps<Data>) {
+export default function Home() {
   return (
     <>
       <section>
-        <a href={"/" + props.data.sid}>Start rating!</a>
+        <form method="POST" action="/" >
+          <label for="name">Group name</label>
+          <input type="text" name="name" />
+
+          <button type="submit">Create group</button>
+        </form>
       </section>
     </>
   );
