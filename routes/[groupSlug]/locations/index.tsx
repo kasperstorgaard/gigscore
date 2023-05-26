@@ -1,7 +1,5 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { createGig } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
-import { createScore } from "~/db/scores.ts";
 import { createLocation, listLocations, Location } from "~/db/locations.ts";
 import { APIError } from "~/utils.ts";
 

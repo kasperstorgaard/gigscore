@@ -2,6 +2,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { WithSession } from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
 import { createGroup } from "~/db/groups.ts";
 import { APIError } from "../shared/utils.ts";
+import MainLayout from "../components/layouts/main-layout.tsx";
 
 export const handler: Handlers<null, WithSession> = {
   GET: (req, ctx) => {
@@ -52,8 +53,8 @@ export const handler: Handlers<null, WithSession> = {
 // TODO: add 404 handler
 export default function Home() {
   return (
-    <>
-      <section>
+    <MainLayout>
+      <section className="create-gig">
         <form method="POST" action="/" >
           <label for="name">Group name</label>
           <input type="text" name="name" />
@@ -61,6 +62,6 @@ export default function Home() {
           <button type="submit">Create group</button>
         </form>
       </section>
-    </>
+    </MainLayout>
   );
 }

@@ -1,0 +1,82 @@
+.create-gig {
+  display: grid;
+  grid-template-rows: minmax(100vw, 720px);
+  grid-template-columns: 100%;
+  place-content: center;
+  justify-items: center;
+  gap: 24px;
+
+  overflow-x: auto;
+
+  border: none;
+}
+
+.create-gig__wrapper {
+  grid-column: 1/2;
+  grid-row: 1/2;
+
+  display: grid;
+  grid-template-columns: minmax(100vw, 460px);
+
+  padding: 0;
+  border: none;
+}
+
+.create-gig__scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100vw;
+
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.create-gig__scroller > * {
+  scroll-snap-align: center;
+}
+
+.create-gig__section {
+  padding: 24px;
+  border: none;
+}
+
+.create-gig__info {
+  display: grid;
+  gap: 32px;
+  
+  border: none;
+}
+
+.create-gig__section label {
+  display: grid;
+  gap: 16px;
+}
+
+.create-gig__score {
+  display: grid;
+  place-items: center;
+  gap: 32px;
+
+  padding: 48px;
+}
+
+.create-gig__submit {
+  display: grid;
+  place-items: center;
+
+  padding: 24px;
+}
+
+.create-gig__scroll-hint {
+  grid-column: 1/2;
+  grid-row: 1/2;
+
+  align-self: flex-end;
+  justify-self: flex-end;
+
+  padding: 24px;
+}
+
+.create-gig__scroll-hint svg {
+  fill: var(--text-1);
+}

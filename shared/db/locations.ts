@@ -11,9 +11,6 @@ export type Location = {
   latLng?: Readonly<[number, number]> | [number, number];
 };
 
-
-
-
 export class ExistingLocationError extends APIError {
   constructor(slug: string) {
     super(404, `A location already exists for slug: ${slug}`);
@@ -51,7 +48,6 @@ export async function createLocation(
     .atomic()
     .set(["groups", groupId, "locations", id], data)
     .set(["groups", groupId, "locations_by_slug", locationSlug], data)
-    .set(["groups", groupId, "locations_by_created_at", createdAt], data)
     .commit();
 
   return [null, data] as const;
@@ -146,7 +142,7 @@ export async function listLocations(
   if (err) return [err, null] as const;
 
   const iter = kv.list<Location>(
-    { prefix: ["groups", groupId, "locations_by_created_at"] },
+    { prefix: ["groups", groupId, "locations"] },
     { limit: options?.limit ?? 100, reverse: true }
   );
 

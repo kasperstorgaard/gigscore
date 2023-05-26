@@ -35,7 +35,6 @@ export async function createGroup(payload: { name: string }) {
     .atomic()
     .set(["groups", id], data)
     .set(["groups_by_slug", slug], data)
-    .set(["groups_by_created_at", createdAt], data)
     .commit();
 
   return [null, data] as const;

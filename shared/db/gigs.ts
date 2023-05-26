@@ -46,7 +46,6 @@ export async function createGig(
     .set(["groups", groupId, "locations_by_gig", id], location)
     .set(["groups", groupId, "gigs", id], data)
     .set(["groups", groupId, "gigs_by_slug", gigSlug], data)
-    .set(["groups", groupId, "gigs_by_created_at", createdAt], data)
     .set(["groups", groupId, "gigs_by_location", location.id, createdAt], data)
     .commit();
 
@@ -104,7 +103,7 @@ export async function listGigs(
   if (err) return [err, null] as const;
 
   const iter = kv.list<Gig>(
-    { prefix: ["groups", groupId, "gigs_by_created_at"] },
+    { prefix: ["groups", groupId, "gigs"] },
     { limit: options?.limit ?? 100, reverse: true }
   );
 

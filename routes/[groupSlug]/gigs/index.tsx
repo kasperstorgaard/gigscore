@@ -2,8 +2,8 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { createGig, Gig, listGigs } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { createScore } from "~/db/scores.ts";
-import { createLocation } from "~/db/locations.ts";
-import { APIError } from "~/utils.ts";
+import { createLocation, getLocationBySlug } from "~/db/locations.ts";
+import { APIError, getSlug } from "~/utils.ts";
 
 type Data = {
   group: Group;
@@ -16,6 +16,7 @@ export const handler: Handlers<Data> = {
       const [groupErr, group] = await getGroupBySlug({
         groupSlug: ctx.params.groupSlug,
       });
+
       if (groupErr) throw groupErr;
 
       const [gigsErr, gigs] = await listGigs({
@@ -68,11 +69,16 @@ export const handler: Handlers<Data> = {
           : undefined,
       };
 
-      const [locationErr, location] = await createLocation({
+      let [locationErr, location] = await getLocationBySlug({
         groupId: group.id,
-        ...ctx.params,
-      }, locationData);
-      if (locationErr) throw locationErr;
+        locationSlug: getSlug(locationData.name),
+      });
+
+      if (!location) {
+        [locationErr, location] = await createLocation({ groupId: group.id }, locationData);
+      }
+
+      if (!location) throw locationErr;
 
       const gigData = {
         name: data.name ?? "",
