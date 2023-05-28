@@ -2,7 +2,7 @@ import { APIError } from "~/utils.ts";
 import { getSlug } from "~/utils.ts";
 import { kv } from "~/db/kv.ts";
 import { getGroup } from "~/db/groups.ts";
-import { getLocation, getLocationBySlug } from "./locations.ts";
+import { getLocation } from "./locations.ts";
 
 export type Gig = {
   id: string;

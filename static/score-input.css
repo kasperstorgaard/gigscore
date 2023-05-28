@@ -1,0 +1,46 @@
+.score-input {
+  display: grid;
+  place-items: center;
+  gap: 32px;
+
+  padding: 48px;
+
+  font-size: var(--font-size-fluid-1);
+}
+
+.score-input__scores {
+  display: grid;
+  grid-template-columns: 1em auto;
+  grid-auto-flow: column;
+  gap: 0.5em;
+}
+
+.score-input input {
+  margin: 0;
+  padding: 0;
+
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+
+  width: 0;
+  height: 0;
+}
+
+.score-input label {
+  overflow: hidden;
+}
+
+.score-input label:has(input:checked) ~ label:has(input:not(:checked)) {
+  filter: grayscale();
+}
+
+/* .score-input input:checked::before {
+  transform: scale(1);
+} */
+
+/* input:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+} */

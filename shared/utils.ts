@@ -22,5 +22,5 @@ export function getAverageScore(scoreCategories: {
 }
 
 export function getSlug(name = "") {
-  return name.replace(/[_\s\n.,;]+/g, "-").toLowerCase();
+  return name.replace(/[^a-z\d]/gi, "-").toLowerCase();
 }

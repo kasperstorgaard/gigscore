@@ -1,8 +1,8 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { WithSession } from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
+import { WithSession } from "fresh_session";
 import { createGroup } from "~/db/groups.ts";
-import { APIError } from "../shared/utils.ts";
-import MainLayout from "../components/layouts/main-layout.tsx";
+import { APIError } from "~/utils.ts";
+import MainLayout from "@/layouts/main-layout.tsx";
 
 export const handler: Handlers<null, WithSession> = {
   GET: (req, ctx) => {

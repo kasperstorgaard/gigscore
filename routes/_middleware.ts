@@ -1,7 +1,7 @@
 import {
   cookieSession,
   WithSession,
-} from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
+} from "fresh_session";
 
 export type State = WithSession;
 
