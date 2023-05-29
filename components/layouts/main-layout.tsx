@@ -9,9 +9,9 @@ export default function MainLayout({ children }: Props) {
   return (
     <>
       <Head>
-        <link rel="stylesheet" href="https://unpkg.com/open-props" />
-        <link rel="stylesheet" href="https://unpkg.com/open-props/normalize.min.css" />
-        <link rel="stylesheet" href="https://unpkg.com/open-props/buttons.min.css" />
+        <link rel="stylesheet" href={asset("open-props.min.css")} />
+        <link rel="stylesheet" href={asset("normalize.min.css")} />
+        <link rel="stylesheet" href={asset("buttons.min.css")} />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

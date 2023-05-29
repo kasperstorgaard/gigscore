@@ -54,7 +54,7 @@ export const handler: Handlers<null, WithSession> = {
 export default function Home() {
   return (
     <MainLayout>
-      <section className="create-gig">
+      <section className="gig-form">
         <form method="POST" action="/" >
           <label for="name">Group name</label>
           <input type="text" name="name" />

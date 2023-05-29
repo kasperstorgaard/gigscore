@@ -24,7 +24,9 @@ export default function ScoreInput({
       <div
         class={[className, "score-input"].filter(Boolean).join(" ")}
       >
-        {label}
+        <h2>
+          {label}
+        </h2>
 
         <div class="score-input__scores">
           {new Array(5).fill(null).map((_val, index) => (

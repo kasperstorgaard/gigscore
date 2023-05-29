@@ -11,6 +11,8 @@ import * as $4 from "./routes/[groupSlug]/locations/index.tsx";
 import * as $5 from "./routes/_middleware.ts";
 import * as $6 from "./routes/index.tsx";
 import * as $$0 from "./islands/Counter.tsx";
+import * as $$1 from "./islands/GigForm.tsx";
+import * as $$2 from "./islands/ScoreGuides.tsx";
 
 const manifest = {
   routes: {
@@ -24,6 +26,8 @@ const manifest = {
   },
   islands: {
     "./islands/Counter.tsx": $$0,
+    "./islands/GigForm.tsx": $$1,
+    "./islands/ScoreGuides.tsx": $$2,
   },
   baseUrl: import.meta.url,
   config,

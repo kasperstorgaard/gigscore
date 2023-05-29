@@ -1,7 +1,7 @@
 import { APIError } from "~/utils.ts";
 import { getSlug } from "~/utils.ts";
-import { kv } from "~/db/kv.ts";
-import { getGroup } from "~/db/groups.ts";
+import { kv } from "./kv.ts";
+import { getGroup } from "./groups.ts";
 import { getLocation } from "./locations.ts";
 
 export type Gig = {
@@ -18,14 +18,17 @@ export class ExistingGigError extends APIError {
 }
 
 export async function createGig(
-  params: { groupId: string, locationId: string },
+  params: { groupId: string; locationId: string },
   payload: { name: string }
 ) {
   const { groupId } = params;
 
   const gigSlug = getSlug(payload.name);
 
-  const [_existingErr, existingGig] = await getGigBySlug({ ...params, gigSlug });
+  const [_existingErr, existingGig] = await getGigBySlug({
+    ...params,
+    gigSlug,
+  });
   if (existingGig) return [new ExistingGigError(gigSlug), null] as const;
 
   const [locationErr, location] = await getLocation(params);
@@ -58,7 +61,7 @@ export class UnknownGigError extends APIError {
   }
 }
 
-export async function getGig(params: { groupId: string, gigId: string }) {
+export async function getGig(params: { groupId: string; gigId: string }) {
   const { groupId, gigId } = params;
 
   const entry = await kv.get<Gig>(["groups", groupId, "gigs", gigId]);
@@ -116,7 +119,7 @@ export async function listGigs(
 }
 
 export async function listGigsByLocation(
-  params: { groupId: string, locationId: string },
+  params: { groupId: string; locationId: string },
   options?: {
     limit: number;
   }
@@ -141,4 +144,3 @@ export async function listGigsByLocation(
 
   return [null, gigs] as const;
 }
-
