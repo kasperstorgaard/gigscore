@@ -40,3 +40,16 @@
     animation-duration: 0s !important;
   }
 }
+
+.score-guides blockquote {
+  display: block;
+}
+
+.score-guides blockquote p {
+  display: inline;
+}
+
+.score-guides blockquote span {
+  font-size: 1.5em;
+  margin-left: 4px;
+}

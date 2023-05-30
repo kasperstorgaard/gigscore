@@ -82,19 +82,19 @@ export default function GigForm({
 
               <ScoreGuides>
                 <blockquote>
-                  Did the songs draw you in? ➕
+                  Did the songs draw you in? <span>+</span>
                 </blockquote>
 
                 <blockquote>
-                  Missed a hit? ➖
+                  Missed a hit? <span>-</span>
                 </blockquote>
 
                 <blockquote>
-                  Amazing choruses? ➕
+                  Amazing choruses? <span>+</span>
                 </blockquote>
 
                 <blockquote>
-                  Too all over the place? ➖
+                  Too all over the place? <span>-</span>
                 </blockquote>
               </ScoreGuides>
             </section>
@@ -108,15 +108,15 @@ export default function GigForm({
 
               <ScoreGuides>
                 <blockquote>
-                  Raw emotion? ➕
+                  Raw emotion? <span>+</span>
                 </blockquote>
 
                 <blockquote>
-                  Weak technique? ➖
+                  Weak technique? <span>-</span>
                 </blockquote>
 
                 <blockquote>
-                  Inspiring lyrics? ➕
+                  Inspiring lyrics? <span>+</span>
                 </blockquote>
               </ScoreGuides>
             </section>
@@ -126,15 +126,15 @@ export default function GigForm({
 
               <ScoreGuides>
                 <blockquote>
-                  A bass that could replace your heartbeat? ➕
+                  A bass that could replace your heartbeat? <span>+</span>
                 </blockquote>
 
                 <blockquote>
-                  Couldn't hear the singer? ➖
+                  Couldn't hear the singer? <span>-</span>
                 </blockquote>
 
                 <blockquote>
-                  Sound issues? ➖➖
+                  Sound issues? <span>--</span>
                 </blockquote>
               </ScoreGuides>
             </section>
@@ -148,15 +148,15 @@ export default function GigForm({
 
               <ScoreGuides>
                 <blockquote>
-                  Getting lost in the music? ➕
+                  Getting lost in the music? <span>+</span>
                 </blockquote>
 
                 <blockquote>
-                  Checking instagram? ➖
+                  Checking instagram? <span>-</span>
                 </blockquote>
 
                 <blockquote>
-                  Mind drifting away? ➕
+                  Mind drifting away? <span>+</span>
                 </blockquote>
               </ScoreGuides>
             </section>
@@ -170,15 +170,15 @@ export default function GigForm({
 
               <ScoreGuides>
                 <blockquote>
-                  Contagious energy? ➕➕
+                  Contagious energy? <span>++</span>
                 </blockquote>
 
                 <blockquote>
-                  Staring at the stage? ➖
+                  Staring at the stage? <span>-</span>
                 </blockquote>
 
                 <blockquote>
-                  No connection to the audience? ➖➖
+                  No connection to the audience? <span>--</span>
                 </blockquote>
               </ScoreGuides>
             </section>
