@@ -1,10 +1,8 @@
-import {
-  cookieSession,
-  WithSession,
-} from "fresh_session";
-
+import { cookieSession, WithSession } from "fresh_session";
 export type State = WithSession;
 
-const sessionHandler = cookieSession();
+export const sessionHandler = cookieSession({
+  maxAge: 60 * 60 * 24 * 400,
+});
 
 export const handler = [sessionHandler];

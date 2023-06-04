@@ -3,26 +3,28 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import config from "./deno.json" assert { type: "json" };
-import * as $0 from "./routes/[groupSlug]/gigs/[gigSlug].tsx";
-import * as $1 from "./routes/[groupSlug]/gigs/index.tsx";
-import * as $2 from "./routes/[groupSlug]/index.tsx";
-import * as $3 from "./routes/[groupSlug]/locations/[locationSlug].tsx";
-import * as $4 from "./routes/[groupSlug]/locations/index.tsx";
-import * as $5 from "./routes/_middleware.ts";
-import * as $6 from "./routes/index.tsx";
+import * as $0 from "./routes/_middleware.ts";
+import * as $1 from "./routes/groups/[groupSlug]/gigs/[gigSlug].tsx";
+import * as $2 from "./routes/groups/[groupSlug]/gigs/index.tsx";
+import * as $3 from "./routes/groups/[groupSlug]/index.tsx";
+import * as $4 from "./routes/groups/[groupSlug]/locations/[locationSlug].tsx";
+import * as $5 from "./routes/groups/[groupSlug]/locations/index.tsx";
+import * as $6 from "./routes/groups/_middleware.ts";
+import * as $7 from "./routes/index.tsx";
 import * as $$0 from "./islands/Counter.tsx";
 import * as $$1 from "./islands/GigForm.tsx";
 import * as $$2 from "./islands/ScoreGuides.tsx";
 
 const manifest = {
   routes: {
-    "./routes/[groupSlug]/gigs/[gigSlug].tsx": $0,
-    "./routes/[groupSlug]/gigs/index.tsx": $1,
-    "./routes/[groupSlug]/index.tsx": $2,
-    "./routes/[groupSlug]/locations/[locationSlug].tsx": $3,
-    "./routes/[groupSlug]/locations/index.tsx": $4,
-    "./routes/_middleware.ts": $5,
-    "./routes/index.tsx": $6,
+    "./routes/_middleware.ts": $0,
+    "./routes/groups/[groupSlug]/gigs/[gigSlug].tsx": $1,
+    "./routes/groups/[groupSlug]/gigs/index.tsx": $2,
+    "./routes/groups/[groupSlug]/index.tsx": $3,
+    "./routes/groups/[groupSlug]/locations/[locationSlug].tsx": $4,
+    "./routes/groups/[groupSlug]/locations/index.tsx": $5,
+    "./routes/groups/_middleware.ts": $6,
+    "./routes/index.tsx": $7,
   },
   islands: {
     "./islands/Counter.tsx": $$0,

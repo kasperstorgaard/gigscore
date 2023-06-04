@@ -17,9 +17,7 @@ export default function ScoreInput({
 }: Props) {
   return (
     <>
-      <Head>
-        <link rel="stylesheet" href={asset("score-input.css")} />
-      </Head>
+
 
       <div
         class={[className, "score-input"].filter(Boolean).join(" ")}

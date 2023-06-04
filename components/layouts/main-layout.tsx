@@ -9,9 +9,10 @@ export default function MainLayout({ children }: Props) {
   return (
     <>
       <Head>
-        <link rel="stylesheet" href={asset("open-props.min.css")} />
-        <link rel="stylesheet" href={asset("normalize.min.css")} />
-        <link rel="stylesheet" href={asset("buttons.min.css")} />
+        <link rel="stylesheet" href={asset("/open-props.min.css")} />
+        <link rel="stylesheet" href={asset("/normalize.min.css")} />
+        <link rel="stylesheet" href={asset("/vars.css")} />
+        <link rel="stylesheet" href={asset("/buttons.min.css")} />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -20,11 +21,11 @@ export default function MainLayout({ children }: Props) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="crossOrigin" />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200&display=swap" rel="stylesheet" />
 
-        <link rel="stylesheet" href={asset("main.css")} />
+        <link rel="stylesheet" href={asset("/main.css")} />
+        <link rel="stylesheet" href={asset("/forms.css")} />
       </Head>
-      <main>
-        {children}
-      </main>
+      
+      {children}
     </>
   )
 }

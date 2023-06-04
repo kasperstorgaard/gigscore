@@ -19,7 +19,7 @@ export async function createGroup(payload: { name: string }) {
   const slug = getSlug(payload.name);
 
   const [_err, group] = await getGroupBySlug({ groupSlug: slug });
-  if (group) return [new ExistingGroupError(slug), null] as const;
+  if (group) return [new ExistingGroupError(slug), group] as const;
 
   const createdAt = Date.now();
   const id = createdAt + "-" + crypto.randomUUID();
@@ -49,7 +49,8 @@ export class UnknownGroupError extends APIError {
 export async function getGroup(params: { groupId: string }) {
   const entry = await kv.get<Group>(["groups", params.groupId]);
 
-  if (!entry) return [new UnknownGroupError(params.groupId), null] as const;
+  if (!entry.value)
+    return [new UnknownGroupError(params.groupId), null] as const;
 
   return [null, entry.value] as const;
 }

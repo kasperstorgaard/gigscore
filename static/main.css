@@ -30,6 +30,18 @@ h3 {
   line-height: var(--font-lineheight-1);
 }
 
-label {
-  text-transform: uppercase;
+code {
+  white-space: pre-wrap;
+}
+
+@media (pointer: fine) {
+  [data-only-touch] {
+    display: none;
+  }
+}
+
+@media (pointer: coarse) {
+  [data-only-cursor] {
+    display: none;
+  }
 }

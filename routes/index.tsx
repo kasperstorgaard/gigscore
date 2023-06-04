@@ -1,20 +1,33 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { asset, Head } from "$fresh/runtime.ts";
 import { WithSession } from "fresh_session";
-import { createGroup } from "~/db/groups.ts";
+import { getCookies } from "https://deno.land/std@0.150.0/http/mod.ts";
+
+import {
+  createGroup,
+  ExistingGroupError,
+  Group,
+} from "~/db/groups.ts";
 import { APIError } from "~/utils.ts";
 import MainLayout from "@/layouts/main-layout.tsx";
+import { ParameterDeclarationBase } from "https://deno.land/x/ts_morph@17.0.1/ts_morph.js";
+import { getRecentGroups } from "../shared/session.ts";
 
-export const handler: Handlers<null, WithSession> = {
-  GET: (req, ctx) => {
-    const { session } = ctx.state;
+type Data = {
+  recentGroups?: Group[];
+  existingGroup?: Group;
+};
 
-    const groupSlug = session.get("groupSlug");
+export const handler: Handlers<Data, WithSession> = {
+  GET: async (req, ctx) => {
+    const { sessionId } = getCookies(req.headers);
 
-    if (!groupSlug) return ctx.render();
+    if (!sessionId) return ctx.render();
 
-    return new Response("", {
-      status: 303,
-      headers: { Location: `/${groupSlug}` },
+    const recentGroups = await getRecentGroups(ctx.state.session);
+
+    return ctx.render({
+      recentGroups
     });
   },
   POST: async (req, ctx) => {
@@ -27,19 +40,25 @@ export const handler: Handlers<null, WithSession> = {
     if (!data.name) {
       return new Response("", {
         status: 422,
-        statusText: ""
+        statusText: "",
       });
     }
 
     try {
       const [err, group] = await createGroup({ name: data.name });
+      if (err instanceof ExistingGroupError) {
+        return ctx.render({
+          existingGroup: group,
+        });
+      }
+
       if (err) throw err;
 
       session.set("groupSlug", group.slug);
 
       return new Response("", {
         status: 303,
-        headers: { Location: `/${group.slug}` },
+        headers: { Location: `/groups/${group.slug}` },
       });
     } catch (err) {
       return new Response("", {
@@ -51,17 +70,49 @@ export const handler: Handlers<null, WithSession> = {
 };
 
 // TODO: add 404 handler
-export default function Home() {
+export default function Home(props: PageProps<Data>) {
   return (
     <MainLayout>
-      <section className="gig-form">
-        <form method="POST" action="/" >
-          <label for="name">Group name</label>
-          <input type="text" name="name" />
+      <Head>
+        <link rel="stylesheet" href={asset("/home-page.css")} />
+      </Head>
 
-          <button type="submit">Create group</button>
-        </form>
-      </section>
+      <main class="home-page">
+        {props.data.recentGroups?.length
+          ? (
+            <>
+              <section>
+                <div>
+                  <p>Open your last group</p>
+                  <a href={`/groups/${props.data.recentGroups[0].slug}`}>
+                    {props.data.recentGroups[0].name}
+                  </a>
+                </div>
+              </section>
+            </>
+          )
+          : null}
+
+        <section>
+          <form method="POST" action="/">
+            <label>
+              Pick a group name
+              <input type="text" name="name" />
+            </label>
+
+            <button type="submit">Create group</button>
+
+            {props.data.existingGroup && (
+              <div class="form__info-box">
+                Looks like the group "{props.data.existingGroup.name}" already exists. <br />
+                <a href={`/groups/${props.data.existingGroup.slug}`}>
+                  Open it instead?
+                </a>
+              </div>
+            )}
+          </form>
+        </section>
+      </main>
     </MainLayout>
   );
 }

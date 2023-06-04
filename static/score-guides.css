@@ -1,6 +1,6 @@
 .score-guides {
   display: grid;
-  gap: 16px;
+  gap: 1em;
   place-content: center;
 }
 

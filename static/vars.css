@@ -1,0 +1,11 @@
+:root {
+  --brand: var(--purple-4);
+  --link: var(--indigo-7);
+  --app-gutter: var(--size-fluid-4);
+}
+ 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --link: var(--indigo-4);
+  }
+}

@@ -1,0 +1,35 @@
+form {
+  display: grid;
+  gap: 2em;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+form > label,
+fieldset > label {
+  display: grid;
+  gap: 0.5em;
+}
+
+.form__info-box {
+  --bg: rgba(120, 120, 120, 0.05);
+  --fg: var(--cyan-5);
+
+  max-inline-size: var(--size-content-2);
+  padding: 1em;
+
+  border: 1px solid var(--fg);
+  border-radius: 6px;
+
+  color: var(--fg);
+  font-size: var(--font-size-1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .form__info-box {
+    --fg: var(--cyan-1);
+  }
+}
