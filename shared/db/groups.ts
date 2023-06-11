@@ -6,7 +6,7 @@ export type Group = {
   id: string;
   createdAt: number;
   slug: string;
-  name?: string;
+  name: string;
 };
 
 export class ExistingGroupError extends APIError {

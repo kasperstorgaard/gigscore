@@ -50,31 +50,17 @@ export default function GigForm({
       <div class="gig-form__wrapper">
         <div class="gig-form__scroller" ref={containerRef}>
           <section class="gig-form__section">
-            <fieldset class="gig-form__info">
-              <label>
-                Name of the band / artist?
-                <input type="text" name="name" />
-              </label>
-
-              <label>
-                Where did they play?<br />
-                (optional)
-                <input type="text" name="locationName" />
-              </label>
-            </fieldset>
-            <aside class="gig-form__scroll-hint">
-              <em data-only-cursor aria-label="TAB to open next page">Scroll to next page</em>
-              <em data-only-touch aria-hidden>Swipe to next page</em>
-              <ArrowForward />
-            </aside>
-          </section>
-
-          <section class="gig-form__section">
             <ScoreInput
               value={values.catchyness}
               label="Catchyness"
               name="catchyness"
             />
+
+            <aside class="gig-form__scroll-hint">
+              <em data-only-cursor aria-label="TAB to open next page">Scroll to next page</em>
+              <em data-only-touch aria-hidden>Swipe to next page</em>
+              <ArrowForward />
+            </aside>
 
             <ScoreGuides>
               <blockquote>

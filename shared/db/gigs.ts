@@ -18,10 +18,10 @@ export class ExistingGigError extends APIError {
 }
 
 export async function createGig(
-  params: { groupId: string; locationId: string },
+  params: { groupId: string; locationId: string | null },
   payload: { name: string }
 ) {
-  const { groupId } = params;
+  const { groupId, locationId } = params;
 
   const gigSlug = getSlug(payload.name);
 
@@ -31,8 +31,9 @@ export async function createGig(
   });
   if (existingGig) return [new ExistingGigError(gigSlug), null] as const;
 
-  const [locationErr, location] = await getLocation(params);
-  if (locationErr) return [locationErr, null] as const;
+  const [_locationErr, location] = locationId
+    ? await getLocation({ locationId, groupId })
+    : ([null, null] as const);
 
   const createdAt = Date.now();
   const id = createdAt + "-" + crypto.randomUUID();
@@ -46,11 +47,16 @@ export async function createGig(
 
   await kv
     .atomic()
-    .set(["groups", groupId, "locations_by_gig", id], location)
     .set(["groups", groupId, "gigs", id], data)
     .set(["groups", groupId, "gigs_by_slug", gigSlug], data)
-    .set(["groups", groupId, "gigs_by_location", location.id, createdAt], data)
     .commit();
+
+  if (location) {
+    await kv.atomic()
+      .set(["groups", groupId, "gigs_by_location", location.id, createdAt], data)
+      .set(["groups", groupId, "locations_by_gig", id], location)
+      .commit();
+  }
 
   return [null, data] as const;
 }

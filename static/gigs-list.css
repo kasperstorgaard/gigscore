@@ -1,0 +1,13 @@
+.gigs-list {
+
+}
+
+.gigs-list ul,
+.gigs-list li {
+  padding: 0;
+  margin: 0;
+}
+
+.gigs-list ul {
+  list-style-type: none;
+}

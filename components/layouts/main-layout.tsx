@@ -22,7 +22,9 @@ export default function MainLayout({ children }: Props) {
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200&display=swap" rel="stylesheet" />
 
         <link rel="stylesheet" href={asset("/main.css")} />
+        <link rel="stylesheet" href={asset("/main-layout.css")} />
         <link rel="stylesheet" href={asset("/forms.css")} />
+        <link rel="stylesheet" href={asset("/breadcrumbs.css")} />
       </Head>
       
       {children}

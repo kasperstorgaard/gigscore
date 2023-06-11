@@ -1,0 +1,15 @@
+.rate-page {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr;
+
+  border: none;
+}
+
+.rate-page > section {
+  display: grid;
+  grid-template-columns: auto;
+  place-items: flex-start center;
+
+  padding: var(--size-fluid-5) var(--size-fluid-4);
+}

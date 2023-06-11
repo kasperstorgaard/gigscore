@@ -1,0 +1,25 @@
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1em 2ch;
+
+  padding: 0;
+}
+
+.breadcrumbs li {
+  list-style-type: ">";
+
+  padding: 0;
+  margin: 0;
+  padding-inline-start: 1ch;
+}
+
+.breadcrumbs li:first-of-type {
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+.breadcrumbs a:visited {
+  color: inherit;
+}

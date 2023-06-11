@@ -59,7 +59,7 @@ export const handler: Handlers<Data> = {
       const [locationErr, location] = await createLocation({
         groupId: group.id,
         ...ctx.params,
-      }, locationData);
+      }, locationData)
       if (locationErr) throw locationErr;
 
       const url = new URL(req.url);

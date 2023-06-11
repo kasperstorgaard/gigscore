@@ -7,5 +7,6 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --link: var(--indigo-4);
+    --link-visited: var(--purple-6);
   }
 }

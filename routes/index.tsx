@@ -46,6 +46,7 @@ export const handler: Handlers<Data, WithSession> = {
 
     try {
       const [err, group] = await createGroup({ name: data.name });
+
       if (err instanceof ExistingGroupError) {
         return ctx.render({
           existingGroup: group,
@@ -58,7 +59,7 @@ export const handler: Handlers<Data, WithSession> = {
 
       return new Response("", {
         status: 303,
-        headers: { Location: `/groups/${group.slug}` },
+        headers: { Location: `/groups/${group.slug}/gigs` },
       });
     } catch (err) {
       return new Response("", {
@@ -101,16 +102,16 @@ export default function Home(props: PageProps<Data>) {
             </label>
 
             <button type="submit">Create group</button>
-
-            {props.data.existingGroup && (
-              <div class="form__info-box">
-                Looks like the group "{props.data.existingGroup.name}" already exists. <br />
-                <a href={`/groups/${props.data.existingGroup.slug}`}>
-                  Open it instead?
-                </a>
-              </div>
-            )}
           </form>
+
+          {props.data.existingGroup && (
+            <aside class="form__info-box">
+              Looks like the group "{props.data.existingGroup.name}" already exists. <br />
+              <a href={`/groups/${props.data.existingGroup.slug}`}>
+                Open it instead?
+              </a>
+            </aside>
+          )}
         </section>
       </main>
     </MainLayout>

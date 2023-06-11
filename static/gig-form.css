@@ -34,16 +34,6 @@
   border: none;
 }
 
-.gig-form__info {
-  display: grid;
-  gap: 1.5em;
-
-  max-width: var(--size-content-3);
-  padding: 0;
-
-  border: none;
-}
-
 .gig-form__section > label {
   display: grid;
   gap: 1em;

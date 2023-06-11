@@ -1,6 +1,6 @@
 import { APIError, getSlug } from "~/utils.ts";
 import { kv } from "./kv.ts";
-import { getGroup } from "./groups.ts";
+import { ExistingGroupError, UnknownGroupError, getGroup } from "./groups.ts";
 import { getGig } from "./gigs.ts";
 
 export type Location = {
@@ -30,14 +30,18 @@ export async function createLocation(
 
   const locationSlug = getSlug(payload.name);
 
-  const [_err, location] = await getLocationBySlug({ ...params, locationSlug });
+  let [_locationErr, location] = await getLocationBySlug({
+    ...params,
+    locationSlug,
+  });
+
   if (location)
-    return [new ExistingLocationError(locationSlug), null] as const;
+    return [new ExistingLocationError(locationSlug), location] as const;
 
   const createdAt = Date.now();
   const id = createdAt + "-" + crypto.randomUUID();
 
-  const data: Location = {
+  location = {
     id,
     createdAt,
     slug: locationSlug,
@@ -46,11 +50,11 @@ export async function createLocation(
 
   await kv
     .atomic()
-    .set(["groups", groupId, "locations", id], data)
-    .set(["groups", groupId, "locations_by_slug", locationSlug], data)
+    .set(["groups", groupId, "locations", id], location)
+    .set(["groups", groupId, "locations_by_slug", locationSlug], location)
     .commit();
 
-  return [null, data] as const;
+  return [null, location] as const;
 }
 
 export class UnknownLocationError extends APIError {
@@ -68,7 +72,12 @@ export async function getLocation(params: {
   const [err] = await getGroup(params);
   if (err) return [err, null] as const;
 
-  const entry = await kv.get<Location>(["groups", groupId, "locations", locationId]);
+  const entry = await kv.get<Location>([
+    "groups",
+    groupId,
+    "locations",
+    locationId,
+  ]);
   if (!entry.value)
     return [new UnknownLocationError(locationId), null] as const;
 
@@ -84,18 +93,23 @@ export class UnknownLocationSlugError extends APIError {
 export async function getLocationBySlug(params: {
   groupId: string;
   locationSlug: string;
-}) {
-  const { groupId, locationSlug } = params;
+}): Promise<
+  | readonly [UnknownGroupError, null]
+  | readonly [UnknownLocationSlugError, null]
+  | readonly [null, Location]
+> {
+  const { locationSlug } = params;
 
-  const [err] = await getGroup(params);
+  const [err, group] = await getGroup(params);
   if (err) return [err, null] as const;
 
   const entry = await kv.get<Location>([
     "groups",
-    groupId,
+    group.id,
     "locations_by_slug",
     locationSlug,
   ]);
+
   if (!entry.value)
     return [new UnknownLocationSlugError(locationSlug), null] as const;
 

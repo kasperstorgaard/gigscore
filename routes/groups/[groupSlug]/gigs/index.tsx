@@ -1,9 +1,11 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { createGig, Gig, listGigs } from "~/db/gigs.ts";
-import { getGroupBySlug, Group } from "~/db/groups.ts";
-import { createScore } from "~/db/scores.ts";
-import { createLocation, getLocationBySlug } from "~/db/locations.ts";
-import { APIError, getSlug } from "~/utils.ts";
+import { getGroupBySlug, Group, UnknownGroupSlugError } from "~/db/groups.ts";
+import { createLocation } from "~/db/locations.ts";
+import { APIError } from "~/utils.ts";
+import MainLayout from "../../../../components/layouts/main-layout.tsx";
+import { asset, Head } from "https://deno.land/x/fresh@1.1.5/runtime.ts";
+import { Breadcrumb } from "../../../../components/Breadcrumb.tsx";
 
 type Data = {
   group: Group;
@@ -39,18 +41,12 @@ export const handler: Handlers<Data> = {
   POST: async (req, ctx) => {
     const formData = await req.formData();
 
-    // TODO: extract to validator + mapper, maybe zod?
     const data: Partial<{
       name: string;
       groupSlug: string;
       locationName: string;
       locationLat: string;
       locationLng: string;
-      catchyness: string;
-      vocals: string;
-      sound: string;
-      immersion: string;
-      performance: string;
     }> = Object.fromEntries(formData);
 
     try {
@@ -69,16 +65,12 @@ export const handler: Handlers<Data> = {
           : undefined,
       };
 
-      let [locationErr, location] = await getLocationBySlug({
-        groupId: group.id,
-        locationSlug: getSlug(locationData.name),
-      });
-
-      if (!location) {
-        [locationErr, location] = await createLocation({ groupId: group.id }, locationData);
-      }
-
-      if (!location) throw locationErr;
+      const [_locationErr, location] = locationData.name
+        ? await createLocation(
+          { groupId: group.id },
+          locationData,
+        )
+        : [null, null] as const;
 
       const gigData = {
         name: data.name ?? "",
@@ -86,23 +78,9 @@ export const handler: Handlers<Data> = {
 
       const [gigErr, gig] = await createGig({
         groupId: group.id,
-        locationId: location.id,
+        locationId: location?.id ?? null,
       }, gigData);
       if (gigErr) throw gigErr;
-
-      const scoreData = {
-        catchyness: parseInt(data.catchyness ?? ""),
-        vocals: parseInt(data.vocals ?? ""),
-        sound: parseInt(data.sound ?? ""),
-        immersion: parseInt(data.immersion ?? ""),
-        performance: parseInt(data.performance ?? ""),
-      };
-
-      const [scoreErr] = await createScore({
-        groupId: group.id,
-        gigId: gig.id,
-      }, scoreData);
-      if (scoreErr) throw scoreErr;
 
       const url = new URL(req.url);
 
@@ -119,19 +97,62 @@ export const handler: Handlers<Data> = {
   },
 };
 
-export default function GigList(props: PageProps<Data>) {
+export default function GigHome(props: PageProps<Data>) {
   return (
-    <section>
-      <ul>
-        {props.data.gigs.map((gig) => (
-          <li key={gig.id}>
-            <a href={`gigs/${gig.slug}`}>
-              {gig.name} -{}
-              {Intl.DateTimeFormat().format(new Date(gig.createdAt))}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <MainLayout>
+      <Head>
+        <link rel="stylesheet" href={asset("/gigs-page.css")} />
+      </Head>
+
+      <main class="gigs-page">
+        <header>
+          <Breadcrumb
+            items={[{
+              url: `/groups/${props.data.group.slug}`,
+              label: props.data.group.name,
+            }]}
+          />
+        </header>
+        <section>
+          <form
+            action={`/groups/${props.data.group.slug}/gigs`}
+            method="POST"
+            class="gig-form"
+          >
+            <fieldset>
+              <label>
+                Name of the band / artist?
+                <input type="text" name="name" />
+              </label>
+
+              <label>
+                Where did they play?<br />
+                (optional)
+                <input type="text" name="locationName" />
+              </label>
+            </fieldset>
+
+            <button type="submit">Create gig</button>
+          </form>
+        </section>
+
+        {props.data.gigs.length
+          ? (
+            <section>
+              <ul>
+                {props.data.gigs.map((gig) => (
+                  <li key={gig.id}>
+                    <a href={`gigs/${gig.slug}`}>
+                      {gig.name} -{}
+                      {Intl.DateTimeFormat().format(new Date(gig.createdAt))}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+          : null}
+      </main>
+    </MainLayout>
   );
 }
