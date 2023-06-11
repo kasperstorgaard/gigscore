@@ -1,11 +1,13 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset, Head } from "$fresh/runtime.ts";
+
 import { createGig, Gig, listGigs } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { createLocation } from "~/db/locations.ts";
 import { APIError } from "~/utils.ts";
+
 import MainLayout from "@/layouts/main-layout.tsx";
-import { Breadcrumb } from "../../../components/Breadcrumb.tsx";
+import { Breadcrumb } from "@/Breadcrumb.tsx";
 
 type Data = {
   group: Group;
@@ -86,7 +88,7 @@ export const handler: Handlers<Data> = {
 
       return new Response("", {
         status: 303,
-        headers: { Location: `${url.pathname}/${gig.slug}` },
+        headers: { Location: `${url.pathname}/${gig.slug}/rate` },
       });
     } catch (err) {
       return new Response(err.message, {
@@ -97,41 +99,20 @@ export const handler: Handlers<Data> = {
   },
 };
 
-export default function GroupPage(props: PageProps<Data>) {
+export default function GigHome(props: PageProps<Data>) {
   return (
     <MainLayout>
-      <Head>
-        <link rel="stylesheet" href={asset("/group-page.css")} />
-        <link rel="stylesheet" href={asset("/gigs-list.css")} />
-      </Head>
-
-      <main class="group-page">
+      <main class="gigs-page">
         <header>
           <Breadcrumb
-              items={[{
-                url: `/groups/${props.data.group.slug}`,
-                label: props.data.group.name,
-              }]}
-            />
+            items={[{
+              url: `/groups/${props.data.group.slug}`,
+              label: props.data.group.name,
+            }]}
+          />
         </header>
-        {props.data.gigs.length
-          ? (
-            <section class="gigs-list">
-              <ul>
-                {props.data.gigs.map((gig) => (
-                  <li key={gig.id}>
-                    <a href={`${props.data.group.slug}/gigs/${gig.slug}`}>
-                      {gig.name} -{}
-                      {Intl.DateTimeFormat().format(new Date(gig.createdAt))}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )
-          : null}
-
         <section>
+          <h2>Create new gig</h2>
           <form
             action={`/groups/${props.data.group.slug}/gigs`}
             method="POST"
@@ -153,6 +134,23 @@ export default function GroupPage(props: PageProps<Data>) {
             <button type="submit">Create gig</button>
           </form>
         </section>
+        {props.data.gigs.length
+          ? (
+            <section>
+              <h2>Latest gigs</h2>
+              <ul>
+                {props.data.gigs.map((gig) => (
+                  <li key={gig.id}>
+                    <a href={`/groups/${props.data.group.slug}/gigs/${gig.slug}`}>
+                      {gig.name} -{}
+                      {Intl.DateTimeFormat().format(new Date(gig.createdAt))}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+          : null}
       </main>
     </MainLayout>
   );

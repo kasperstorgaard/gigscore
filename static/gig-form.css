@@ -30,7 +30,7 @@
   place-items: center;
   gap: 3em;
 
-  padding: var(--size-fluid-5) var(--size-fluid-4);
+  padding: var(--size-fluid-5) var(--app-gutter);
   border: none;
 }
 

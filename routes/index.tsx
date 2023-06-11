@@ -12,6 +12,7 @@ import { APIError } from "~/utils.ts";
 import MainLayout from "@/layouts/main-layout.tsx";
 import { ParameterDeclarationBase } from "https://deno.land/x/ts_morph@17.0.1/ts_morph.js";
 import { getRecentGroups } from "../shared/session.ts";
+import { Breadcrumb } from "../components/Breadcrumb.tsx";
 
 type Data = {
   recentGroups?: Group[];
@@ -79,6 +80,10 @@ export default function Home(props: PageProps<Data>) {
       </Head>
 
       <main class="home-page">
+      <header>
+        <Breadcrumb items={[]} />
+      </header>
+
         {props.data.recentGroups?.length
           ? (
             <>

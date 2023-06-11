@@ -11,5 +11,5 @@
   grid-template-columns: auto;
   place-items: flex-start center;
 
-  padding: var(--size-fluid-5) var(--size-fluid-4);
+  padding: var(--size-fluid-5) var(--app-gutter);
 }
