@@ -11,6 +11,11 @@ body, main {
   letter-spacing: var(--font-letterspacing-1);
 }
 
+button {
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+}
+
 [hidden] {
   display: none;
 }

@@ -4,18 +4,19 @@ import { asset, Head } from "$fresh/runtime.ts";
 import { createGig, Gig, listGigs } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { createLocation } from "~/db/locations.ts";
-import { APIError } from "~/utils.ts";
+import { APIError, getLanguage } from "~/utils.ts";
 
 import MainLayout from "@/layouts/main-layout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
 
 type Data = {
+  language: string;
   group: Group;
   gigs: Gig[];
 };
 
 export const handler: Handlers<Data> = {
-  GET: async (_req, ctx) => {
+  GET: async (req, ctx) => {
     try {
       const [groupErr, group] = await getGroupBySlug({
         groupSlug: ctx.params.groupSlug,
@@ -29,6 +30,7 @@ export const handler: Handlers<Data> = {
       if (gigsErr) throw gigsErr;
 
       return ctx.render({
+        language: getLanguage(req),
         group,
         gigs,
       });
@@ -102,6 +104,9 @@ export const handler: Handlers<Data> = {
 export default function GigHome(props: PageProps<Data>) {
   return (
     <MainLayout>
+      <Head>
+        <link rel="stylesheet" href={asset("/gigs-list.css")} />
+      </Head>
       <main class="gigs-page">
         <header>
           <Breadcrumb
@@ -136,18 +141,21 @@ export default function GigHome(props: PageProps<Data>) {
         </section>
         {props.data.gigs.length
           ? (
-            <section>
+            <section class="gigs-list">
               <h2>Latest gigs</h2>
-              <ul>
+              <ol>
                 {props.data.gigs.map((gig) => (
                   <li key={gig.id}>
-                    <a href={`/groups/${props.data.group.slug}/gigs/${gig.slug}`}>
-                      {gig.name} -{}
-                      {Intl.DateTimeFormat().format(new Date(gig.createdAt))}
+                    <a
+                      href={`/groups/${props.data.group.slug}/gigs/${gig.slug}`}
+                    >
+                      {gig.name} - {}
+                      {Intl.DateTimeFormat(props.data.language).format(new Date(gig.createdAt))}
+                      <button>rate</button>
                     </a>
                   </li>
                 ))}
-              </ul>
+              </ol>
             </section>
           )
           : null}

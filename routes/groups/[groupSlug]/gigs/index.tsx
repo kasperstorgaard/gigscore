@@ -139,7 +139,7 @@ export default function GigHome(props: PageProps<Data>) {
         {props.data.gigs.length
           ? (
             <section>
-              <ul>
+              <ol>
                 {props.data.gigs.map((gig) => (
                   <li key={gig.id}>
                     <a href={`gigs/${gig.slug}`}>
@@ -148,7 +148,7 @@ export default function GigHome(props: PageProps<Data>) {
                     </a>
                   </li>
                 ))}
-              </ul>
+              </ol>
             </section>
           )
           : null}

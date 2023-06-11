@@ -40,7 +40,7 @@ main > section {
   grid-template-columns: auto;
   grid-template-rows: min-content;
   grid-auto-rows: auto;
-  place-items: flex-start center;
+  place-content: flex-start center;
   gap: 3em;
 
   padding: var(--size-fluid-5) var(--app-gutter);

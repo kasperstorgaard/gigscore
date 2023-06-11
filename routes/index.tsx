@@ -76,33 +76,39 @@ export default function Home(props: PageProps<Data>) {
   return (
     <MainLayout>
       <Head>
-        <link rel="stylesheet" href={asset("/home-page.css")} />
+        <link rel="stylesheet" href={asset("/groups-list.css")} />
       </Head>
 
-      <main class="home-page">
-      <header>
-        <Breadcrumb items={[]} />
-      </header>
+      <main>
+        <header>
+          <Breadcrumb items={[]} />
+        </header>
 
         {props.data.recentGroups?.length
           ? (
             <>
-              <section>
-                <div>
-                  <p>Open your last group</p>
-                  <a href={`/groups/${props.data.recentGroups[0].slug}`}>
-                    {props.data.recentGroups[0].name}
-                  </a>
-                </div>
+              <section class="groups-list">
+                <h2>Recent groups</h2>
+
+                <ol>
+                  <li>
+                    <a href={`/groups/${props.data.recentGroups[0].slug}`}>
+                      {props.data.recentGroups[0].name}
+                      <button>open</button>
+                    </a>
+                  </li>
+                </ol>
               </section>
             </>
           )
           : null}
 
         <section>
+          <h2>Create a new group</h2>
+
           <form method="POST" action="/">
             <label>
-              Pick a group name
+              Pick a good name
               <input type="text" name="name" />
             </label>
 

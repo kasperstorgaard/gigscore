@@ -1,7 +1,12 @@
 form,
 fieldset {
   display: grid;
-  gap: 2em;
+  gap: 1.5em;
+  max-width: var(--size-content-2);
+}
+
+form button[type=submit] {
+  margin-top: 0.5em;
 }
 
 fieldset {

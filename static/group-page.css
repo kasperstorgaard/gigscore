@@ -2,11 +2,3 @@ main {
   /* --main-layout__primary-bg: black;
   --main-layout__secondary-bg: var(--camo-1); */
 }
-
-.group-page__gigs-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: max-content 1fr;
-
-  border: none;
-}
