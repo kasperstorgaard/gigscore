@@ -2,18 +2,23 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset, Head } from "$fresh/runtime.ts";
 import MainLayout from "@/layouts/main-layout.tsx";
 import GigForm from "#/GigForm.tsx";
-import { Score, createScore } from "~/db/scores.ts";
+import { createScore, Score } from "~/db/scores.ts";
 import { APIError, getSlug } from "~/utils.ts";
-import { Gig, createGig, getGigBySlug, listGigs } from "~/db/gigs.ts";
+import { createGig, getGigBySlug, Gig, listGigs } from "~/db/gigs.ts";
 import { createLocation, getLocationBySlug } from "~/db/locations.ts";
-import { Group, getGroupBySlug } from "~/db/groups.ts";
+import { getGroupBySlug, Group } from "~/db/groups.ts";
+import { updateRatedGigs } from "../../../../../shared/session.ts";
+import {
+  Session,
+  WithSession,
+} from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
 
 type Data = {
   group: Group;
   gig: Gig;
 };
 
-export const handler: Handlers<Data> = {
+export const handler: Handlers<Data, WithSession> = {
   GET: async (_req, ctx) => {
     try {
       const [groupErr, group] = await getGroupBySlug({
@@ -76,11 +81,13 @@ export const handler: Handlers<Data> = {
       }, scoreData);
       if (scoreErr) throw scoreErr;
 
+      updateRatedGigs(ctx.state.session, gig);
+
       const url = new URL(req.url);
 
       return new Response("", {
         status: 303,
-        headers: { Location: `${url.pathname}/${gig.slug}` },
+        headers: { Location: `/groups/${group.slug}/gigs/${gig.slug}` },
       });
     } catch (err) {
       return new Response(err.message, {
@@ -101,7 +108,10 @@ export default function RatePage(props: PageProps) {
       </Head>
 
       <main class="rate-page">
-        <GigForm groupSlug={props.params.groupSlug} />
+        <GigForm
+          groupSlug={props.params.groupSlug}
+          gigSlug={props.params.gigSlug}
+        />
       </main>
     </MainLayout>
   );

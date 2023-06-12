@@ -3,12 +3,14 @@ import { getGigBySlug, Gig } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { APIError } from "~/utils.ts";
 import { listScores, Score } from "~/db/scores.ts";
+import { getRatedGigs } from "../../../../../shared/session.ts";
+import { WithSession } from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
 
 export const handler: Handlers<{
   group: Group;
   gig: Gig;
   scores: Score[];
-}> = {
+}, WithSession> = {
   // Read gig
   GET: async (_req, ctx) => {
     try {
@@ -22,6 +24,15 @@ export const handler: Handlers<{
         gigSlug: ctx.params.gigSlug,
       });
       if (gigErr) throw gigErr;
+
+      // If the user has already rated this gig, no need to rate again.
+      const ratedGigs = getRatedGigs(ctx.state.session);
+      if (!ratedGigs.some(ratedGig => ratedGig.id === gig.id)) {
+        return new Response("", {
+          status: 303,
+          headers: { Location: `/groups/${group.slug}/gigs/${gig.slug}/rate` },
+        });
+      }
 
       const [scoresErr, scores] = await listScores({
         groupId: group.id,
