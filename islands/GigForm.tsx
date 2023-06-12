@@ -8,10 +8,12 @@ import { getAverageScore } from "../shared/utils.ts";
 import ScoreGuides from "./ScoreGuides.tsx";
 
 type Props = {
+  gigSlug: string;
   groupSlug: string;
 };
 
 export default function GigForm({
+  gigSlug,
   groupSlug,
 }: Props) {
   const containerRef = createRef<HTMLDivElement>();
@@ -42,7 +44,7 @@ export default function GigForm({
 
   return (
     <form
-      action={`/groups/${groupSlug}/gigs`}
+      action={`/groups/${groupSlug}/gigs/${gigSlug}/rate`}
       method="POST"
       class="gig-form"
       onChange={handleFormChange}
