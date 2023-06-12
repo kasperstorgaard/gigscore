@@ -107,7 +107,7 @@ export default function GigHome(props: PageProps<Data>) {
       <Head>
         <link rel="stylesheet" href={asset("/gigs-list.css")} />
       </Head>
-      <main class="gigs-page">
+      <main>
         <header>
           <Breadcrumb
             items={[{

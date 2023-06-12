@@ -100,11 +100,7 @@ export const handler: Handlers<Data> = {
 export default function GigHome(props: PageProps<Data>) {
   return (
     <MainLayout>
-      <Head>
-        <link rel="stylesheet" href={asset("/gigs-page.css")} />
-      </Head>
-
-      <main class="gigs-page">
+      <main>
         <header>
           <Breadcrumb
             items={[{
