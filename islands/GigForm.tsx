@@ -44,7 +44,7 @@ export default function GigForm({
 
   return (
     <form
-      action={`/g/${groupSlug}/g/${gigSlug}/rate`}
+      action={`/u/${groupSlug}/g/${gigSlug}/rate`}
       method="POST"
       class="gig-form"
       onChange={handleFormChange}

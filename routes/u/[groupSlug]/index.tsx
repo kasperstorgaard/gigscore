@@ -1,19 +1,22 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { asset, Head } from "$fresh/runtime.ts";
+
 import { createGig, Gig, listGigs } from "~/db/gigs.ts";
-import { getGroupBySlug, Group, UnknownGroupSlugError } from "~/db/groups.ts";
+import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { createLocation } from "~/db/locations.ts";
-import { APIError } from "~/utils.ts";
-import MainLayout from "../../../../components/layouts/main-layout.tsx";
-import { asset, Head } from "https://deno.land/x/fresh@1.1.5/runtime.ts";
-import { Breadcrumb } from "../../../../components/Breadcrumb.tsx";
+import { APIError, getLanguage } from "~/utils.ts";
+
+import MainLayout from "@/layouts/main-layout.tsx";
+import { Breadcrumb } from "@/Breadcrumb.tsx";
 
 type Data = {
+  language: string;
   group: Group;
   gigs: Gig[];
 };
 
 export const handler: Handlers<Data> = {
-  GET: async (_req, ctx) => {
+  GET: async (req, ctx) => {
     try {
       const [groupErr, group] = await getGroupBySlug({
         groupSlug: ctx.params.groupSlug,
@@ -27,6 +30,7 @@ export const handler: Handlers<Data> = {
       if (gigsErr) throw gigsErr;
 
       return ctx.render({
+        language: getLanguage(req),
         group,
         gigs,
       });
@@ -86,7 +90,7 @@ export const handler: Handlers<Data> = {
 
       return new Response("", {
         status: 303,
-        headers: { Location: `${url.pathname}/${gig.slug}` },
+        headers: { Location: `${url.pathname}/${gig.slug}/rate` },
       });
     } catch (err) {
       return new Response(err.message, {
@@ -100,18 +104,22 @@ export const handler: Handlers<Data> = {
 export default function GigHome(props: PageProps<Data>) {
   return (
     <MainLayout>
+      <Head>
+        <link rel="stylesheet" href={asset("/link-section.css")} />
+      </Head>
       <main>
         <header>
           <Breadcrumb
             items={[{
-              url: `/g/${props.data.group.slug}`,
+              url: `/u/${props.data.group.slug}`,
               label: props.data.group.name,
             }]}
           />
         </header>
         <section>
+          <h2>Create new gig</h2>
           <form
-            action={`/g/${props.data.group.slug}/gigs`}
+            action={`/u/${props.data.group.slug}/gigs`}
             method="POST"
             class="gig-form"
           >
@@ -131,16 +139,19 @@ export default function GigHome(props: PageProps<Data>) {
             <button type="submit">Create gig</button>
           </form>
         </section>
-
         {props.data.gigs.length
           ? (
-            <section>
+            <section class="link-section">
+              <h2>Latest gigs</h2>
               <ol>
                 {props.data.gigs.map((gig) => (
                   <li key={gig.id}>
-                    <a href={`gigs/${gig.slug}`}>
+                    <a
+                      href={`/u/${props.data.group.slug}/g/${gig.slug}`}
+                    >
                       {gig.name} - {}
-                      {Intl.DateTimeFormat().format(new Date(gig.createdAt))}
+                      {Intl.DateTimeFormat(props.data.language).format(new Date(gig.createdAt))}
+                      <button>rate</button>
                     </a>
                   </li>
                 ))}

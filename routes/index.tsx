@@ -56,7 +56,7 @@ export const handler: Handlers<Data, WithSession> = {
 
       return new Response("", {
         status: 303,
-        headers: { Location: `/g/${group.slug}/gigs` },
+        headers: { Location: `/u/${group.slug}/gigs` },
       });
     } catch (err) {
       return new Response("", {
@@ -88,7 +88,7 @@ export default function Home(props: PageProps<Data>) {
 
                 <ol>
                   <li>
-                    <a href={`/g/${props.data.recentGroups[0].slug}`}>
+                    <a href={`/u/${props.data.recentGroups[0].slug}`}>
                       {props.data.recentGroups[0].name}
                       <button>open</button>
                     </a>
@@ -115,7 +115,7 @@ export default function Home(props: PageProps<Data>) {
             <aside class="form__info-box">
               Looks like the group "{props.data.existingGroup.name}" already
               exists. <br />
-              <a href={`/g/${props.data.existingGroup.slug}`}>
+              <a href={`/u/${props.data.existingGroup.slug}`}>
                 Open it instead?
               </a>
             </aside>
