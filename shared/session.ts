@@ -41,8 +41,6 @@ export function getRatedGigs(session: Session) {
     ratedGigs = [];
   }
 
-  console.log({ ratedGigs });
-
   return ratedGigs;
 }
 
@@ -54,8 +52,6 @@ export function updateRatedGigs(session: Session, gig: Gig) {
     name: gig.name,
     slug: gig.slug,
   });
-
-  console.log("after", { ratedGigs });
 
   session.set("rated-gigs", JSON.stringify(ratedGigs));
 }

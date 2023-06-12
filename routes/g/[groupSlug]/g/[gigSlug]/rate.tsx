@@ -87,7 +87,7 @@ export const handler: Handlers<Data, WithSession> = {
 
       return new Response("", {
         status: 303,
-        headers: { Location: `/groups/${group.slug}/gigs/${gig.slug}` },
+        headers: { Location: `/g/${group.slug}/g/${gig.slug}` },
       });
     } catch (err) {
       return new Response(err.message, {

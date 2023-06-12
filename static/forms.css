@@ -2,7 +2,6 @@ form,
 fieldset {
   display: grid;
   gap: 1.5em;
-  max-width: var(--size-content-2);
 }
 
 form button[type=submit] {
@@ -12,6 +11,7 @@ form button[type=submit] {
 fieldset {
   border: none;
   padding: 0;
+  max-width: var(--size-content-2);
 }
 
 form > label,

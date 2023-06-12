@@ -4,13 +4,13 @@
 
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/_middleware.ts";
-import * as $1 from "./routes/groups/[groupSlug]/gigs/[gigSlug]/index.tsx";
-import * as $2 from "./routes/groups/[groupSlug]/gigs/[gigSlug]/rate.tsx";
-import * as $3 from "./routes/groups/[groupSlug]/gigs/index.tsx";
-import * as $4 from "./routes/groups/[groupSlug]/index.tsx";
-import * as $5 from "./routes/groups/[groupSlug]/locations/[locationSlug].tsx";
-import * as $6 from "./routes/groups/[groupSlug]/locations/index.tsx";
-import * as $7 from "./routes/groups/_middleware.ts";
+import * as $1 from "./routes/g/[groupSlug]/g/[gigSlug]/index.tsx";
+import * as $2 from "./routes/g/[groupSlug]/g/[gigSlug]/rate.tsx";
+import * as $3 from "./routes/g/[groupSlug]/g/index.tsx";
+import * as $4 from "./routes/g/[groupSlug]/index.tsx";
+import * as $5 from "./routes/g/[groupSlug]/locations/[locationSlug].tsx";
+import * as $6 from "./routes/g/[groupSlug]/locations/index.tsx";
+import * as $7 from "./routes/g/_middleware.ts";
 import * as $8 from "./routes/index.tsx";
 import * as $$0 from "./islands/Counter.tsx";
 import * as $$1 from "./islands/GigForm.tsx";
@@ -19,13 +19,13 @@ import * as $$2 from "./islands/ScoreGuides.tsx";
 const manifest = {
   routes: {
     "./routes/_middleware.ts": $0,
-    "./routes/groups/[groupSlug]/gigs/[gigSlug]/index.tsx": $1,
-    "./routes/groups/[groupSlug]/gigs/[gigSlug]/rate.tsx": $2,
-    "./routes/groups/[groupSlug]/gigs/index.tsx": $3,
-    "./routes/groups/[groupSlug]/index.tsx": $4,
-    "./routes/groups/[groupSlug]/locations/[locationSlug].tsx": $5,
-    "./routes/groups/[groupSlug]/locations/index.tsx": $6,
-    "./routes/groups/_middleware.ts": $7,
+    "./routes/g/[groupSlug]/g/[gigSlug]/index.tsx": $1,
+    "./routes/g/[groupSlug]/g/[gigSlug]/rate.tsx": $2,
+    "./routes/g/[groupSlug]/g/index.tsx": $3,
+    "./routes/g/[groupSlug]/index.tsx": $4,
+    "./routes/g/[groupSlug]/locations/[locationSlug].tsx": $5,
+    "./routes/g/[groupSlug]/locations/index.tsx": $6,
+    "./routes/g/_middleware.ts": $7,
     "./routes/index.tsx": $8,
   },
   islands: {

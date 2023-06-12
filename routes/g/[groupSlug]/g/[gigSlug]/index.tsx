@@ -30,7 +30,7 @@ export const handler: Handlers<{
       if (!ratedGigs.some(ratedGig => ratedGig.id === gig.id)) {
         return new Response("", {
           status: 303,
-          headers: { Location: `/groups/${group.slug}/gigs/${gig.slug}/rate` },
+          headers: { Location: `/g/${group.slug}/g/${gig.slug}/rate` },
         });
       }
 

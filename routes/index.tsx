@@ -3,11 +3,7 @@ import { asset, Head } from "$fresh/runtime.ts";
 import { WithSession } from "fresh_session";
 import { getCookies } from "https://deno.land/std@0.150.0/http/mod.ts";
 
-import {
-  createGroup,
-  ExistingGroupError,
-  Group,
-} from "~/db/groups.ts";
+import { createGroup, ExistingGroupError, Group } from "~/db/groups.ts";
 import { APIError } from "~/utils.ts";
 import MainLayout from "@/layouts/main-layout.tsx";
 import { ParameterDeclarationBase } from "https://deno.land/x/ts_morph@17.0.1/ts_morph.js";
@@ -15,20 +11,20 @@ import { getRecentGroups } from "../shared/session.ts";
 import { Breadcrumb } from "../components/Breadcrumb.tsx";
 
 type Data = {
-  recentGroups?: Group[];
+  recentGroups?: Pick<Group, "id" | "name" | "slug">[];
   existingGroup?: Group;
 };
 
 export const handler: Handlers<Data, WithSession> = {
-  GET: async (req, ctx) => {
+  GET: (req, ctx) => {
     const { sessionId } = getCookies(req.headers);
 
     if (!sessionId) return ctx.render();
 
-    const recentGroups = await getRecentGroups(ctx.state.session);
+    const recentGroups = getRecentGroups(ctx.state.session);
 
     return ctx.render({
-      recentGroups
+      recentGroups,
     });
   },
   POST: async (req, ctx) => {
@@ -60,7 +56,7 @@ export const handler: Handlers<Data, WithSession> = {
 
       return new Response("", {
         status: 303,
-        headers: { Location: `/groups/${group.slug}/gigs` },
+        headers: { Location: `/g/${group.slug}/gigs` },
       });
     } catch (err) {
       return new Response("", {
@@ -76,7 +72,7 @@ export default function Home(props: PageProps<Data>) {
   return (
     <MainLayout>
       <Head>
-        <link rel="stylesheet" href={asset("/groups-list.css")} />
+        <link rel="stylesheet" href={asset("/link-section.css")} />
       </Head>
 
       <main>
@@ -87,12 +83,12 @@ export default function Home(props: PageProps<Data>) {
         {props.data.recentGroups?.length
           ? (
             <>
-              <section class="groups-list">
+              <section class="link-section">
                 <h2>Recent groups</h2>
 
                 <ol>
                   <li>
-                    <a href={`/groups/${props.data.recentGroups[0].slug}`}>
+                    <a href={`/g/${props.data.recentGroups[0].slug}`}>
                       {props.data.recentGroups[0].name}
                       <button>open</button>
                     </a>
@@ -117,8 +113,9 @@ export default function Home(props: PageProps<Data>) {
 
           {props.data.existingGroup && (
             <aside class="form__info-box">
-              Looks like the group "{props.data.existingGroup.name}" already exists. <br />
-              <a href={`/groups/${props.data.existingGroup.slug}`}>
+              Looks like the group "{props.data.existingGroup.name}" already
+              exists. <br />
+              <a href={`/g/${props.data.existingGroup.slug}`}>
                 Open it instead?
               </a>
             </aside>
