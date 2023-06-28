@@ -21,10 +21,6 @@
   font-size: var(--font-size-0);
 }
 
-.link-section a:visited button {
-  color: var(--text-1);
-}
-
 .link-section a:hover button {
   text-decoration: none;
 }

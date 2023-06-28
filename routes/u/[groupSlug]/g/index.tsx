@@ -1,11 +1,10 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { createGig, Gig, listGigs } from "~/db/gigs.ts";
-import { getGroupBySlug, Group, UnknownGroupSlugError } from "~/db/groups.ts";
+import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { createLocation } from "~/db/locations.ts";
 import { APIError } from "~/utils.ts";
-import MainLayout from "../../../../components/layouts/main-layout.tsx";
-import { asset, Head } from "https://deno.land/x/fresh@1.1.5/runtime.ts";
-import { Breadcrumb } from "../../../../components/Breadcrumb.tsx";
+import MainLayout from "@/layouts/main-layout.tsx";
+import { Breadcrumb } from "@/Breadcrumb.tsx";
 
 type Data = {
   group: Group;
@@ -111,7 +110,7 @@ export default function GigHome(props: PageProps<Data>) {
         </header>
         <section>
           <form
-            action={`/u/${props.data.group.slug}/gigs`}
+            action={`/u/${props.data.group.slug}/g`}
             method="POST"
             class="gig-form"
           >
