@@ -16,7 +16,7 @@ export default function ScoreGuides({ children }: Props) {
   return (
     <>
       <Head>
-        <link rel="stylesheet" href={asset("/score-guides.css")} />
+        <link rel="stylesheet" href={asset("/components/score-guides.css")} />
       </Head>
 
       <aside

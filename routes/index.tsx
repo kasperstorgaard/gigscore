@@ -56,7 +56,7 @@ export const handler: Handlers<Data, WithSession> = {
 
       return new Response("", {
         status: 303,
-        headers: { Location: `/u/${group.slug}/gigs` },
+        headers: { Location: `/u/${group.slug}/g` },
       });
     } catch (err) {
       return new Response("", {
@@ -72,7 +72,7 @@ export default function Home(props: PageProps<Data>) {
   return (
     <MainLayout>
       <Head>
-        <link rel="stylesheet" href={asset("/link-section.css")} />
+        <link rel="stylesheet" href={asset("/components/link-section.css")} />
       </Head>
 
       <main>

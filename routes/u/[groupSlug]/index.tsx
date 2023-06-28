@@ -111,7 +111,7 @@ export default function GigHome(props: PageProps<Data>) {
   return (
     <MainLayout>
       <Head>
-        <link rel="stylesheet" href={asset("/link-section.css")} />
+        <link rel="stylesheet" href={asset("/components/link-section.css")} />
       </Head>
       <main>
         <header>

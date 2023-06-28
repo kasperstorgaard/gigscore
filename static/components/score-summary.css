@@ -1,0 +1,20 @@
+.score-summary {
+  display: grid;
+  align-items: flex-end;
+  gap: 0.25em 0.25em;
+}
+
+.score-summary svg {
+  width: 7em;
+  color: var(--purple-6);
+}
+
+.score-summary span {
+  place-self: flex-start;
+  font-size: var(--font-size-5);
+  line-height: var(--font-lineheight-1);
+}
+
+.score-summary i {
+  font-size: var(--font-size-1);
+}

@@ -1,0 +1,22 @@
+.gig-page__top-section {
+  display: grid;
+}
+
+.gig-page__score {
+  display: grid;
+  gap: 1em;
+}
+
+.gig-page__score .score-summary {
+  grid-template-columns: min-content auto;
+}
+
+.gig-page__score svg {
+  grid-column: span 2;
+  width: 7em;
+}
+
+.gig-page__score span {
+  font-size: var(--font-size-fluid-2);
+  line-height: var(--font-lineheight-0);
+}

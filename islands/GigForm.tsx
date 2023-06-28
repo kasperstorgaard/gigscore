@@ -172,6 +172,7 @@ export default function GigForm({
               <p>final score</p>
               <span>{averageScore} / 5</span>
             </section>
+
             <button type="submit">Rate!</button>
           </div>
         </div>

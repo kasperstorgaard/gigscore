@@ -102,9 +102,9 @@ export default function RatePage(props: PageProps) {
   return (
     <MainLayout>
       <Head>
-        <link rel="stylesheet" href={asset("/rate-page.css")} />
-        <link rel="stylesheet" href={asset("/gig-form.css")} />
-        <link rel="stylesheet" href={asset("/score-input.css")} />
+        <link rel="stylesheet" href={asset("/pages/rate-page.css")} />
+        <link rel="stylesheet" href={asset("/components/gig-form.css")} />
+        <link rel="stylesheet" href={asset("/components/score-input.css")} />
       </Head>
 
       <main class="rate-page">

@@ -137,7 +137,7 @@ export default function GigHome(props: PageProps<Data>) {
               <ol>
                 {props.data.gigs.map((gig) => (
                   <li key={gig.id}>
-                    <a href={`gigs/${gig.slug}`}>
+                    <a href={`g/${gig.slug}`}>
                       {gig.name} - {}
                       {Intl.DateTimeFormat().format(new Date(gig.createdAt))}
                     </a>

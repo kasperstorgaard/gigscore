@@ -21,7 +21,7 @@ button {
 }
 
 h1 {
-  letter-spacing: var(--font-letterspacing-3);
+  letter-spacing: var(--font-letterspacing-1);
   line-height: var(--font-lineheight-00);
 }
 

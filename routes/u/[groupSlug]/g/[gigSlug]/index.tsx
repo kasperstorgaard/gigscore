@@ -1,18 +1,27 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getGigBySlug, Gig } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
-import { APIError } from "~/utils.ts";
+import { APIError, getLanguage, getTimeAgo, getVerdict } from "~/utils.ts";
 import { listScores, Score } from "~/db/scores.ts";
-import { getRatedGigs } from "../../../../../shared/session.ts";
-import { WithSession } from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
+import { WithSession } from "fresh_session";
+import { ScoreChart } from "@/ScoreChart.tsx";
+import { asset, Head } from "$fresh/runtime.ts";
+import MainLayout from "@/layouts/main-layout.tsx";
+import { Breadcrumb } from "@/Breadcrumb.tsx";
+import { getLocationByGig, Location } from "~/db/locations.ts";
 
-export const handler: Handlers<{
+type Data = {
   group: Group;
-  gig: Gig;
   scores: Score[];
-}, WithSession> = {
+  score: Omit<Score, "createdAt" | "id">;
+  gig: Gig;
+  location: Location;
+  language: string;
+};
+
+export const handler: Handlers<Data, WithSession> = {
   // Read gig
-  GET: async (_req, ctx) => {
+  GET: async (req, ctx) => {
     try {
       const [gropErr, group] = await getGroupBySlug({
         groupSlug: ctx.params.groupSlug,
@@ -25,14 +34,11 @@ export const handler: Handlers<{
       });
       if (gigErr) throw gigErr;
 
-      // If the user has already rated this gig, no need to rate again.
-      const ratedGigs = getRatedGigs(ctx.state.session);
-      if (!ratedGigs.some(ratedGig => ratedGig.id === gig.id)) {
-        return new Response("", {
-          status: 303,
-          headers: { Location: `/u/${group.slug}/g/${gig.slug}/rate` },
-        });
-      }
+      const [locationErr, location] = await getLocationByGig({
+        groupId: group.id,
+        gigId: gig.id,
+      });
+      if (locationErr) throw locationErr;
 
       const [scoresErr, scores] = await listScores({
         groupId: group.id,
@@ -40,10 +46,28 @@ export const handler: Handlers<{
       });
       if (scoresErr) throw scoresErr;
 
+      const score: Data["score"] = {
+        catchyness: scores.reduce((sum, item) => sum + item.catchyness, 0) /
+          scores.length,
+        vocals: scores.reduce((sum, item) => sum + item.vocals, 0) /
+          scores.length,
+        sound: scores.reduce((sum, item) => sum + item.sound, 0) /
+          scores.length,
+        immersion: scores.reduce((sum, item) => sum + item.immersion, 0) /
+          scores.length,
+        performance: scores.reduce((sum, item) => sum + item.performance, 0) /
+          scores.length,
+        average: scores.reduce((sum, item) => sum + item.average, 0) /
+          scores.length,
+      };
+
       return ctx.render({
         group,
         gig,
         scores,
+        score,
+        location,
+        language: getLanguage(req),
       });
     } catch (err) {
       return new Response("", {
@@ -54,10 +78,79 @@ export const handler: Handlers<{
   },
 };
 
-export default function GigDetails(props: PageProps<Gig>) {
+export default function GigDetails(props: PageProps<Data>) {
   return (
-    <code style={{ whiteSpace: "pre" }}>
-      {JSON.stringify(props.data, null, 2)}
-    </code>
+    <>
+      <Head>
+        <link rel="stylesheet" href={asset("/components/score-list.css")} />
+        <link rel="stylesheet" href={asset("/components/score-summary.css")} />
+        <link rel="stylesheet" href={asset("/pages/gig-page.css")} />
+      </Head>
+
+      <MainLayout>
+        <main class="gig-page">
+          <header>
+            <Breadcrumb
+              items={[{
+                url: `/u/${props.data.group.slug}`,
+                label: props.data.group.name,
+              }, {
+                url: `/u/${props.data.group.slug}/g`,
+                label: "gigs",
+              }, {
+                url: `/u/${props.data.group.slug}/g/${props.data.gig.slug}`,
+                label: props.data.gig.name,
+              }]}
+            />
+          </header>
+
+          <section class="gig-page__top-section">
+            <div>
+              <p>
+                {Intl.DateTimeFormat(props.data.language).format(
+                  props.data.gig.createdAt,
+                )}
+              </p>
+              <h1>{props.data.gig.name}</h1>
+              {/* TODO: add option to select when they played, not just same day */}
+              {props.data.location
+                ? (
+                  <p>
+                    {props.data.location.name}
+                  </p>
+                )
+                : null}
+            </div>
+
+            <aside class="gig-page__score">
+              <h3>Score</h3>
+
+              <div class="score-summary">
+                <span>{props.data.score.average}</span> - {getVerdict(props.data.score.average)}
+                <ScoreChart score={props.data.score} />
+              </div>
+            </aside>
+          </section>
+
+          <section class="score-list">
+            <h3>Latest scores</h3>
+
+            <ol>
+              {props.data.scores.map((score) => (
+                <li key={score.id} class="score-summary">
+                  <span>{score.average}</span>
+                  <ScoreChart score={score} />
+                  <i>
+                    {getTimeAgo(score.createdAt, {
+                      language: props.data.language,
+                    })}
+                  </i>
+                </li>
+              ))}
+            </ol>
+          </section>
+        </main>
+      </MainLayout>
+    </>
   );
 }

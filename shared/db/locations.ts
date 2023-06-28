@@ -1,6 +1,6 @@
 import { APIError, getSlug } from "~/utils.ts";
 import { kv } from "./kv.ts";
-import { ExistingGroupError, UnknownGroupError, getGroup } from "./groups.ts";
+import { UnknownGroupError, getGroup } from "./groups.ts";
 import { getGig } from "./gigs.ts";
 
 export type Location = {

@@ -1,0 +1,10 @@
+.score-list ol,
+.score-list li {
+  padding: 0;
+  margin: 0;
+}
+
+.score-list ol {
+  display: grid;
+  gap: 1em;
+}
