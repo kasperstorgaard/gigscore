@@ -118,7 +118,7 @@ export default function GigDetails(props: PageProps<Data>) {
               {/* TODO: add option to select when they played, not just same day */}
               {props.data.location
                 ? (
-                  <span class="strapline">
+                  <span>
                     {props.data.location.name}
                   </span>
                 )

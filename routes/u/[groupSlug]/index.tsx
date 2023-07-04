@@ -107,7 +107,7 @@ export const handler: Handlers<Data, WithSession> = {
   },
 };
 
-export default function GigHome(props: PageProps<Data>) {
+export default function GroupHome(props: PageProps<Data>) {
   return (
     <MainLayout>
       <Head>
@@ -124,6 +124,7 @@ export default function GigHome(props: PageProps<Data>) {
         </header>
         <section>
           <h2>Add gig</h2>
+
           <form
             action={`/u/${props.data.group.slug}/g`}
             method="POST"
@@ -145,10 +146,12 @@ export default function GigHome(props: PageProps<Data>) {
             <button type="submit">Create gig</button>
           </form>
         </section>
+
         {props.data.gigs.length
           ? (
             <section class="link-section">
               <h2>Latest gigs</h2>
+              
               <ol>
                 {props.data.gigs.map((gig) => (
                   <li key={gig.id}>

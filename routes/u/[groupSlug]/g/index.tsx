@@ -105,6 +105,9 @@ export default function GigHome(props: PageProps<Data>) {
             items={[{
               url: `/u/${props.data.group.slug}`,
               label: props.data.group.name,
+            }, {
+              url: `/u/${props.data.group.slug}/g`,
+              label: "Gigs",
             }]}
           />
         </header>
@@ -114,6 +117,8 @@ export default function GigHome(props: PageProps<Data>) {
             method="POST"
             class="gig-form"
           >
+            <h2>Add gig</h2>
+
             <fieldset>
               <label>
                 Name of the band / artist?
@@ -134,6 +139,8 @@ export default function GigHome(props: PageProps<Data>) {
         {props.data.gigs.length
           ? (
             <section>
+              <h2>Latest gigs</h2>
+              
               <ol>
                 {props.data.gigs.map((gig) => (
                   <li key={gig.id}>

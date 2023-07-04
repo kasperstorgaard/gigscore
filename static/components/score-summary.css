@@ -1,6 +1,6 @@
 .score-summary {
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: auto min-content;
   align-items: flex-end;
   gap: 0.25em 4em;
 }

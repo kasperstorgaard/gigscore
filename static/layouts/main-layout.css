@@ -1,12 +1,12 @@
 main {
-  --main-layout__primary-bg: var(--surface-1);
-  --main-layout__primary-color: var(--text-1);
+    --main-layout__secondary-bg: var(--surface-1);
+    --main-layout__secondary-color: var(--text-1);
 
-  --main-layout__secondary-bg: var(--sand-11);
-  --main-layout__secondary-color: var(--surface-1);
+    --main-layout__primary-bg: var(--sand-12);
+    --main-layout__primary-color: var(--surface-1);
 
-  --main-layout__divider: var(--gradient-3);
-  --main-layout__divider-height: 4px;
+    --main-layout__divider: var(--gradient-3);
+    --main-layout__divider-height: 4px;
 
   display: grid;
   grid-template-columns: 1fr;
@@ -18,7 +18,6 @@ main {
 
 main > header {
   display: grid;
-  place-content: center;
 
   padding: 1em var(--app-gutter);
 
@@ -28,10 +27,14 @@ main > header {
 
 @media (prefers-color-scheme: dark) {
   main {
-    --main-layout__secondary-bg: var(--surface-2);
-    --main-layout__secondary-color: var(--text-1);
-    --main-layout__divider: var(--gradient-4);
-    --main-layout__divider-height: 1px;
+    --main-layout__primary-bg: var(--surface-1);
+    --main-layout__primary-color: var(--text-1);
+
+    --main-layout__secondary-bg: var(--sand-12);
+    --main-layout__secondary-color: var(--surface-1);
+
+    --main-layout__divider: var(--gradient-3);
+    --main-layout__divider-height: 4px;
   }
 }
 

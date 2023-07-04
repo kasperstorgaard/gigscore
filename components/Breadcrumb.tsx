@@ -11,7 +11,7 @@ export function Breadcrumb({
   const itemsWithHome = [
     {
       url: "/",
-      label: "Home",
+      label: "Gigscore",
     },
     ...items
   ];

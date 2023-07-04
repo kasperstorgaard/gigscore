@@ -1,3 +1,7 @@
+.breadcrumbs {
+  width: 100%;
+}
+
 .breadcrumbs ol {
   display: flex;
   flex-wrap: wrap;
