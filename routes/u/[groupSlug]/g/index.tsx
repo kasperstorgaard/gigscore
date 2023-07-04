@@ -85,7 +85,7 @@ export const handler: Handlers<Data> = {
 
       return new Response("", {
         status: 303,
-        headers: { Location: `${url.pathname}/${gig.slug}` },
+        headers: { Location: `${url.pathname}/${gig.slug}/rate` },
       });
     } catch (err) {
       return new Response(err.message, {

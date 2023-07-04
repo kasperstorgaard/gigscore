@@ -1,20 +1,21 @@
 .score-summary {
   display: grid;
+  grid-template-columns: repeat(2, auto);
   align-items: flex-end;
-  gap: 0.25em 0.25em;
+  gap: 0.25em 5em;
 }
 
-.score-summary svg {
-  width: 7em;
-  color: var(--purple-6);
+.score-summary__value {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
-.score-summary span {
-  place-self: flex-start;
+.score-summary__value span {
   font-size: var(--font-size-5);
-  line-height: var(--font-lineheight-1);
+  text-decoration: underline;
 }
 
-.score-summary i {
+.score-summary__value i {
   font-size: var(--font-size-1);
 }

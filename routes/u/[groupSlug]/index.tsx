@@ -125,7 +125,7 @@ export default function GigHome(props: PageProps<Data>) {
         <section>
           <h2>Create new gig</h2>
           <form
-            action={`/u/${props.data.group.slug}/gigs`}
+            action={`/u/${props.data.group.slug}/g`}
             method="POST"
             class="gig-form"
           >

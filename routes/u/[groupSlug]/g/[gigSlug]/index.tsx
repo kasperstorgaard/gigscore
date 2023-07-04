@@ -4,7 +4,7 @@ import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { APIError, getLanguage, getTimeAgo, getVerdict } from "~/utils.ts";
 import { listScores, Score } from "~/db/scores.ts";
 import { WithSession } from "fresh_session";
-import { ScoreChart } from "@/ScoreChart.tsx";
+import { ScoreSnippet } from "@/ScoreSnippet.tsx";
 import { asset, Head } from "$fresh/runtime.ts";
 import MainLayout from "@/layouts/main-layout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
@@ -83,6 +83,7 @@ export default function GigDetails(props: PageProps<Data>) {
     <>
       <Head>
         <link rel="stylesheet" href={asset("/components/score-list.css")} />
+        <link rel="stylesheet" href={asset("/components/score-snippet.css")} />
         <link rel="stylesheet" href={asset("/components/score-summary.css")} />
         <link rel="stylesheet" href={asset("/pages/gig-page.css")} />
       </Head>
@@ -105,7 +106,7 @@ export default function GigDetails(props: PageProps<Data>) {
           </header>
 
           <section class="gig-page__top-section">
-            <div>
+            <div class="gig-page__gig-details">
               <p>
                 {Intl.DateTimeFormat(props.data.language).format(
                   props.data.gig.createdAt,
@@ -126,8 +127,10 @@ export default function GigDetails(props: PageProps<Data>) {
               <h3>Score</h3>
 
               <div class="score-summary">
-                <span>{props.data.score.average}</span> - {getVerdict(props.data.score.average)}
-                <ScoreChart score={props.data.score} />
+                <div class="score-summary__value">
+                  {props.data.score.average}
+                </div>
+                <ScoreSnippet score={props.data.score} />
               </div>
             </aside>
           </section>
@@ -138,13 +141,15 @@ export default function GigDetails(props: PageProps<Data>) {
             <ol>
               {props.data.scores.map((score) => (
                 <li key={score.id} class="score-summary">
-                  <span>{score.average}</span>
-                  <ScoreChart score={score} />
-                  <i>
-                    {getTimeAgo(score.createdAt, {
-                      language: props.data.language,
-                    })}
-                  </i>
+                  <div class="score-summary__value">
+                    <span>{score.average}</span>
+                    <i>
+                      {getTimeAgo(score.createdAt, {
+                        language: props.data.language,
+                      })}
+                    </i>
+                  </div>
+                  <ScoreSnippet score={score} />
                 </li>
               ))}
             </ol>

@@ -1,5 +1,5 @@
-.gig-page__top-section {
-  display: grid;
+.gig-page__gig-details p:first-child {
+  line-height: var(--font-lineheight-00);
 }
 
 .gig-page__score {
