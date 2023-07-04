@@ -107,18 +107,20 @@ export default function GigDetails(props: PageProps<Data>) {
 
           <section class="gig-page__top-section">
             <div class="gig-page__gig-details">
-              <p>
+              <span class="kicker">
                 {Intl.DateTimeFormat(props.data.language).format(
                   props.data.gig.createdAt,
                 )}
-              </p>
+              </span>
+
               <h1>{props.data.gig.name}</h1>
+
               {/* TODO: add option to select when they played, not just same day */}
               {props.data.location
                 ? (
-                  <p>
+                  <span class="strapline">
                     {props.data.location.name}
-                  </p>
+                  </span>
                 )
                 : null}
             </div>
