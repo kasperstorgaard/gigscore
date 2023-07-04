@@ -1,12 +1,12 @@
 main {
-    --main-layout__secondary-bg: var(--surface-1);
-    --main-layout__secondary-color: var(--text-1);
+  --main-layout__secondary-bg: var(--surface-1);
+  --main-layout__secondary-color: var(--text-1);
 
-    --main-layout__primary-bg: var(--sand-12);
-    --main-layout__primary-color: var(--surface-1);
+  --main-layout__primary-bg: var(--sand-12);
+  --main-layout__primary-color: var(--surface-1);
 
-    --main-layout__divider: var(--gradient-3);
-    --main-layout__divider-height: 4px;
+  --main-layout__divider: var(--gradient-3);
+  --main-layout__divider-height: 4px;
 
   display: grid;
   grid-template-columns: 1fr;
@@ -16,6 +16,16 @@ main {
   border: none;
 }
 
+@media (prefers-color-scheme: dark) {
+  main {
+    --main-layout__secondary-bg: var(--surface-1);
+    --main-layout__secondary-color: var(--text-1);
+
+    --main-layout__primary-color: var(--gray-12);
+    --main-layout__primary-bg: var(--gray-1);
+  }
+}
+
 main > header {
   display: grid;
 
@@ -23,6 +33,14 @@ main > header {
 
   background: var(--text-1);
   color: var(--surface-1);
+
+  border-bottom: 2px solid currentColor;
+}
+
+@media (prefers-color-scheme: dark) {
+  main > header {
+    background: var(--purple-1);
+  }
 }
 
 main > section {

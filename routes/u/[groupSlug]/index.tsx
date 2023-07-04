@@ -112,7 +112,9 @@ export default function GroupHome(props: PageProps<Data>) {
     <MainLayout>
       <Head>
         <link rel="stylesheet" href={asset("/components/link-section.css")} />
+        <link rel="stylesheet" href={asset("/components/explainer.css")} />
       </Head>
+
       <main>
         <header>
           <Breadcrumb
@@ -122,14 +124,15 @@ export default function GroupHome(props: PageProps<Data>) {
             }]}
           />
         </header>
-        <section>
-          <h2>Add gig</h2>
 
+        <section>
           <form
             action={`/u/${props.data.group.slug}/g`}
             method="POST"
             class="gig-form"
           >
+            <h2>Add gig</h2>
+
             <fieldset>
               <label>
                 Name of the band / artist?
@@ -173,7 +176,13 @@ export default function GroupHome(props: PageProps<Data>) {
               </ol>
             </section>
           )
-          : null}
+          : (
+            <section class="explainer">
+              <h4>What is a gig?</h4>
+              
+              <p>A Show, concert, performance, whatever you and your friends care about really</p>
+            </section>
+          )}
       </main>
     </MainLayout>
   );

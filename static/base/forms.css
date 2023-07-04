@@ -19,3 +19,7 @@ fieldset > label {
   display: grid;
   gap: 0.5em;
 }
+
+form input {
+  color: var(--text-1);
+}

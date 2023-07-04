@@ -1,0 +1,12 @@
+.explainer {
+  gap: 1em;
+}
+
+.explainer h4::after {
+  content: "-";
+  display: block;
+}
+ 
+.explainer * + h4 {
+  margin-top: 2em;
+}

@@ -1,4 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { Head, asset } from "$fresh/runtime.ts";
+
 import { createGig, Gig, listGigs } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { createLocation } from "~/db/locations.ts";
@@ -99,6 +101,9 @@ export const handler: Handlers<Data> = {
 export default function GigHome(props: PageProps<Data>) {
   return (
     <MainLayout>
+      <Head>
+        <link rel="stylesheet" href={asset("/components/explainer.css")} />
+      </Head>
       <main>
         <header>
           <Breadcrumb
@@ -140,7 +145,7 @@ export default function GigHome(props: PageProps<Data>) {
           ? (
             <section>
               <h2>Latest gigs</h2>
-              
+
               <ol>
                 {props.data.gigs.map((gig) => (
                   <li key={gig.id}>
@@ -153,7 +158,16 @@ export default function GigHome(props: PageProps<Data>) {
               </ol>
             </section>
           )
-          : null}
+          : (
+            <section class="explainer">
+              <h4>What is a gig?</h4>
+
+              <p>
+                A Show, concert, performance, whatever you and your friends care
+                about really
+              </p>
+            </section>
+          )}
       </main>
     </MainLayout>
   );

@@ -55,7 +55,7 @@ export const handler: Handlers<Data, WithSession> = {
 
       return new Response("", {
         status: 303,
-        headers: { Location: `/u/${group.slug}/g` },
+        headers: { Location: `/u/${group.slug}` },
       });
     } catch (err) {
       return new Response("", {
@@ -72,6 +72,7 @@ export default function Home(props: PageProps<Data>) {
     <MainLayout>
       <Head>
         <link rel="stylesheet" href={asset("/components/link-section.css")} />
+        <link rel="stylesheet" href={asset("/components/explainer.css")} />
       </Head>
 
       <main>
@@ -120,6 +121,33 @@ export default function Home(props: PageProps<Data>) {
             </aside>
           )}
         </section>
+
+        {!props.data.recentGroups?.length
+          ? (
+            <section class="explainer">
+              <h4>What is a group?</h4>
+              <p>A place for you and your friends to rate gigs.</p>
+              <p>
+                <i>
+                  * The name doesn't matter much, as long as it's not already
+                  taken
+                </i>
+              </p>
+
+              <h4>Can't remember your group, or new device?</h4>
+              <p>
+                We don't use logins, and all data is anonymous, so hopefully you
+                can find it from that group chat way back.
+              </p>
+              <p>
+                <i>
+                  * You can always start a new one, although we know it's tough
+                  :/
+                </i>
+              </p>
+            </section>
+          )
+          : null}
       </main>
     </MainLayout>
   );
