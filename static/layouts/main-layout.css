@@ -61,7 +61,7 @@ main > section:nth-of-type(n + 2) {
   background-repeat: no-repeat;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   main {
     grid-template-columns: repeat(2, 1fr);
   }

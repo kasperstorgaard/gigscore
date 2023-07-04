@@ -97,7 +97,7 @@ export default function GigDetails(props: PageProps<Data>) {
                 label: props.data.group.name,
               }, {
                 url: `/u/${props.data.group.slug}/g`,
-                label: "gigs",
+                label: "Gigs",
               }, {
                 url: `/u/${props.data.group.slug}/g/${props.data.gig.slug}`,
                 label: props.data.gig.name,
@@ -124,14 +124,15 @@ export default function GigDetails(props: PageProps<Data>) {
             </div>
 
             <aside class="gig-page__score">
-              <h3>Score</h3>
+              <p>score</p>
+              <span>
+                {props.data.score.average.toFixed(1)}
+              </span>
+              <p>avg.</p>
+            </aside>
 
-              <div class="score-summary">
-                <div class="score-summary__value">
-                  {props.data.score.average}
-                </div>
-                <ScoreSnippet score={props.data.score} />
-              </div>
+            <aside class="gig-page__score-figure">
+              <ScoreSnippet score={props.data.score} hasCaption />
             </aside>
           </section>
 
@@ -142,7 +143,7 @@ export default function GigDetails(props: PageProps<Data>) {
               {props.data.scores.map((score) => (
                 <li key={score.id} class="score-summary">
                   <div class="score-summary__value">
-                    <span>{score.average}</span>
+                    <span>{score.average.toFixed(1)}</span>
                     <i>
                       {getTimeAgo(score.createdAt, {
                         language: props.data.language,

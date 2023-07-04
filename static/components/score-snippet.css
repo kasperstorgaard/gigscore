@@ -1,17 +1,29 @@
 .score-snippet {
-  display: inline-grid;
-  grid-template-columns: repeat(5, 1em);
-  grid-template-rows: repeat(6, 1fr);
+  display: grid;
+  gap: 0.5em;
+}
+
+.score-snippet figure {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1em);
   grid-auto-flow: column;
   place-items: center;
   place-content: center;
+  gap: 0 0.5em;
 
-  line-height: 0.5em;
   font-family: monospace;
 }
 
-.score-snippet span {
-  display: flex;
-  place-content: center;
-  place-items: center;
+.score-snippet figcaption {
+  display: grid;
+  align-items: center;
+  gap: 0.5em 0em;
+
+  font-size: var(--font-size-1);
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: var(--font-letterspacing-0);
 }

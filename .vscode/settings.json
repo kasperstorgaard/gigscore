@@ -8,4 +8,7 @@
     "static/normalize.min.css",
     "static/buttons.min.css",
   ],
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
 }

@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(2, auto);
   align-items: flex-end;
-  gap: 0.25em 5em;
+  gap: 0.25em 4em;
 }
 
 .score-summary__value {
@@ -13,7 +13,6 @@
 
 .score-summary__value span {
   font-size: var(--font-size-5);
-  text-decoration: underline;
 }
 
 .score-summary__value i {
