@@ -1,13 +1,13 @@
 :root {
-  --font-serif: 'Roboto Slab', times, serif;
-  --font-sans: system-ui, sans-serif;
+  /* --font-serif: 'Roboto Slab', times, serif; */
+  --font-sans: 'Source Code Pro', monospace, system-ui , sans-serif;
 }
 
 body, main {
   display: grid;
   grid-template-rows: 1fr;
 
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   letter-spacing: var(--font-letterspacing-1);
 }
 
@@ -23,11 +23,13 @@ button {
 h1 {
   letter-spacing: var(--font-letterspacing-1);
   line-height: var(--font-lineheight-00);
+  max-width: 14ch;
 }
 
 h2 {
   letter-spacing: var(--font-letterspacing-2);
   line-height: var(--font-lineheight-0);
+  max-width: 14ch;
 }
 
 h3 {
