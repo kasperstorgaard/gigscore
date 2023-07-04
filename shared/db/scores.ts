@@ -38,7 +38,7 @@ export async function createScore(
 
   await kv
     .atomic()
-    .set(["groups", groupId, "gigs", gigId, "scores", createdAt], data)
+    .set(["groups", groupId, "gig_scores", gigId, createdAt], data)
     .commit();
 
   return [null, data] as const;
@@ -59,7 +59,7 @@ export async function listScores(params: {
 
   const iter = kv.list<Score>(
     {
-      prefix: ["groups", groupId, "gigs", gigId, "scores"],
+      prefix: ["groups", groupId, "gig_scores", gigId],
     },
     { limit: 10, reverse: true }
   );
