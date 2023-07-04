@@ -33,6 +33,6 @@
   direction: ltr;
 }
 
-.breadcrumbs a:visited {
+.breadcrumbs a {
   color: inherit;
 }

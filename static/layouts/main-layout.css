@@ -25,19 +25,6 @@ main > header {
   color: var(--surface-1);
 }
 
-@media (prefers-color-scheme: dark) {
-  main {
-    --main-layout__primary-bg: var(--surface-1);
-    --main-layout__primary-color: var(--text-1);
-
-    --main-layout__secondary-bg: var(--sand-12);
-    --main-layout__secondary-color: var(--surface-1);
-
-    --main-layout__divider: var(--gradient-3);
-    --main-layout__divider-height: 4px;
-  }
-}
-
 main > section {
   display: grid;
   grid-template-columns: auto;
