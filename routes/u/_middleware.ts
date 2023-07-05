@@ -1,9 +1,10 @@
 import { MiddlewareHandler } from "$fresh/server.ts";
-import { getGroupBySlug } from "~/db/groups.ts";
-import { APIError } from "~/utils.ts";
-import { getCookies } from "https://deno.land/std@0.150.0/http/mod.ts";
-import { updateRecentGroups } from "../../shared/session.ts";
 import { WithSession } from "fresh_session";
+import { getCookies } from "http";
+
+import { getGroupBySlug } from "~/db/groups.ts";
+import { updateRecentGroups } from "~/db/session.ts";
+import { APIError } from "~/utils/errors.ts";
 
 const addGroupToSessionHandler: MiddlewareHandler<WithSession> = async (req, ctx) => {
   const url = new URL(req.url);

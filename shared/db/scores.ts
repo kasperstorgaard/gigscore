@@ -1,4 +1,5 @@
-import { getAverageScore } from "../utils.ts";
+import { getObjectAverage } from "~/utils/math.ts";
+
 import { getGig } from "./gigs.ts";
 import { getGroup } from "./groups.ts";
 import { kv } from "./kv.ts";
@@ -32,7 +33,7 @@ export async function createScore(
   const data: Score = {
     id,
     createdAt,
-    average: getAverageScore(payload),
+    average: getObjectAverage(payload),
     ...payload,
   };
 
@@ -108,7 +109,7 @@ export async function getAggregatedScore(params: {
     score.sound = (score.sound * len + value.sound) / (len + 1);
     score.immersion = (score.immersion * len + value.immersion) / (len + 1);
     score.performance = (score.performance * len + value.performance) / (len + 1);
-    score.average = getAverageScore(score);
+    score.average = getObjectAverage(score);
 
     len++;
   }

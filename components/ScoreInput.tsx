@@ -1,5 +1,3 @@
-import { asset, Head } from "$fresh/runtime.ts";
-
 type Props = {
   label: string;
   name: string;

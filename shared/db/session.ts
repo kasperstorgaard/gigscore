@@ -1,6 +1,7 @@
 import { Session } from "fresh_session";
-import { Group } from "./db/groups.ts";
-import { Gig } from "./db/gigs.ts";
+
+import { Group } from "./groups.ts";
+import { Gig } from "./gigs.ts";
 
 export function getRecentGroups(session: Session) {
   const rawValue = session.get("recent-groups");

@@ -1,10 +1,9 @@
 import ScoreInput from "@/ScoreInput.tsx";
 import { ArrowForward } from "@/icons/arrow-forward.tsx";
-import { asset, Head } from "$fresh/runtime.ts";
 import { useMemo, useState } from "preact/hooks";
 import { createRef } from "preact";
 import { JSX } from "preact";
-import { getAverageScore } from "../shared/utils.ts";
+import { getObjectAverage } from "~/utils/math.ts";
 import ScoreGuides from "./ScoreGuides.tsx";
 
 type Props = {
@@ -26,7 +25,7 @@ export default function GigForm({
     performance: 3,
   });
 
-  const averageScore = useMemo(() => getAverageScore(values), [values]);
+  const averageScore = useMemo(() => getObjectAverage(values), [values]);
 
   const handleFormChange = (
     event: JSX.TargetedEvent<HTMLFormElement, Event>,

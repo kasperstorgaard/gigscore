@@ -1,7 +1,8 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
+
 import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { createLocation, listLocations, Location } from "~/db/locations.ts";
-import { APIError } from "~/utils.ts";
+import { APIError } from "~/utils/errors.ts";
 
 type Data = {
   group: Group;

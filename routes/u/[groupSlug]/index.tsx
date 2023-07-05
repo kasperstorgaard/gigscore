@@ -1,15 +1,16 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset, Head } from "$fresh/runtime.ts";
+import { WithSession } from "fresh_session";
 
 import { createGig, Gig, listGigs } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { createLocation } from "~/db/locations.ts";
-import { APIError, getLanguage } from "~/utils.ts";
+import { getRatedGigs } from "~/db/session.ts";
+import { getLanguage } from "~/utils/request.ts";
+import { APIError } from "~/utils/errors.ts";
 
 import MainLayout from "@/layouts/MainLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
-import { getRatedGigs } from "../../../shared/session.ts";
-import { WithSession } from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
 
 type Data = {
   language: string;

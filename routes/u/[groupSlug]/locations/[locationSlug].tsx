@@ -1,9 +1,9 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { getGigBySlug, Gig, listGigsByLocation } from "~/db/gigs.ts";
+
+import { Gig, listGigsByLocation } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
-import { APIError } from "~/utils.ts";
-import { listScores, Score } from "~/db/scores.ts";
-import { getLocationBySlug, listLocations, Location } from "~/db/locations.ts";
+import { getLocationBySlug, Location } from "~/db/locations.ts";
+import { APIError } from "~/utils/errors.ts";
 
 export const handler: Handlers<{
   group: Group;

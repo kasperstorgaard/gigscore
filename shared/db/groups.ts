@@ -1,5 +1,6 @@
-import { APIError } from "~/utils.ts";
-import { getSlug } from "~/utils.ts";
+import { APIError } from "~/utils/errors.ts";
+import { getSlug } from "~/utils/request.ts";
+
 import { kv } from "./kv.ts";
 
 export type Group = {

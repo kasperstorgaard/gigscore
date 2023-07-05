@@ -1,14 +1,17 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { asset, Head } from "$fresh/runtime.ts";
+import { WithSession } from "fresh_session";
+
 import { getGigBySlug, Gig } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
-import { APIError, getLanguage, getTimeAgo } from "~/utils.ts";
+import { getLocationByGig, Location } from "~/db/locations.ts";
 import { getAggregatedScore, listScores, Score } from "~/db/scores.ts";
-import { WithSession } from "fresh_session";
+import { APIError } from "~/utils/errors.ts";
+import { getLanguage } from "~/utils/request.ts";
+import { getTimeAgo } from "~/utils/formatters.ts";
 import { ScoreSnippet } from "@/ScoreSnippet.tsx";
-import { asset, Head } from "$fresh/runtime.ts";
 import MainLayout from "@/layouts/MainLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
-import { getLocationByGig, Location } from "~/db/locations.ts";
 
 type Data = {
   group: Group;

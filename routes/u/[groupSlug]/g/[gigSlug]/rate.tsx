@@ -1,17 +1,14 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset, Head } from "$fresh/runtime.ts";
-import MainLayout from "@/layouts/MainLayout.tsx";
-import GigForm from "#/GigForm.tsx";
-import { createScore, Score } from "~/db/scores.ts";
-import { APIError, getSlug } from "~/utils.ts";
-import { createGig, getGigBySlug, Gig, listGigs } from "~/db/gigs.ts";
-import { createLocation, getLocationBySlug } from "~/db/locations.ts";
+import { WithSession } from "fresh_session";
+
+import { createScore } from "~/db/scores.ts";
+import { getGigBySlug, Gig } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
-import { updateRatedGigs } from "../../../../../shared/session.ts";
-import {
-  Session,
-  WithSession,
-} from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
+import { updateRatedGigs } from "~/db/session.ts";
+import { APIError } from "~/utils/errors.ts";
+import GigForm from "#/GigForm.tsx";
+import MainLayout from "@/layouts/MainLayout.tsx";
 
 type Data = {
   group: Group;

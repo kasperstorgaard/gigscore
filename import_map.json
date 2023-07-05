@@ -5,6 +5,7 @@
     "~/": "./shared/",
     "$fresh/": "https://deno.land/x/fresh@1.1.5/",
     "fresh_session": "https://deno.land/x/fresh_session@0.2.0/mod.ts",
+    "http": "https://deno.land/std@0.150.0/http/mod.ts",
     "preact": "https://esm.sh/preact@10.13.1",
     "preact/": "https://esm.sh/preact@10.13.1/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@5.2.6",

@@ -1,4 +1,5 @@
 import { cookieSession, WithSession } from "fresh_session";
+
 export type State = WithSession;
 
 export const sessionHandler = cookieSession({

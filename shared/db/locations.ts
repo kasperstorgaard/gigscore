@@ -1,4 +1,6 @@
-import { APIError, getSlug } from "~/utils.ts";
+import { getSlug } from "~/utils/request.ts";
+import { APIError } from "~/utils/errors.ts";
+
 import { kv } from "./kv.ts";
 import { UnknownGroupError, getGroup } from "./groups.ts";
 import { getGig } from "./gigs.ts";
