@@ -1,12 +1,10 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset, Head } from "$fresh/runtime.ts";
-import { WithSession } from "fresh_session";
-import { getCookies } from "https://deno.land/std@0.150.0/http/mod.ts";
 
 import { createGroup, ExistingGroupError, Group } from "~/db/groups.ts";
 import { APIError } from "~/utils.ts";
 import MainLayout from "@/layouts/main-layout.tsx";
-import { getRecentGroups } from "~/session.ts";
+import { getRecentGroups, setGroupSlug } from "~/storage.ts";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
 
 type Data = {
@@ -14,21 +12,15 @@ type Data = {
   existingGroup?: Group;
 };
 
-export const handler: Handlers<Data, WithSession> = {
-  GET: (req, ctx) => {
-    const { sessionId } = getCookies(req.headers);
-
-    if (!sessionId) return ctx.render({});
-
-    const recentGroups = getRecentGroups(ctx.state.session);
+export const handler: Handlers<Data> = {
+  GET: (_req, ctx) => {
+    const recentGroups = getRecentGroups();
 
     return ctx.render({
       recentGroups,
     });
   },
   POST: async (req, ctx) => {
-    const { session } = ctx.state;
-
     const data: Partial<{
       name: string;
     }> = Object.fromEntries(await req.formData());
@@ -51,7 +43,7 @@ export const handler: Handlers<Data, WithSession> = {
 
       if (err) throw err;
 
-      session.set("groupSlug", group.slug);
+      setGroupSlug(group.slug);
 
       return new Response("", {
         status: 303,
