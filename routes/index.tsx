@@ -6,8 +6,8 @@ import { getCookies } from "https://deno.land/std@0.150.0/http/mod.ts";
 import { createGroup, ExistingGroupError, Group } from "~/db/groups.ts";
 import { APIError } from "~/utils.ts";
 import MainLayout from "@/layouts/main-layout.tsx";
-import { getRecentGroups } from "../shared/session.ts";
-import { Breadcrumb } from "../components/Breadcrumb.tsx";
+import { getRecentGroups } from "~/session.ts";
+import { Breadcrumb } from "@/Breadcrumb.tsx";
 
 type Data = {
   recentGroups?: Pick<Group, "id" | "name" | "slug">[];
@@ -18,7 +18,7 @@ export const handler: Handlers<Data, WithSession> = {
   GET: (req, ctx) => {
     const { sessionId } = getCookies(req.headers);
 
-    if (!sessionId) return ctx.render();
+    if (!sessionId) return ctx.render({});
 
     const recentGroups = getRecentGroups(ctx.state.session);
 
