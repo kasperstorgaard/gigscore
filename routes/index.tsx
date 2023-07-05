@@ -87,12 +87,14 @@ export default function Home(props: PageProps<Data>) {
                 <h2>Recent groups</h2>
 
                 <ol>
-                  <li>
-                    <a href={`/u/${props.data.recentGroups[0].slug}`}>
-                      {props.data.recentGroups[0].name}
-                      <button>open</button>
-                    </a>
-                  </li>
+                  {props.data.recentGroups.slice(0, 5).map((recentGroup) => (
+                    <li key={recentGroup.slug}>
+                      <a href={`/u/${recentGroup.slug}`}>
+                        {recentGroup.name}
+                        <button>open</button>
+                      </a>
+                    </li>
+                  ))}
                 </ol>
               </section>
             </>
