@@ -154,23 +154,34 @@ export default function GroupHome(props: PageProps<Data>) {
           ? (
             <section class="link-section">
               <h2>Latest gigs</h2>
-              
+
               <ol>
                 {props.data.gigs.map((gig) => (
                   <li key={gig.id}>
-                    <a
-                      href={`/u/${props.data.group.slug}/g/${gig.slug}`}
-                    >
-                      {gig.name} - {}
-                      {Intl.DateTimeFormat(props.data.language).format(
-                        new Date(gig.createdAt),
+                    {props.data.ratedGigs.some((ratedGig) =>
+                        ratedGig.id === gig.id
+                      )
+                      ? (
+                        <a
+                          href={`/u/${props.data.group.slug}/g/${gig.slug}/rate`}
+                        >
+                          {gig.name} - {}
+                          {Intl.DateTimeFormat(props.data.language).format(
+                            new Date(gig.createdAt),
+                          )}
+                          <button>rate</button>
+                        </a>
+                      )
+                      : (
+                        <a
+                          href={`/u/${props.data.group.slug}/g/${gig.slug}`}
+                        >
+                          {gig.name} - {}
+                          {Intl.DateTimeFormat(props.data.language).format(
+                            new Date(gig.createdAt),
+                          )}
+                        </a>
                       )}
-                      {props.data.ratedGigs.some((ratedGig) =>
-                          ratedGig.id === gig.id
-                        )
-                        ? null
-                        : <button>rate</button>}
-                    </a>
                   </li>
                 ))}
               </ol>
@@ -179,8 +190,11 @@ export default function GroupHome(props: PageProps<Data>) {
           : (
             <section class="explainer">
               <h4>What is a gig?</h4>
-              
-              <p>A Show, concert, performance, whatever you and your friends care about really</p>
+
+              <p>
+                A Show, concert, performance, whatever you and your friends care
+                about really
+              </p>
             </section>
           )}
       </main>
