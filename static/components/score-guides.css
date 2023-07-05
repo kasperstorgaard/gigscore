@@ -14,7 +14,7 @@
   animation: var(--animation-fade-out) reverse;
 
   animation-timing-function: var(--ease-squish-5);
-  animation-duration: 3s;
+  animation-duration: 1s;
   animation-fill-mode: backwards;
 }
 
