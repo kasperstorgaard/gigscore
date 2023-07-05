@@ -2,18 +2,23 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset, Head } from "$fresh/runtime.ts";
 import MainLayout from "@/layouts/main-layout.tsx";
 import GigForm from "#/GigForm.tsx";
-import { createScore } from "~/db/scores.ts";
-import { APIError } from "~/utils.ts";
-import { getGigBySlug, Gig } from "~/db/gigs.ts";
+import { createScore, Score } from "~/db/scores.ts";
+import { APIError, getSlug } from "~/utils.ts";
+import { createGig, getGigBySlug, Gig, listGigs } from "~/db/gigs.ts";
+import { createLocation, getLocationBySlug } from "~/db/locations.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
-import { updateRatedGigs } from "~/storage.ts";
+import { updateRatedGigs } from "../../../../../shared/session.ts";
+import {
+  Session,
+  WithSession,
+} from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
 
 type Data = {
   group: Group;
   gig: Gig;
 };
 
-export const handler: Handlers<Data> = {
+export const handler: Handlers<Data, WithSession> = {
   GET: async (_req, ctx) => {
     try {
       const [groupErr, group] = await getGroupBySlug({
@@ -76,7 +81,7 @@ export const handler: Handlers<Data> = {
       }, scoreData);
       if (scoreErr) throw scoreErr;
 
-      updateRatedGigs(gig);
+      updateRatedGigs(ctx.state.session, gig);
 
       const url = new URL(req.url);
 

@@ -8,7 +8,7 @@
 
 .score-input__scores {
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: 1em auto;
   grid-auto-flow: column;
   gap: 0.5em;
 
@@ -30,18 +30,37 @@
 }
 
 .score-input label {
-  display: inline-flex;
-  place-content: center;
+  position: relative;
+  display: flex;
+  height: 2.1em;
 
-  line-height: var(--font-lineheight-00);
-  height: 1em;
-  aspect-ratio: 1 / 1;
+  overflow: hidden;
 }
 
 .score-input label:hover {
   cursor: pointer;
 }
 
-.score-input label:has(input:checked) {
-  border: 1px solid var(--text-1);
+.score-input label:has(input:checked) ~ label:has(input:not(:checked)) {
+  filter: grayscale(100);
 }
+
+.score-input label:has(input:checked) {
+  background: linear-gradient(
+    45deg,
+    transparent 10px,
+    var(--surface-3) 11px,
+    var(--surface-3) 12px,
+    transparent 100%
+  );
+  background-size: 6px;
+}
+
+/* .score-input input:checked::before {
+  transform: scale(1);
+} */
+
+/* input:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+} */

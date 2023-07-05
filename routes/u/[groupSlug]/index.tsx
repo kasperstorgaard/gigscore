@@ -8,7 +8,8 @@ import { APIError, getLanguage } from "~/utils.ts";
 
 import MainLayout from "@/layouts/main-layout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
-import { getRatedGigs } from "~/storage.ts";
+import { getRatedGigs } from "../../../shared/session.ts";
+import { WithSession } from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
 
 type Data = {
   language: string;
@@ -17,7 +18,7 @@ type Data = {
   ratedGigs: Pick<Gig, "id" | "name" | "slug">[];
 };
 
-export const handler: Handlers<Data> = {
+export const handler: Handlers<Data, WithSession> = {
   GET: async (req, ctx) => {
     try {
       const [groupErr, group] = await getGroupBySlug({
@@ -31,11 +32,13 @@ export const handler: Handlers<Data> = {
       });
       if (gigsErr) throw gigsErr;
 
+      const ratedGigs = getRatedGigs(ctx.state.session);
+
       return ctx.render({
         language: getLanguage(req),
         group,
         gigs,
-        ratedGigs: getRatedGigs(),
+        ratedGigs,
       });
     } catch (err) {
       return new Response("", {

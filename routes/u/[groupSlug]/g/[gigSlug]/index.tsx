@@ -1,8 +1,9 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getGigBySlug, Gig } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
-import { APIError, getLanguage, getTimeAgo } from "~/utils.ts";
+import { APIError, getLanguage, getTimeAgo, getVerdict } from "~/utils.ts";
 import { listScores, Score } from "~/db/scores.ts";
+import { WithSession } from "fresh_session";
 import { ScoreSnippet } from "@/ScoreSnippet.tsx";
 import { asset, Head } from "$fresh/runtime.ts";
 import MainLayout from "@/layouts/main-layout.tsx";
@@ -18,7 +19,7 @@ type Data = {
   language: string;
 };
 
-export const handler: Handlers<Data> = {
+export const handler: Handlers<Data, WithSession> = {
   // Read gig
   GET: async (req, ctx) => {
     try {
