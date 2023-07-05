@@ -18,7 +18,7 @@ type Data = {
   scores: Score[];
   score: Omit<Score, "createdAt" | "id">;
   gig: Gig;
-  location: Location;
+  location: Location | null;
   language: string;
 };
 
@@ -37,11 +37,10 @@ export const handler: Handlers<Data, WithSession> = {
       });
       if (gigErr) throw gigErr;
 
-      const [locationErr, location] = await getLocationByGig({
+      const [_locationErr, location] = await getLocationByGig({
         groupId: group.id,
         gigId: gig.id,
       });
-      if (locationErr) throw locationErr;
 
       const [scoresErr, scores] = await listScores({
         groupId: group.id,
@@ -64,6 +63,7 @@ export const handler: Handlers<Data, WithSession> = {
         language: getLanguage(req),
       });
     } catch (err) {
+      console.log("ehm what?", err);
       return new Response("", {
         status: (err as APIError).status ?? 500,
         statusText: (err as APIError).statusText ?? err.message,
