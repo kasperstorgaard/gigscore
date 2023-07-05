@@ -30,9 +30,9 @@
 }
 
 .score-input label {
-  position: relative;
   display: flex;
-  height: 2.1em;
+  place-content: center;
+  place-items: center;
 
   overflow: hidden;
 }
@@ -47,13 +47,12 @@
 
 .score-input label:has(input:checked) {
   background: linear-gradient(
-    45deg,
-    transparent 10px,
-    var(--surface-3) 11px,
-    var(--surface-3) 12px,
-    transparent 100%
+    to bottom,
+    transparent,
+    var(--surface-2) 50%
   );
-  background-size: 6px;
+
+  border-bottom: 4px double var(--text-1);
 }
 
 /* .score-input input:checked::before {
