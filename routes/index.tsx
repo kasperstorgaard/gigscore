@@ -5,7 +5,7 @@ import { getCookies } from "https://deno.land/std@0.150.0/http/mod.ts";
 
 import { createGroup, ExistingGroupError, Group } from "~/db/groups.ts";
 import { APIError } from "~/utils.ts";
-import MainLayout from "@/layouts/main-layout.tsx";
+import MainLayout from "@/layouts/MainLayout.tsx";
 import { getRecentGroups } from "~/session.ts";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
 

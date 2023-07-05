@@ -5,7 +5,7 @@ import { createGig, Gig, listGigs } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { createLocation } from "~/db/locations.ts";
 import { APIError } from "~/utils.ts";
-import MainLayout from "@/layouts/main-layout.tsx";
+import MainLayout from "@/layouts/MainLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
 
 type Data = {

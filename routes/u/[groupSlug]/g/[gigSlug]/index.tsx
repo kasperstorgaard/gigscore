@@ -6,7 +6,7 @@ import { listScores, Score } from "~/db/scores.ts";
 import { WithSession } from "fresh_session";
 import { ScoreSnippet } from "@/ScoreSnippet.tsx";
 import { asset, Head } from "$fresh/runtime.ts";
-import MainLayout from "@/layouts/main-layout.tsx";
+import MainLayout from "@/layouts/MainLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
 import { getLocationByGig, Location } from "~/db/locations.ts";
 

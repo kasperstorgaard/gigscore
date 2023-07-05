@@ -1,6 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { asset, Head } from "$fresh/runtime.ts";
-import MainLayout from "@/layouts/main-layout.tsx";
+import MainLayout from "@/layouts/MainLayout.tsx";
 import GigForm from "#/GigForm.tsx";
 import { createScore, Score } from "~/db/scores.ts";
 import { APIError, getSlug } from "~/utils.ts";
