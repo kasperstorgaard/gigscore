@@ -96,7 +96,7 @@ export const handler: Handlers<Data, WithSession> = {
 
       return new Response("", {
         status: 303,
-        headers: { Location: `${url.pathname}/${gig.slug}/rate` },
+        headers: { Location: `${url.pathname}/g/${gig.slug}/rate` },
       });
     } catch (err) {
       return new Response(err.message, {
@@ -127,7 +127,7 @@ export default function GroupHome(props: PageProps<Data>) {
 
         <section>
           <form
-            action={`/u/${props.data.group.slug}/g`}
+            action={`/u/${props.data.group.slug}`}
             method="POST"
             class="gig-form"
           >

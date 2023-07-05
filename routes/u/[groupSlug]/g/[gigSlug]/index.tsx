@@ -96,9 +96,6 @@ export default function GigDetails(props: PageProps<Data>) {
                 url: `/u/${props.data.group.slug}`,
                 label: props.data.group.name,
               }, {
-                url: `/u/${props.data.group.slug}/g`,
-                label: "Gigs",
-              }, {
                 url: `/u/${props.data.group.slug}/g/${props.data.gig.slug}`,
                 label: props.data.gig.name,
               }]}
