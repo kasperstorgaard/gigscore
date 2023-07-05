@@ -163,6 +163,16 @@ export default function GroupHome(props: PageProps<Data>) {
                       )
                       ? (
                         <a
+                          href={`/u/${props.data.group.slug}/g/${gig.slug}`}
+                        >
+                          {gig.name} - {}
+                          {Intl.DateTimeFormat(props.data.language).format(
+                            new Date(gig.createdAt),
+                          )}
+                        </a>
+                      )
+                      : (
+                        <a
                           href={`/u/${props.data.group.slug}/g/${gig.slug}/rate`}
                         >
                           {gig.name} - {}
@@ -170,16 +180,6 @@ export default function GroupHome(props: PageProps<Data>) {
                             new Date(gig.createdAt),
                           )}
                           <button>rate</button>
-                        </a>
-                      )
-                      : (
-                        <a
-                          href={`/u/${props.data.group.slug}/g/${gig.slug}`}
-                        >
-                          {gig.name} - {}
-                          {Intl.DateTimeFormat(props.data.language).format(
-                            new Date(gig.createdAt),
-                          )}
                         </a>
                       )}
                   </li>
