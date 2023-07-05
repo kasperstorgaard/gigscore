@@ -1,5 +1,3 @@
-import { Score } from "./db/scores.ts";
-
 export class APIError extends Error {
   constructor(public status: number, public statusText: string) {
     super(`${status}: ${statusText}`);
@@ -38,9 +36,7 @@ export function getTimeAgo(timestamp: number, options?: { language: string }) {
     numeric: "auto",
   });
 
-  const secondsDifference = Math.round(
-    (timestamp - Date.now()) / 1000,
-  );
+  const secondsDifference = Math.round((timestamp - Date.now()) / 1000);
 
   if (secondsDifference > -60) {
     return "just now";
@@ -73,18 +69,4 @@ export function getTimeAgo(timestamp: number, options?: { language: string }) {
 
   const yearsDifference = Math.ceil(daysDifference / 365);
   return rtf.format(yearsDifference, "years");
-}
-
-export function getVerdict(value: number) {
-  const rounded = Math.round(value);
-
-  // TODO: add more granularity.
-  switch (rounded) {
-    case 0: return "pure disaster";
-    case 1: return "bad!";
-    case 2: return "eh";
-    case 4: return "great!";
-    case 5: return "exceptional!";
-    default: return "average";
-  }
 }

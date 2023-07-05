@@ -73,4 +73,49 @@ export async function listScores(params: {
   return [null, scores] as const;
 }
 
+// Gets the 10 latest scores by most recently added
+export async function getAggregatedScore(params: {
+  groupId: string;
+  gigId: string;
+}) {
+  const { groupId, gigId } = params;
+
+  let [err] = await getGroup(params);
+  if (err) return [err, null] as const;
+
+  [err] = await getGig(params);
+  if (err) return [err, null] as const;
+
+  const iter = kv.list<Score>(
+    {
+      prefix: ["groups", groupId, "gig_scores", gigId],
+    },
+  );
+
+  let len = 0;
+  const score: Omit<Score, "id" | "createdAt"> = {
+    average: 0,
+    catchyness: 0,
+    vocals: 0,
+    sound: 0,
+    immersion: 0,
+    performance: 0,
+  };
+
+  for await (const { value } of iter) {
+    score.catchyness = (score.catchyness * len + value.catchyness) / (len + 1);
+    score.vocals = (score.vocals * len + value.vocals) / (len + 1);
+    score.sound = (score.sound * len + value.sound) / (len + 1);
+    score.immersion = (score.immersion * len + value.immersion) / (len + 1);
+    score.performance = (score.performance * len + value.performance) / (len + 1);
+    score.average = getAverageScore(score);
+
+    len++;
+  }
+
+  console.log({ score });
+
+  return [null, score] as const;
+}
+
 

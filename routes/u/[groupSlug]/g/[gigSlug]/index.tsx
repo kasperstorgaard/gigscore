@@ -1,8 +1,8 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getGigBySlug, Gig } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
-import { APIError, getLanguage, getTimeAgo, getVerdict } from "~/utils.ts";
-import { listScores, Score } from "~/db/scores.ts";
+import { APIError, getLanguage, getTimeAgo } from "~/utils.ts";
+import { getAggregatedScore, listScores, Score } from "~/db/scores.ts";
 import { WithSession } from "fresh_session";
 import { ScoreSnippet } from "@/ScoreSnippet.tsx";
 import { asset, Head } from "$fresh/runtime.ts";
@@ -46,20 +46,11 @@ export const handler: Handlers<Data, WithSession> = {
       });
       if (scoresErr) throw scoresErr;
 
-      const score: Data["score"] = {
-        catchyness: scores.reduce((sum, item) => sum + item.catchyness, 0) /
-          scores.length,
-        vocals: scores.reduce((sum, item) => sum + item.vocals, 0) /
-          scores.length,
-        sound: scores.reduce((sum, item) => sum + item.sound, 0) /
-          scores.length,
-        immersion: scores.reduce((sum, item) => sum + item.immersion, 0) /
-          scores.length,
-        performance: scores.reduce((sum, item) => sum + item.performance, 0) /
-          scores.length,
-        average: scores.reduce((sum, item) => sum + item.average, 0) /
-          scores.length,
-      };
+      const [scoreErr, score] = await getAggregatedScore({
+        groupId: group.id,
+        gigId: gig.id,
+      });
+      if (scoreErr) throw scoreErr;
 
       return ctx.render({
         group,
