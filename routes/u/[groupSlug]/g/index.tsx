@@ -1,20 +1,24 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { Head, asset } from "$fresh/runtime.ts";
+import { asset, Head } from "$fresh/runtime.ts";
+import { WithSession } from "fresh_session";
 
 import { createGig, Gig, listGigs } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { createLocation } from "~/db/locations.ts";
-import { APIError } from "~/utils.ts";
+import { APIError, getLanguage } from "~/utils.ts";
+import { getRatedGigs } from "~/session.ts";
 import MainLayout from "@/layouts/MainLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
 
 type Data = {
+  language: string;
   group: Group;
   gigs: Gig[];
+  ratedGigs: Pick<Gig, "id" | "name" | "slug">[];
 };
 
-export const handler: Handlers<Data> = {
-  GET: async (_req, ctx) => {
+export const handler: Handlers<Data, WithSession> = {
+  GET: async (req, ctx) => {
     try {
       const [groupErr, group] = await getGroupBySlug({
         groupSlug: ctx.params.groupSlug,
@@ -28,8 +32,10 @@ export const handler: Handlers<Data> = {
       if (gigsErr) throw gigsErr;
 
       return ctx.render({
+        language: getLanguage(req),
         group,
         gigs,
+        ratedGigs: getRatedGigs(ctx.state.session),
       });
     } catch (err) {
       return new Response("", {
@@ -143,20 +149,36 @@ export default function GigHome(props: PageProps<Data>) {
 
         {props.data.gigs.length
           ? (
-            <section>
-              <h2>Latest gigs</h2>
-
-              <ol>
-                {props.data.gigs.map((gig) => (
-                  <li key={gig.id}>
-                    <a href={`g/${gig.slug}`}>
-                      {gig.name} - {}
-                      {Intl.DateTimeFormat().format(new Date(gig.createdAt))}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </section>
+            <ol>
+              {props.data.gigs.map((gig) => (
+                <li key={gig.id}>
+                  {props.data.ratedGigs.some((ratedGig) =>
+                      ratedGig.id === gig.id
+                    )
+                    ? (
+                      <a
+                        href={`/u/${props.data.group.slug}/g/${gig.slug}`}
+                      >
+                        {gig.name} - {}
+                        {Intl.DateTimeFormat(props.data.language).format(
+                          new Date(gig.createdAt),
+                        )}
+                      </a>
+                    )
+                    : (
+                      <a
+                        href={`/u/${props.data.group.slug}/g/${gig.slug}/rate`}
+                      >
+                        {gig.name} - {}
+                        {Intl.DateTimeFormat(props.data.language).format(
+                          new Date(gig.createdAt),
+                        )}
+                        <button>rate</button>
+                      </a>
+                    )}
+                </li>
+              ))}
+            </ol>
           )
           : (
             <section class="explainer">
