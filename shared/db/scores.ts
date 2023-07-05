@@ -113,8 +113,6 @@ export async function getAggregatedScore(params: {
     len++;
   }
 
-  console.log({ score });
-
   return [null, score] as const;
 }
 
