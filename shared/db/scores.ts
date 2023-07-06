@@ -46,10 +46,7 @@ export async function createScore(
 }
 
 // Gets the 10 latest scores by most recently added
-export async function listScores(params: {
-  groupId: string;
-  gigId: string;
-}) {
+export async function listScores(params: { groupId: string; gigId: string }) {
   const { groupId, gigId } = params;
 
   let [err] = await getGroup(params);
@@ -87,15 +84,12 @@ export async function getAggregatedScore(params: {
   [err] = await getGig(params);
   if (err) return [err, null] as const;
 
-  const iter = kv.list<Score>(
-    {
-      prefix: ["groups", groupId, "gig_scores", gigId],
-    },
-  );
+  const iter = kv.list<Score>({
+    prefix: ["groups", groupId, "gig_scores", gigId],
+  });
 
   let len = 0;
-  const score: Omit<Score, "id" | "createdAt"> = {
-    average: 0,
+  const categories: Omit<Score, "id" | "createdAt" | "average"> = {
     catchyness: 0,
     vocals: 0,
     sound: 0,
@@ -104,17 +98,22 @@ export async function getAggregatedScore(params: {
   };
 
   for await (const { value } of iter) {
-    score.catchyness = (score.catchyness * len + value.catchyness) / (len + 1);
-    score.vocals = (score.vocals * len + value.vocals) / (len + 1);
-    score.sound = (score.sound * len + value.sound) / (len + 1);
-    score.immersion = (score.immersion * len + value.immersion) / (len + 1);
-    score.performance = (score.performance * len + value.performance) / (len + 1);
-    score.average = getObjectAverage(score);
+    categories.catchyness =
+      (categories.catchyness * len + value.catchyness) / (len + 1);
+    categories.vocals = (categories.vocals * len + value.vocals) / (len + 1);
+    categories.sound = (categories.sound * len + value.sound) / (len + 1);
+    categories.immersion =
+      (categories.immersion * len + value.immersion) / (len + 1);
+    categories.performance =
+      (categories.performance * len + value.performance) / (len + 1);
 
     len++;
   }
 
+  const score: Omit<Score, "id" | "createdAt"> = {
+    ...categories,
+    average: getObjectAverage(categories),
+  };
+
   return [null, score] as const;
 }
-
-

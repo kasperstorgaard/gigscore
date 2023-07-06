@@ -1,4 +1,4 @@
-export function getObjectAverage<T extends Record<string, number>>(obj: T) {
+export function getObjectAverage<T extends Record<string, unknown>>(obj: T) {
   let average = 0;
   let len = 0;
 
@@ -6,6 +6,7 @@ export function getObjectAverage<T extends Record<string, number>>(obj: T) {
     if (typeof value !== "number") continue;
 
     average = (average * len + value) / (len + 1);
+
     len++;
   }
 
