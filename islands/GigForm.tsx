@@ -58,27 +58,21 @@ export default function GigForm({
             />
 
             <aside class="gig-form__scroll-hint">
-              <em data-only-cursor aria-label="TAB to open next page">Scroll to next page</em>
+              <em data-only-cursor aria-label="TAB to open next page">
+                Scroll to next page
+              </em>
               <em data-only-touch aria-hidden>Swipe to next page</em>
               <ArrowForward />
             </aside>
 
             <ScoreGuides>
-              <blockquote>
-                Did the songs draw you in? <span>+</span>
-              </blockquote>
+              <blockquote>Did the songs draw you in?</blockquote>
 
-              <blockquote>
-                Missed a hit? <span>-</span>
-              </blockquote>
+              <blockquote>Missed a hit?</blockquote>
 
-              <blockquote>
-                Amazing choruses? <span>+</span>
-              </blockquote>
+              <blockquote>Amazing choruses?</blockquote>
 
-              <blockquote>
-                Too all over the place? <span>-</span>
-              </blockquote>
+              <blockquote>Too all over the place?</blockquote>
             </ScoreGuides>
           </section>
 
@@ -90,17 +84,11 @@ export default function GigForm({
             />
 
             <ScoreGuides>
-              <blockquote>
-                Raw emotion? <span>+</span>
-              </blockquote>
+              <blockquote>Raw emotion?</blockquote>
 
-              <blockquote>
-                Weak technique? <span>-</span>
-              </blockquote>
+              <blockquote>Weak technique?</blockquote>
 
-              <blockquote>
-                Inspiring lyrics? <span>+</span>
-              </blockquote>
+              <blockquote>Inspiring lyrics?</blockquote>
             </ScoreGuides>
           </section>
 
@@ -108,17 +96,11 @@ export default function GigForm({
             <ScoreInput value={values.sound} label="Sound" name="sound" />
 
             <ScoreGuides>
-              <blockquote>
-                A bass that could replace your heartbeat? <span>+</span>
-              </blockquote>
+              <blockquote>A bass that could replace your heartbeat?</blockquote>
 
-              <blockquote>
-                Couldn't hear the singer? <span>-</span>
-              </blockquote>
+              <blockquote>Couldn't hear the singer?</blockquote>
 
-              <blockquote>
-                Sound issues? <span>--</span>
-              </blockquote>
+              <blockquote>Sound issues?</blockquote>
             </ScoreGuides>
           </section>
 
@@ -130,17 +112,11 @@ export default function GigForm({
             />
 
             <ScoreGuides>
-              <blockquote>
-                Getting lost in the music? <span>+</span>
-              </blockquote>
+              <blockquote>Getting lost in the music?</blockquote>
 
-              <blockquote>
-                Checking instagram? <span>-</span>
-              </blockquote>
+              <blockquote>Checking instagram?</blockquote>
 
-              <blockquote>
-                Mind drifting away? <span>+</span>
-              </blockquote>
+              <blockquote>Mind drifting away?</blockquote>
             </ScoreGuides>
           </section>
 
@@ -152,17 +128,11 @@ export default function GigForm({
             />
 
             <ScoreGuides>
-              <blockquote>
-                Contagious energy? <span>++</span>
-              </blockquote>
+              <blockquote>Contagious energy?</blockquote>
 
-              <blockquote>
-                Staring at the stage? <span>-</span>
-              </blockquote>
+              <blockquote>Staring at the stage?</blockquote>
 
-              <blockquote>
-                No connection to the audience? <span>--</span>
-              </blockquote>
+              <blockquote>No connection to the audience?</blockquote>
             </ScoreGuides>
           </section>
 

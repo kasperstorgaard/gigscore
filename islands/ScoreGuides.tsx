@@ -15,15 +15,15 @@ export default function ScoreGuides({ children }: Props) {
 
   return (
     <>
-      <Head>
-        <link rel="stylesheet" href={asset("/components/score-guides.css")} />
-      </Head>
+
 
       <aside
         ref={ref}
         class="score-guides"
         data-is-intersecting={entry?.isIntersecting}
+        style={{ visibility: entry?.isIntersecting ? "visible" : "hidden" }}
       >
+        <h5>hints:</h5>
         {children}
       </aside>
     </>

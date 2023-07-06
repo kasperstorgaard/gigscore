@@ -16,22 +16,20 @@
   animation-timing-function: var(--ease-squish-5);
   animation-duration: 1s;
   animation-fill-mode: backwards;
-}
-
-.score-guides > *:nth-child(2n) {
-  animation-delay: 2s;
-}
-
-.score-guides > *:nth-child(3n) {
-  animation-delay: 4s;
-}
-
-.score-guides > *:nth-child(4n) {
   animation-delay: 6s;
 }
 
-.score-guides > *:nth-child(5n) {
+
+.score-guides > *:nth-child(3n) {
   animation-delay: 8s;
+}
+
+.score-guides > *:nth-child(4n) {
+  animation-delay: 10s;
+}
+
+.score-guides > *:nth-child(5n) {
+  animation-delay: 12s;
 }
 
 @media (prefers-reduced-motion) {
