@@ -13,6 +13,7 @@
 
 .gig-form__scroller > * {
   scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
 .gig-form__section {

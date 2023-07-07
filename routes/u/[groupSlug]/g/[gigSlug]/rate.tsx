@@ -100,7 +100,6 @@ export default function RatePage(props: PageProps) {
   return (
     <FocusLayout>
       <Head>
-        <link rel="stylesheet" href={asset("/pages/rate-page.css")} />
         <link rel="stylesheet" href={asset("/components/gig-form.css")} />
         <link rel="stylesheet" href={asset("/components/score-input.css")} />
         <link rel="stylesheet" href={asset("/components/score-guides.css")} />
@@ -118,7 +117,7 @@ export default function RatePage(props: PageProps) {
         />
       </header>
 
-      <main class="rate-page">
+      <main>
         <GigForm
           groupSlug={props.params.groupSlug}
           gigSlug={props.params.gigSlug}
