@@ -106,6 +106,10 @@ export default function RatePage(props: PageProps) {
         <link rel="stylesheet" href={asset("/components/score-guides.css")} />
 
         <title>Gigscore - rating {props.data.gig.name}</title>
+
+        <meta name="description">
+          Create a rating for {props.data.gig.name}
+        </meta>
       </Head>
 
       <header class="header">

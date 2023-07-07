@@ -83,6 +83,10 @@ export default function GigDetails(props: PageProps<Data>) {
         <link rel="stylesheet" href={asset("/pages/gig-page.css")} />
 
         <title>Gigscore - {props.data.gig.name}</title>
+
+        <meta name="description">
+          Check the scores for {props.data.gig.name}
+        </meta>
       </Head>
 
       <header class="header">

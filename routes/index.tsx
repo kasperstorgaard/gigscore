@@ -76,6 +76,10 @@ export default function Home(props: PageProps<Data>) {
         <link rel="stylesheet" href={asset("/components/explainer.css")} />
 
         <title>Gigscore</title>
+
+        <meta name="description">
+          The place to rate live music
+        </meta>
       </Head>
 
       <header class="header">
