@@ -115,6 +115,8 @@ export default function GroupHome(props: PageProps<Data>) {
       <Head>
         <link rel="stylesheet" href={asset("/components/link-section.css")} />
         <link rel="stylesheet" href={asset("/components/explainer.css")} />
+
+        <title>Gigscore - {props.data.group.name}</title>
       </Head>
 
       <header class="header">

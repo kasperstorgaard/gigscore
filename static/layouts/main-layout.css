@@ -4,12 +4,11 @@ main {
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto;
+  grid-template-rows: minmax(33vw, auto);
   grid-auto-rows: 1fr;
 
   border: none;
 }
-
 
 main > section {
   display: grid;

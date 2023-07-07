@@ -18,11 +18,11 @@ export default function HeaderActions() {
 
   return (
     <aside class="header-actions">
-      {/* {canShare && ( */}
-      <button onClick={share}>
-        <ShareIcon />
-      </button>
-      {/* )} */}
+      {canShare && (
+        <button onClick={share} aria-label="Share">
+          <ShareIcon />
+        </button>
+      )}
 
       {
         /* <button>

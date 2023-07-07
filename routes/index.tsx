@@ -74,6 +74,8 @@ export default function Home(props: PageProps<Data>) {
       <Head>
         <link rel="stylesheet" href={asset("/components/link-section.css")} />
         <link rel="stylesheet" href={asset("/components/explainer.css")} />
+
+        <title>Gigscore</title>
       </Head>
 
       <header class="header">
