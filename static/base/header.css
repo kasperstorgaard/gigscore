@@ -20,8 +20,8 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  body > header {
-    background: var(--purple-1);
+  .header {
+    background: var(--camo-0);
   }
 }
 
