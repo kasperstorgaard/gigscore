@@ -1,8 +1,8 @@
 :root {
   /* colors */
-  --brand: var(--purple-7);
-  --link: var(--purple-7);
-  --link-visited: var(--purple-7);
+  /* --brand: var(--purple-7); */
+  /* --link: var(--purple-7);
+  --link-visited: var(--purple-7); */
 
   /* spacing, paddings */
   --app-gutter: var(--size-fluid-4);
