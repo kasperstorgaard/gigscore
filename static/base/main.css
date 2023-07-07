@@ -36,14 +36,16 @@ h1 {
 }
 
 h2 {
-  letter-spacing: var(--font-letterspacing-2);
+  /* TODO: check if this letterspacing is what we want */
+  letter-spacing: var(--font-letterspacing-1);
   line-height: var(--font-lineheight-0);
-  max-width: 14ch;
+  max-width: 16ch;
 }
 
 h3 {
   letter-spacing: var(--font-letterspacing-1);
   line-height: var(--font-lineheight-1);
+  max-width: 25ch;
 }
 
 code {

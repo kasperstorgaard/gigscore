@@ -6,14 +6,14 @@
 
 .link-section ol {
   display: grid;
-  gap: 1em;
+  gap: var(--space-block--m);
 
   list-style-type: none;
 }
 
 .link-section a {
   display: flex;
-  gap: 1em;
+  gap: var(--space-inline--m);
   place-items: center;
 }
 

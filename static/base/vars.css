@@ -1,6 +1,20 @@
 :root {
+  /* colors */
   --brand: var(--purple-7);
   --link: var(--purple-7);
   --link-visited: var(--purple-7);
+
+  /* spacing, paddings */
   --app-gutter: var(--size-fluid-4);
+
+  --space-block--s: 0.5em;
+  --space-block--m: 1em;
+  --space-block--l: 2em;
+  --space-block--xl: 3em;
+
+  --space-inline--m: 0.5em;
+  --space-inline--l: 1em;
+  --space-inline--xxl: 4em;
+
+  /* fonts */
 }

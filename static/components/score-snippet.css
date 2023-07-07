@@ -1,6 +1,6 @@
 .score-snippet {
   display: grid;
-  gap: 0.5em;
+  gap: var(--space-inline--m);
 }
 
 .score-snippet figure {
@@ -10,7 +10,7 @@
   grid-auto-flow: column;
   place-items: center;
   place-content: center;
-  gap: 0 0.5em;
+  gap: 0 var(--space-inline--m);
 
   font-family: monospace;
 }
@@ -27,7 +27,7 @@
 .score-snippet figcaption {
   display: grid;
   align-items: center;
-  gap: 0.5em 0em;
+  gap: var(--space-inline--m) 0em;
 
   font-size: var(--font-size-1);
   writing-mode: vertical-lr;

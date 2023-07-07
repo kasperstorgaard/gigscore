@@ -1,7 +1,7 @@
 .score-input {
   display: grid;
   place-items: center;
-  gap: 2em;
+  gap: var(--space-block--l);
 
   font-size: var(--font-size-fluid-1);
 }
@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: 1em auto;
   grid-auto-flow: column;
-  gap: 0.5em;
+  gap: var(--space-inline--m);
 
   font-family: var(--font-sans);
   font-size: var(--font-size-5);
@@ -54,12 +54,3 @@
 
   border-bottom: 4px double var(--text-1);
 }
-
-/* .score-input input:checked::before {
-  transform: scale(1);
-} */
-
-/* input:focus {
-  outline: max(2px, 0.15em) solid currentColor;
-  outline-offset: max(2px, 0.15em);
-} */

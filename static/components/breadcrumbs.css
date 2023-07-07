@@ -6,7 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 0.1em 2ch;
+  gap: 0 2ch;
 
   padding: 0;
 }

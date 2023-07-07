@@ -4,9 +4,12 @@
   "deno.unstable": true,
   "editor.defaultFormatter": "denoland.vscode-deno",
   "cssvar.files": [
-    "static/open-props.min.css",
-    "static/normalize.min.css",
-    "static/buttons.min.css",
+    "static/base/open-props.min.css",
+    "static/base/normalize.min.css",
+    "static/base/buttons.min.css",
+    "static/base/main.css",
+    "static/base/vars.css",
+    "static/base/forms.css",
   ],
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features"

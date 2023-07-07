@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: auto min-content;
   align-items: flex-end;
-  gap: 0.25em 4em;
+  gap: 0.25em var(--space-inline--xxl);
 }
 
 .score-summary__value {

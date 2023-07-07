@@ -1,5 +1,5 @@
 .explainer {
-  gap: 1em;
+  gap: var(--space-block--m);
 }
 
 .explainer h4::after {
@@ -8,5 +8,5 @@
 }
  
 .explainer * + h4 {
-  margin-top: 2em;
+  margin-top: var(--space-block--l);
 }

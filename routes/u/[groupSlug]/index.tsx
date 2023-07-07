@@ -127,13 +127,12 @@ export default function GroupHome(props: PageProps<Data>) {
         </header>
 
         <section>
+          <h2>Add gig</h2>
+
           <form
             action={`/u/${props.data.group.slug}`}
             method="POST"
-            class="gig-form"
           >
-            <h2>Add gig</h2>
-
             <fieldset>
               <label>
                 Name of the band / artist?
@@ -154,7 +153,7 @@ export default function GroupHome(props: PageProps<Data>) {
         {props.data.gigs.length
           ? (
             <section class="link-section">
-              <h2>Latest gigs</h2>
+              <h3>Latest gigs</h3>
 
               <ol>
                 {props.data.gigs.map((gig) => (

@@ -7,7 +7,7 @@
   grid-template-columns: minmax(1fr, var(--size-fluid-9)) auto;
   place-content: center;
   justify-items: center;
-  gap: 3em var(--size-fluid-3);
+  gap: var(--space-block--xl) var(--size-fluid-3);
 }
 
 .gig-page__gig-details {

@@ -102,7 +102,7 @@ export default function Home(props: PageProps<Data>) {
           : null}
 
         <section>
-          <h2>Create a new group</h2>
+          <h2>Create a group</h2>
 
           <form method="POST" action="/">
             <label>

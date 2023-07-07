@@ -1,6 +1,12 @@
 .score-guides {
+  --animation-delay-base: 4s;
+  --animation-delay-increment: 1.5s;
+  --animation-duration: 1s;
+}
+
+.score-guides {
   display: grid;
-  gap: 1em;
+  gap: var(--space-block--m);
   place-content: center;
 }
 
@@ -8,46 +14,37 @@
   opacity: 0;
 }
 
-.score-guides[data-is-intersecting=true] > * {
+.score-guides[data-is-intersecting=true]>* {
   max-width: var(--size-content-2);
 
   animation: var(--animation-fade-out) reverse;
 
   animation-timing-function: var(--ease-squish-5);
-  animation-duration: 1s;
+  animation-duration: var(--animation-duration);
   animation-fill-mode: backwards;
-  animation-delay: 6s;
+  animation-delay: var(--animation-delay-base);
 }
 
 
-.score-guides > *:nth-child(3n) {
-  animation-delay: 8s;
+.score-guides>*:nth-child(3n) {
+  animation-delay: calc(var(--animation-delay-base) + (var(--animation-delay-increment) * 1));
 }
 
-.score-guides > *:nth-child(4n) {
-  animation-delay: 10s;
+.score-guides>*:nth-child(4n) {
+  animation-delay: calc(var(--animation-delay-base) + (var(--animation-delay-increment) * 2));
 }
 
-.score-guides > *:nth-child(5n) {
-  animation-delay: 12s;
+.score-guides>*:nth-child(5n) {
+  animation-delay: calc(var(--animation-delay-base) + (var(--animation-delay-increment) * 3));
+}
+
+.score-guides>*:nth-child(6n) {
+  animation-delay: calc(var(--animation-delay-base) + (var(--animation-delay-increment) * 3));
 }
 
 @media (prefers-reduced-motion) {
-  .score-guides > * {
+  .score-guides>* {
     animation-delay: 0s !important;
     animation-duration: 0s !important;
   }
-}
-
-.score-guides blockquote {
-  display: block;
-}
-
-.score-guides blockquote p {
-  display: inline;
-}
-
-.score-guides blockquote span {
-  font-size: 1.5em;
-  margin-left: 4px;
 }

@@ -6,5 +6,5 @@
 
 .score-list ol {
   display: grid;
-  gap: 2em;
+  gap: var(--space-block--l);
 }

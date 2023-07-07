@@ -139,7 +139,7 @@ export default function GigForm({
           <div class="gig-form__submit">
             <section class="gig-form__average-score">
               <p>final score</p>
-              <span>{averageScore} / 5</span>
+              <span>{averageScore.toFixed(1)} / 5</span>
             </section>
 
             <button type="submit">Rate!</button>
