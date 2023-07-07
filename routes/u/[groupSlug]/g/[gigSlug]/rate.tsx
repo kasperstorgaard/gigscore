@@ -107,9 +107,7 @@ export default function RatePage(props: PageProps) {
 
         <title>Gigscore - rating {props.data.gig.name}</title>
 
-        <meta name="description">
-          Create a rating for {props.data.gig.name}
-        </meta>
+        <meta name="description" content={`Create a rating for ${props.data.gig.name}`} />
       </Head>
 
       <header class="header">

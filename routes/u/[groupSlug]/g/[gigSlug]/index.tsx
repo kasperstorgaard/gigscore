@@ -84,9 +84,7 @@ export default function GigDetails(props: PageProps<Data>) {
 
         <title>Gigscore - {props.data.gig.name}</title>
 
-        <meta name="description">
-          Check the scores for {props.data.gig.name}
-        </meta>
+        <meta name="description" content={`Check the scores for ${props.data.gig.name}`} />
       </Head>
 
       <header class="header">

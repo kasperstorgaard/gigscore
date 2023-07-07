@@ -77,9 +77,7 @@ export default function Home(props: PageProps<Data>) {
 
         <title>Gigscore</title>
 
-        <meta name="description">
-          The place to rate live music
-        </meta>
+        <meta name="description" content="The place to rate live music with your friends" />
       </Head>
 
       <header class="header">
