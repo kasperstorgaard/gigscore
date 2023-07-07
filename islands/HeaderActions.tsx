@@ -12,20 +12,23 @@ export default function HeaderActions() {
   const [canShare, setCanshare] = useState(false);
 
   useEffect(() => {
+    if (!window.navigator.canShare) return;
     setCanshare(window.navigator.canShare({ url: "" }));
   }, []);
 
   return (
     <aside class="header-actions">
       {/* {canShare && ( */}
-        <button onClick={share}>
-          <ShareIcon />
-        </button>
+      <button onClick={share}>
+        <ShareIcon />
+      </button>
       {/* )} */}
 
-      {/* <button>
+      {
+        /* <button>
         <TuneIcon />
-      </button> */}
+      </button> */
+      }
     </aside>
   );
 }
