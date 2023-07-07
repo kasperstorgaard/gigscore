@@ -8,7 +8,8 @@ import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { updateRatedGigs } from "~/db/session.ts";
 import { APIError } from "~/utils/errors.ts";
 import GigForm from "#/GigForm.tsx";
-import MainLayout from "@/layouts/MainLayout.tsx";
+import FocusLayout from "@/layouts/FocusLayout.tsx";
+import { Breadcrumb } from "@/Breadcrumb.tsx";
 
 type Data = {
   group: Group;
@@ -97,7 +98,7 @@ export const handler: Handlers<Data, WithSession> = {
 
 export default function RatePage(props: PageProps) {
   return (
-    <MainLayout>
+    <FocusLayout>
       <Head>
         <link rel="stylesheet" href={asset("/pages/rate-page.css")} />
         <link rel="stylesheet" href={asset("/components/gig-form.css")} />
@@ -105,12 +106,24 @@ export default function RatePage(props: PageProps) {
         <link rel="stylesheet" href={asset("/components/score-guides.css")} />
       </Head>
 
+      <header>
+        <Breadcrumb
+          items={[{
+            url: `/u/${props.data.group.slug}`,
+            label: props.data.group.name,
+          }, {
+            url: `/u/${props.data.group.slug}/g/${props.data.gig.slug}`,
+            label: props.data.gig.name,
+          }]}
+        />
+      </header>
+
       <main class="rate-page">
         <GigForm
           groupSlug={props.params.groupSlug}
           gigSlug={props.params.gigSlug}
         />
       </main>
-    </MainLayout>
+    </FocusLayout>
   );
 }

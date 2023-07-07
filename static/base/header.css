@@ -1,0 +1,20 @@
+body {
+  grid-template-rows: min-content 1fr;
+}
+
+body > header {
+  display: grid;
+
+  padding: var(--space-block--m) var(--app-gutter);
+
+  background: var(--text-1);
+  color: var(--surface-1);
+
+  border-bottom: 2px solid currentColor;
+}
+
+@media (prefers-color-scheme: dark) {
+  body > header {
+    background: var(--purple-1);
+  }
+}

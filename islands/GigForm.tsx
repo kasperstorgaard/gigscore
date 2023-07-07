@@ -48,102 +48,100 @@ export default function GigForm({
       class="gig-form"
       onChange={handleFormChange}
     >
-      <div class="gig-form__wrapper">
-        <div class="gig-form__scroller" ref={containerRef}>
-          <section class="gig-form__section">
-            <ScoreInput
-              value={values.catchyness}
-              label="Catchyness"
-              name="catchyness"
-            />
+      <div class="gig-form__scroller" ref={containerRef}>
+        <section class="gig-form__section">
+          <ScoreInput
+            value={values.catchyness}
+            label="Catchyness"
+            name="catchyness"
+          />
 
-            <aside class="gig-form__scroll-hint">
-              <em data-only-cursor aria-label="TAB to open next page">
-                Scroll to next page
-              </em>
-              <em data-only-touch aria-hidden>Swipe to next page</em>
-              <ArrowForward />
-            </aside>
+          <aside class="gig-form__scroll-hint">
+            <em data-only-cursor aria-label="TAB to open next page">
+              Scroll to next page
+            </em>
+            <em data-only-touch aria-hidden>Swipe to next page</em>
+            <ArrowForward />
+          </aside>
 
-            <ScoreGuides>
-              <blockquote>Did the songs draw you in?</blockquote>
+          <ScoreGuides>
+            <blockquote>Did the songs draw you in?</blockquote>
 
-              <blockquote>Missed a hit?</blockquote>
+            <blockquote>Missed a hit?</blockquote>
 
-              <blockquote>Amazing choruses?</blockquote>
+            <blockquote>Amazing choruses?</blockquote>
 
-              <blockquote>Too all over the place?</blockquote>
-            </ScoreGuides>
+            <blockquote>Too all over the place?</blockquote>
+          </ScoreGuides>
+        </section>
+
+        <section class="gig-form__section">
+          <ScoreInput
+            value={values.vocals}
+            label="Vocals"
+            name="vocals"
+          />
+
+          <ScoreGuides>
+            <blockquote>Raw emotion?</blockquote>
+
+            <blockquote>Weak technique?</blockquote>
+
+            <blockquote>Inspiring lyrics?</blockquote>
+          </ScoreGuides>
+        </section>
+
+        <section class="gig-form__section">
+          <ScoreInput value={values.sound} label="Sound" name="sound" />
+
+          <ScoreGuides>
+            <blockquote>A bass that could replace your heartbeat?</blockquote>
+
+            <blockquote>Couldn't hear the singer?</blockquote>
+
+            <blockquote>Sound issues?</blockquote>
+          </ScoreGuides>
+        </section>
+
+        <section class="gig-form__section">
+          <ScoreInput
+            value={values.immersion}
+            label="Immersion"
+            name="immersion"
+          />
+
+          <ScoreGuides>
+            <blockquote>Getting lost in the music?</blockquote>
+
+            <blockquote>Checking instagram?</blockquote>
+
+            <blockquote>Mind drifting away?</blockquote>
+          </ScoreGuides>
+        </section>
+
+        <section class="gig-form__section">
+          <ScoreInput
+            value={values.performance}
+            label="Performance"
+            name="performance"
+          />
+
+          <ScoreGuides>
+            <blockquote>Contagious energy?</blockquote>
+
+            <blockquote>Staring at the stage?</blockquote>
+
+            <blockquote>No connection to the audience?</blockquote>
+          </ScoreGuides>
+        </section>
+
+        <div class="gig-form__submit">
+          <section class="gig-form__average-score">
+            <p>final score</p>
+            <span>{averageScore.toFixed(1)} / 5</span>
           </section>
 
-          <section class="gig-form__section">
-            <ScoreInput
-              value={values.vocals}
-              label="Vocals"
-              name="vocals"
-            />
-
-            <ScoreGuides>
-              <blockquote>Raw emotion?</blockquote>
-
-              <blockquote>Weak technique?</blockquote>
-
-              <blockquote>Inspiring lyrics?</blockquote>
-            </ScoreGuides>
-          </section>
-
-          <section class="gig-form__section">
-            <ScoreInput value={values.sound} label="Sound" name="sound" />
-
-            <ScoreGuides>
-              <blockquote>A bass that could replace your heartbeat?</blockquote>
-
-              <blockquote>Couldn't hear the singer?</blockquote>
-
-              <blockquote>Sound issues?</blockquote>
-            </ScoreGuides>
-          </section>
-
-          <section class="gig-form__section">
-            <ScoreInput
-              value={values.immersion}
-              label="Immersion"
-              name="immersion"
-            />
-
-            <ScoreGuides>
-              <blockquote>Getting lost in the music?</blockquote>
-
-              <blockquote>Checking instagram?</blockquote>
-
-              <blockquote>Mind drifting away?</blockquote>
-            </ScoreGuides>
-          </section>
-
-          <section class="gig-form__section">
-            <ScoreInput
-              value={values.performance}
-              label="Performance"
-              name="performance"
-            />
-
-            <ScoreGuides>
-              <blockquote>Contagious energy?</blockquote>
-
-              <blockquote>Staring at the stage?</blockquote>
-
-              <blockquote>No connection to the audience?</blockquote>
-            </ScoreGuides>
-          </section>
-
-          <div class="gig-form__submit">
-            <section class="gig-form__average-score">
-              <p>final score</p>
-              <span>{averageScore.toFixed(1)} / 5</span>
-            </section>
-
-            <button type="submit">Rate!</button>
-          </div>
+          <button type="submit">Rate!</button>
         </div>
       </div>
     </form>

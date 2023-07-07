@@ -10,7 +10,7 @@ main {
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: min-content auto;
+  grid-template-rows: auto;
   grid-auto-rows: 1fr;
 
   border: none;
@@ -23,23 +23,6 @@ main {
 
     --main-layout__primary-color: var(--gray-12);
     --main-layout__primary-bg: var(--gray-1);
-  }
-}
-
-main > header {
-  display: grid;
-
-  padding: var(--space-block--m) var(--app-gutter);
-
-  background: var(--text-1);
-  color: var(--surface-1);
-
-  border-bottom: 2px solid currentColor;
-}
-
-@media (prefers-color-scheme: dark) {
-  main > header {
-    background: var(--purple-1);
   }
 }
 

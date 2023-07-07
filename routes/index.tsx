@@ -75,11 +75,11 @@ export default function Home(props: PageProps<Data>) {
         <link rel="stylesheet" href={asset("/components/explainer.css")} />
       </Head>
 
-      <main>
-        <header>
-          <Breadcrumb items={[]} />
-        </header>
+      <header>
+        <Breadcrumb items={[]} />
+      </header>
 
+      <main>
         {props.data.recentGroups?.length
           ? (
             <>

@@ -1,14 +1,5 @@
 .gig-form {
   display: grid;
-  place-content: center;
-  justify-items: center;
-}
-
-.gig-form__wrapper {
-  display: grid;
-
-  padding: 0;
-  border: none;
 }
 
 .gig-form__scroller {

@@ -22,7 +22,7 @@ export default function MainLayout({ children }: Props) {
 
         <link rel="stylesheet" href={asset("/base/main.css")} />
         <link rel="stylesheet" href={asset("/base/header.css")} />
-        <link rel="stylesheet" href={asset("/layouts/main-layout.css")} />
+        <link rel="stylesheet" href={asset("/layouts/focus-layout.css")} />
         <link rel="stylesheet" href={asset("/base/forms.css")} />
         <link rel="stylesheet" href={asset("/components/breadcrumbs.css")} />
       </Head>

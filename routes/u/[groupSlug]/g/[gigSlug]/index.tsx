@@ -82,19 +82,20 @@ export default function GigDetails(props: PageProps<Data>) {
         <link rel="stylesheet" href={asset("/pages/gig-page.css")} />
       </Head>
 
+      <header>
+        <Breadcrumb
+          items={[{
+            url: `/u/${props.data.group.slug}`,
+            label: props.data.group.name,
+          }, {
+            url: `/u/${props.data.group.slug}/g/${props.data.gig.slug}`,
+            label: props.data.gig.name,
+          }]}
+        />
+      </header>
+
       <MainLayout>
         <main class="gig-page">
-          <header>
-            <Breadcrumb
-              items={[{
-                url: `/u/${props.data.group.slug}`,
-                label: props.data.group.name,
-              }, {
-                url: `/u/${props.data.group.slug}/g/${props.data.gig.slug}`,
-                label: props.data.gig.name,
-              }]}
-            />
-          </header>
 
           <section class="gig-page__top-section">
             <div class="gig-page__gig-details">

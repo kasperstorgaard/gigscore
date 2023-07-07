@@ -116,15 +116,16 @@ export default function GroupHome(props: PageProps<Data>) {
         <link rel="stylesheet" href={asset("/components/explainer.css")} />
       </Head>
 
+      <header>
+        <Breadcrumb
+          items={[{
+            url: `/u/${props.data.group.slug}`,
+            label: props.data.group.name,
+          }]}
+        />
+      </header>
+
       <main>
-        <header>
-          <Breadcrumb
-            items={[{
-              url: `/u/${props.data.group.slug}`,
-              label: props.data.group.name,
-            }]}
-          />
-        </header>
 
         <section>
           <h2>Add gig</h2>
