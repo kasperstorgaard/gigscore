@@ -10,6 +10,7 @@ import { APIError } from "~/utils/errors.ts";
 import GigForm from "#/GigForm.tsx";
 import FocusLayout from "@/layouts/FocusLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
+import HeaderActions from "#/HeaderActions.tsx";
 
 type Data = {
   group: Group;
@@ -105,7 +106,7 @@ export default function RatePage(props: PageProps) {
         <link rel="stylesheet" href={asset("/components/score-guides.css")} />
       </Head>
 
-      <header>
+      <header class="header">
         <Breadcrumb
           items={[{
             url: `/u/${props.data.group.slug}`,
@@ -115,6 +116,7 @@ export default function RatePage(props: PageProps) {
             label: props.data.gig.name,
           }]}
         />
+        <HeaderActions />
       </header>
 
       <main>

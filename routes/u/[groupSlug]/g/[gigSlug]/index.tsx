@@ -12,6 +12,7 @@ import { getTimeAgo } from "~/utils/formatters.ts";
 import { ScoreSnippet } from "@/ScoreSnippet.tsx";
 import MainLayout from "@/layouts/MainLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
+import HeaderActions from "#/HeaderActions.tsx";
 
 type Data = {
   group: Group;
@@ -82,7 +83,7 @@ export default function GigDetails(props: PageProps<Data>) {
         <link rel="stylesheet" href={asset("/pages/gig-page.css")} />
       </Head>
 
-      <header>
+      <header class="header">
         <Breadcrumb
           items={[{
             url: `/u/${props.data.group.slug}`,
@@ -92,6 +93,7 @@ export default function GigDetails(props: PageProps<Data>) {
             label: props.data.gig.name,
           }]}
         />
+        <HeaderActions />
       </header>
 
       <MainLayout>

@@ -1,12 +1,12 @@
 main {
-  --main-layout__secondary-bg: var(--surface-1);
-  --main-layout__secondary-color: var(--text-1);
+  --primary-bg: var(--sand-12);
+  --primary-color: var(--surface-1);
 
-  --main-layout__primary-bg: var(--sand-12);
-  --main-layout__primary-color: var(--surface-1);
+  --secondary-bg: var(--surface-1);
+  --secondary-color: var(--text-1);
 
-  --main-layout__divider: var(--gradient-3);
-  --main-layout__divider-height: 4px;
+  --divider: var(--gradient-3);
+  --divider-height: 4px;
 
   display: grid;
   grid-template-columns: 1fr;
@@ -18,11 +18,11 @@ main {
 
 @media (prefers-color-scheme: dark) {
   main {
-    --main-layout__secondary-bg: var(--surface-1);
-    --main-layout__secondary-color: var(--text-1);
+    --primary-color: var(--gray-12);
+    --primary-bg: var(--gray-1);
 
-    --main-layout__primary-color: var(--gray-12);
-    --main-layout__primary-bg: var(--gray-1);
+    --secondary-bg: var(--surface-1);
+    --secondary-color: var(--text-1);
   }
 }
 
@@ -36,19 +36,19 @@ main > section {
 
   padding: var(--size-fluid-5) var(--app-gutter);
 
-  background: var(--main-layout__primary-bg);
-  color: var(--main-layout__primary-color);
+  background: var(--primary-bg);
+  color: var(--primary-color);
 }
 
 main > section:first-of-type {
-  background-color: var(--main-layout__secondary-bg);
+  background-color: var(--secondary-bg);
 
-  color: var(--main-layout__secondary-color);
+  color: var(--secondary-color);
 }
 
 main > section:nth-of-type(n + 2) {
-  background-image: var(--main-layout__divider);
-  background-size: 100% var(--main-layout__divider-height);
+  background-image: var(--divider);
+  background-size: 100% var(--divider-height);
   background-repeat: no-repeat;
 }
 

@@ -1,5 +1,5 @@
 import ScoreInput from "@/ScoreInput.tsx";
-import { ArrowForward } from "@/icons/arrow-forward.tsx";
+import { ArrowForwardIcon } from "@/icons/arrow-forward.tsx";
 import { useMemo, useState } from "preact/hooks";
 import { createRef } from "preact";
 import { JSX } from "preact";
@@ -61,7 +61,7 @@ export default function GigForm({
               Scroll to next page
             </em>
             <em data-only-touch aria-hidden>Swipe to next page</em>
-            <ArrowForward />
+            <ArrowForwardIcon />
           </aside>
 
           <ScoreGuides>

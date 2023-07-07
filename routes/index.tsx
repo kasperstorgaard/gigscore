@@ -8,6 +8,7 @@ import { getRecentGroups } from "~/db/session.ts";
 import { APIError } from "~/utils/errors.ts";
 import MainLayout from "@/layouts/MainLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
+import HeaderActions from "#/HeaderActions.tsx";
 
 type Data = {
   recentGroups?: Pick<Group, "id" | "name" | "slug">[];
@@ -75,8 +76,9 @@ export default function Home(props: PageProps<Data>) {
         <link rel="stylesheet" href={asset("/components/explainer.css")} />
       </Head>
 
-      <header>
+      <header class="header">
         <Breadcrumb items={[]} />
+        <HeaderActions />
       </header>
 
       <main>

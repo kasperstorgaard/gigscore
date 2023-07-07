@@ -2,19 +2,46 @@ body {
   grid-template-rows: min-content 1fr;
 }
 
-body > header {
-  display: grid;
+.header {
+  position: relative;
 
-  padding: var(--space-block--m) var(--app-gutter);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: minmax(2.8em, auto);
+  gap: var(--space-inline--m);
+
+  place-items: center;
+
+  padding-block: var(--space-block--s);
+  padding-inline: var(--app-gutter) 0;
 
   background: var(--text-1);
   color: var(--surface-1);
-
-  border-bottom: 2px solid currentColor;
 }
 
 @media (prefers-color-scheme: dark) {
   body > header {
     background: var(--purple-1);
   }
+}
+
+.header-actions {
+  display: flex;
+  place-content: flex-end;
+  grid-auto-columns: min-content;
+  grid-auto-flow: column;
+}
+
+.header-actions button {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: var(--text-1);
+  background: transparent;
+  border-radius: 0;
+  border: none;
+}
+
+.header-actions button + button {
+  border-left: 1px solid var(--surface-1);
 }
