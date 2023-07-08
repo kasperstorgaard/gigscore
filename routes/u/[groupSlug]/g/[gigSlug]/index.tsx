@@ -136,7 +136,7 @@ export default function GigDetails(props: PageProps<Data>) {
             </aside>
           </section>
 
-          <section class="score-list">
+          <section class="score-list" color-scheme="light">
             <h3>Latest scores</h3>
 
             <ol>

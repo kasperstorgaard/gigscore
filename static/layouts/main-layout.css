@@ -20,78 +20,12 @@ main > section {
 
   padding: var(--size-fluid-5) var(--app-gutter);
 
-  background: var(--surface-1);
-  color: var(--text-1);
-}
-
-main > section:nth-of-type(n + 2) {
-  --link: var(--indigo-3);
-  --link-visited: var(--purple-3);
-  --text-1: var(--gray-1);
-  --text-2: var(--gray-4);
-  --surface-1: var(--gray-9);
-  --surface-2: var(--gray-8);
-  --surface-3: var(--gray-7);
-  --surface-4: var(--gray-6);
-  --scrollthumb-color: var(--gray-6);
-  --shadow-strength: 10%;
-  --shadow-color: 220 40% 2%;
-  color-scheme: dark;
-
-  background-image: var(--divider);
-  background-size: 100% var(--divider-height);
-  background-repeat: no-repeat;
-}
-
-@media (prefers-color-scheme: dark) {
-  main > section {
-    --link: var(--indigo-3);
-    --link-visited: var(--purple-3);
-    --text-1: var(--gray-1);
-    --text-2: var(--gray-4);
-    --surface-1: var(--gray-9);
-    --surface-2: var(--gray-8);
-    --surface-3: var(--gray-7);
-    --surface-4: var(--gray-6);
-    --scrollthumb-color: var(--gray-6);
-    --shadow-strength: 10%;
-    --shadow-color: 220 40% 2%;
-    color-scheme: dark;
-  }
-
-  main > section:nth-of-type(2n) {
-    --link: var(--indigo-7);
-    --link-visited: var(--purple-7);
-    --text-1: var(--gray-9);
-    --text-2: var(--gray-7);
-    --surface-1: var(--gray-0);
-    --surface-2: var(--gray-2);
-    --surface-3: var(--gray-3);
-    --surface-4: var(--gray-4);
-    --scrollthumb-color: var(--gray-7);
-    color-scheme: light;
-
-    background-image: var(--divider);
-    background-size: 100% var(--divider-height);
-    background-repeat: no-repeat;
-  }
-}
-
-@media (min-width: 1024px) {
-  main {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  main > header {
-    grid-column: span 2;
-  }
-
-  main > section {
-    border-top: 2px solid transparent;
-  }
-
-  main > section:nth-of-type(n + 2) {
-    background-image: none;
-    border-top: 2px solid var(--text-1);
-  }
+  accent-color: var(--brand,var(--link));
+  background-color: var(--surface-1);
+  block-size: 100%;
+  caret-color: var(--brand,var(--link));
+  color: var(--text-2);
+  color-scheme: light;
+  font-family: var(--font-sans);
+  line-height: var(--font-lineheight-3);
 }

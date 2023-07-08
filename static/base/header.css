@@ -15,14 +15,8 @@ body {
   padding-block: var(--space-block--s);
   padding-inline: var(--app-gutter) 0;
 
-  background: var(--text-1);
-  color: var(--surface-1);
-}
-
-@media (prefers-color-scheme: dark) {
-  .header {
-    background: var(--camo-0);
-  }
+  background: var(--brand);
+  color: var(--text-1);
 }
 
 .header-actions {

@@ -21,7 +21,3 @@ fieldset > label {
   display: grid;
   gap: var(--space-block--s);
 }
-
-form input {
-  color: var(--text-1);
-}
