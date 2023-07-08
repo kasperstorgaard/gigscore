@@ -1,13 +1,13 @@
-form {
+:where(form) {
   display: grid;
   gap: 1.5em;
 }
 
-form button[type=submit] {
+:where(form button[type=submit]) {
   margin-top: var(--space-block--s);
 }
 
-fieldset {
+:where(fieldset) {
   display: grid;
   gap: var(--space-block--m);
 
@@ -16,8 +16,8 @@ fieldset {
   max-width: var(--size-content-2);
 }
 
-form > label,
-fieldset > label {
+:where(form > label),
+:where(fieldset > label) {
   display: grid;
   gap: var(--space-block--s);
 }

@@ -1,0 +1,42 @@
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  display: grid;
+  grid-template-columns: minmax(280px, 66vw);
+  grid-template-rows: 1fr;
+
+  padding: var(--size-fluid-4) var(--app-gutter);
+
+  background: var(--surface-2);
+  z-index: var(--layer-4);
+
+  animation: var(--animation-slide-out-right);
+}
+
+.sidebar:not([data-is-visible=true]) {
+  display: none;
+}
+
+.sidebar[data-is-open=true] {
+  animation: var(--animation-fade-in), var(--animation-slide-in-left);
+}
+
+.sidebar[data-is-open=false] {
+  animation: var(--animation-slide-out-right), var(--animation-fade-out);
+  animation-duration: .2s;
+}
+
+.sidebar fieldset {
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: var(--space-block--s);
+}
+
+.sidebar fieldset > label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-inline--m);
+}

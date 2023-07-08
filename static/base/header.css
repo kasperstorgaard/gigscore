@@ -15,7 +15,7 @@ body {
   padding-block: var(--space-block--s);
   padding-inline: var(--app-gutter) 0;
 
-  background: var(--brand);
+  background: var(--surface-3);
   color: var(--text-1);
 }
 
@@ -34,6 +34,10 @@ body {
   background: transparent;
   border-radius: 0;
   border: none;
+}
+
+.header-actions svg {
+  fill: currentColor;
 }
 
 .header-actions button + button {

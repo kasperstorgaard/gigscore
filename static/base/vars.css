@@ -14,13 +14,13 @@
   --space-inline--l: 1em;
   --space-inline--xxl: 4em;
 
-  /* fonts */
+  --section-divider-height: 4px;
 }
 
 /* THEMES */
 :root {
   /* light */
-  --brand-light: var(--orange-6);
+  --brand-light: var(--blue-6);
   --text-1-light: var(--gray-8);
   --text-2-light: var(--gray-7);
   --surface-1-light: var(--gray-0);
@@ -30,49 +30,85 @@
   --surface-shadow-light: var(--gray-8-hsl);
   --shadow-strength-light: 2%;
 
-  /* dark */
-  --brand-dark: var(--orange-3);
-  --text-1-dark: var(--gray-3);
-  --text-2-dark: var(--gray-5);
-  --surface-1-dark: var(--gray-12);
-  --surface-2-dark: var(--gray-11);
-  --surface-3-dark: var(--gray-10);
-  --surface-4-dark: var(--gray-9);
-  --surface-shadow-dark: var(--gray-12-hsl);
-  --shadow-strength-dark: 80%;
+  --section-divider-light: var(--gradient-3);
 
-  /* dim */
-  --brand-dim: var(--orange-4);
-  --text-1-dim: var(--gray-3);
-  --text-2-dim: var(--gray-4);
-  --surface-1-dim: var(--gray-8);
-  --surface-2-dim: var(--gray-7);
-  --surface-3-dim: var(--gray-6);
-  --surface-4-dim: var(--gray-5);
-  --surface-shadow-dim: var(--gray-9-hsl);
-  --shadow-strength-dim: 20%;
+  /* pop */
+  --brand-pop: var(--orange-6);
+  --text-1-pop: var(--gray-8);
+  --text-2-pop: var(--gray-7);
+  --surface-1-pop: var(--gray-0);
+  --surface-2-pop: var(--gray-1);
+  --surface-3-pop: var(--gray-2);
+  --surface-4-pop: var(--gray-3);
+  --surface-shadow-pop: var(--gray-8-hsl);
+  --shadow-strength-pop: 2%;
 
-  /* grape */
-  --brand-grape: var(--purple-5);
-  --text-1-grape: var(--purple-9);
-  --text-2-grape: var(--purple-7);
-  --surface-1-grape: var(--purple-0);
-  --surface-2-grape: var(--purple-1);
-  --surface-3-grape: var(--purple-2);
-  --surface-4-grape: var(--purple-3);
-  --surface-shadow-grape: var(--purple-12-hsl);
-  --shadow-strength-grape: 2%;
+  --section-divider-pop: var(--gradient-2);
 
-  /* choco */
-  --brand-choco: var(--choco-5);
-  --text-1-choco: var(--choco-1);
-  --text-2-choco: var(--choco-2);
-  --surface-1-choco: var(--choco-12);
-  --surface-2-choco: var(--choco-11);
-  --surface-3-choco: var(--choco-10);
-  --surface-4-choco: var(--choco-9);
-  --surface-shadow-choco: 25deg 65% 11%;
-  --shadow-strength-choco: 50%;
+  /* metal */
+  --brand-metal: var(--orange-3);
+  --text-1-metal: var(--gray-3);
+  --text-2-metal: var(--gray-5);
+  --surface-1-metal: var(--gray-12);
+  --surface-2-metal: var(--gray-11);
+  --surface-3-metal: var(--gray-10);
+  --surface-4-metal: var(--gray-9);
+  --surface-shadow-metal: var(--gray-12-hsl);
+  --shadow-strength-metal: 80%;
+
+  --section-divider-metal: var(--gradient-6);
+
+  /* rap */
+  --brand-rap: var(--orange-4);
+  --text-1-rap: var(--gray-3);
+  --text-2-rap: var(--gray-4);
+  --surface-1-rap: var(--gray-8);
+  --surface-2-rap: var(--gray-7);
+  --surface-3-rap: var(--gray-6);
+  --surface-4-rap: var(--gray-5);
+  --surface-shadow-rap: var(--gray-9-hsl);
+  --shadow-strength-rap: 20%;
+
+  --section-divider-rap: var(--gradient-6);
+
+  /* electronica */
+  --brand-electronica: var(--purple-5);
+  --text-1-electronica: var(--purple-9);
+  --text-2-electronica: var(--purple-7);
+  --surface-1-electronica: var(--purple-0);
+  --surface-2-electronica: var(--purple-1);
+  --surface-3-electronica: var(--purple-2);
+  --surface-4-electronica: var(--purple-3);
+  --surface-shadow-electronica: var(--purple-12-hsl);
+  --shadow-strength-electronica: 2%;
+
+  --section-divider-electronica: var(--gradient-6);
+
+  /* rnb */
+  --brand-rnb: var(--purple-5);
+  --text-1-rnb: var(--purple-9);
+  --text-2-rnb: var(--purple-7);
+  --surface-1-rnb: var(--purple-0);
+  --surface-2-rnb: var(--purple-1);
+  --surface-3-rnb: var(--purple-2);
+  --surface-4-rnb: var(--purple-3);
+  --surface-shadow-rnb: var(--purple-12-hsl);
+  --shadow-strength-rnb: 2%;
+
+  --section-divider-rnb: var(--gradient-6);
+
+  /* afrobeat */
+  --brand-afrobeat: var(--choco-5);
+  --text-1-afrobeat: var(--choco-1);
+  --text-2-afrobeat: var(--choco-2);
+  --surface-1-afrobeat: var(--choco-12);
+  --surface-2-afrobeat: var(--choco-11);
+  --surface-3-afrobeat: var(--choco-10);
+  --surface-4-afrobeat: var(--choco-9);
+  --surface-shadow-afrobeat: 25deg 65% 11%;
+  --shadow-strength-afrobeat: 50%;
+
+  --section-divider-afrobeat: var(--gradient-6);
 }
 
 [color-scheme="light"] {
@@ -81,6 +117,7 @@
   --brand: var(--brand-light);
   --text-1: var(--text-1-light);
   --text-2: var(--text-2-light);
+  --link: var(--brand-light);
   --surface-1: var(--surface-1-light);
   --surface-2: var(--surface-2-light);
   --surface-3: var(--surface-3-light);
@@ -89,58 +126,101 @@
   --shadow-strength: var(--shadow-strength-light);
 }
 
-[color-scheme="dark"] {
+[color-scheme="pop"] {
+  color-scheme: light;
+
+  --brand: var(--brand-pop);
+  --text-1: var(--text-1-pop);
+  --text-2: var(--text-2-pop);
+  --link: var(--brand-pop);
+  --surface-1: var(--surface-1-pop);
+  --surface-2: var(--surface-2-pop);
+  --surface-3: var(--surface-3-pop);
+  --surface-4: var(--surface-4-pop);
+  --surface-shadow: var(--surface-shadow-pop);
+  --shadow-strength: var(--shadow-strength-pop);
+  --section-divider: var(--section-divider-pop);
+}
+
+[color-scheme="rnb"] {
+  color-scheme: dark;
+
+  --brand: var(--brand-rnb);
+  --text-1: var(--text-1-rnb);
+  --text-2: var(--text-2-rnb);
+  --link: var(--brand-rnb);
+  --surface-1: var(--surface-1-rnb);
+  --surface-2: var(--surface-2-rnb);
+  --surface-3: var(--surface-3-rnb);
+  --surface-4: var(--surface-4-rnb);
+  --surface-shadow: var(--surface-shadow-rnb);
+  --shadow-strength: var(--shadow-strength-rnb);
+  --section-divider: var(--section-divider-rnb);
+}
+
+[color-scheme="metal"] {
   color-scheme: dark;
   
-  --brand: var(--brand-dark);
-  --text-1: var(--text-1-dark);
-  --text-2: var(--text-2-dark);
-  --surface-1: var(--surface-1-dark);
-  --surface-2: var(--surface-2-dark);
-  --surface-3: var(--surface-3-dark);
-  --surface-4: var(--surface-4-dark);
-  --surface-shadow: var(--surface-shadow-dark);
-  --shadow-strength: var(--shadow-strength-dark);
+  --brand: var(--brand-metal);
+  --text-1: var(--text-1-metal);
+  --text-2: var(--text-2-metal);
+  --link: var(--brand-metal);
+  --surface-1: var(--surface-1-metal);
+  --surface-2: var(--surface-2-metal);
+  --surface-3: var(--surface-3-metal);
+  --surface-4: var(--surface-4-metal);
+  --surface-shadow: var(--surface-shadow-metal);
+  --shadow-strength: var(--shadow-strength-metal);
+  --section-divider: var(--section-divider-metal);
 }
 
-[color-scheme="dim"] {
-  color-scheme: dark;
 
-  --brand: var(--brand-dim);
-  --text-1: var(--text-1-dim);
-  --text-2: var(--text-2-dim);
-  --surface-1: var(--surface-1-dim);
-  --surface-2: var(--surface-2-dim);
-  --surface-3: var(--surface-3-dim);
-  --surface-4: var(--surface-4-dim);
-  --surface-shadow: var(--surface-shadow-dim);
-  --shadow-strength: var(--shadow-strength-dim);
-}
 
-[color-scheme="grape"] {
+[color-scheme="electronica"] {
   color-scheme: light;
 
-  --brand: var(--brand-grape);
-  --text-1: var(--text-1-grape);
-  --text-2: var(--text-2-grape);
-  --surface-1: var(--surface-1-grape);
-  --surface-2: var(--surface-2-grape);
-  --surface-3: var(--surface-3-grape);
-  --surface-4: var(--surface-4-grape);
-  --surface-shadow: var(--surface-shadow-grape);
-  --shadow-strength: var(--shadow-strength-grape);
+  --brand: var(--brand-electronica);
+  --text-1: var(--text-1-electronica);
+  --text-2: var(--text-2-electronica);
+  --link: var(--brand-electronica);
+  --surface-1: var(--surface-1-electronica);
+  --surface-2: var(--surface-2-electronica);
+  --surface-3: var(--surface-3-electronica);
+  --surface-4: var(--surface-4-electronica);
+  --surface-shadow: var(--surface-shadow-electronica);
+  --shadow-strength: var(--shadow-strength-electronica);
+  --section-divider: var(--section-divider-electronica);
 }
 
-[color-scheme="choco"] {
+[color-scheme="rap"] {
   color-scheme: light;
 
-  --brand: var(--brand-choco);
-  --text-1: var(--text-1-choco);
-  --text-2: var(--text-2-choco);
-  --surface-1: var(--surface-1-choco);
-  --surface-2: var(--surface-2-choco);
-  --surface-3: var(--surface-3-choco);
-  --surface-4: var(--surface-4-choco);
-  --surface-shadow: var(--surface-shadow-choco);
-  --shadow-strength: var(--shadow-strength-choco);
+  --brand: var(--brand-rap);
+  --text-1: var(--text-1-rap);
+  --text-2: var(--text-2-rap);
+  --link: var(--brand-rap);
+  --surface-1: var(--surface-1-rap);
+  --surface-2: var(--surface-2-rap);
+  --surface-3: var(--surface-3-rap);
+  --surface-4: var(--surface-4-rap);
+  --surface-shadow: var(--surface-shadow-rap);
+  --shadow-strength: var(--shadow-strength-rap);
+  --section-divider: var(--section-divider-rap);
+}
+
+[color-scheme="afrobeat"] {
+  color-scheme: light;
+
+  --brand: var(--brand-afrobeat);
+  --text-1: var(--text-1-afrobeat);
+  --text-2: var(--text-2-afrobeat);
+  --link: var(--brand-afrobeat);
+  --link-visited: var(--text-2-afrobeat);
+  --surface-1: var(--surface-1-afrobeat);
+  --surface-2: var(--surface-2-afrobeat);
+  --surface-3: var(--surface-3-afrobeat);
+  --surface-4: var(--surface-4-afrobeat);
+  --surface-shadow: var(--surface-shadow-afrobeat);
+  --shadow-strength: var(--shadow-strength-afrobeat);
+  --section-divider: var(--section-divider-afrobeat);
 }

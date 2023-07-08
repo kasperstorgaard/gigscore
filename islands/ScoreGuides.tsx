@@ -1,5 +1,4 @@
-import { asset, Head } from "$fresh/runtime.ts";
-import { useEffect, useState } from "preact/hooks";
+import { useEffect } from "preact/hooks";
 import { ComponentChildren, createRef } from "preact";
 import { useIntersect } from "~/hooks/use-intersect.ts";
 

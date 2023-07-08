@@ -5,6 +5,7 @@ import { getCookies } from "http";
 
 import { createGroup, ExistingGroupError, Group } from "~/db/groups.ts";
 import { getRecentGroups } from "~/db/session.ts";
+import { getTheme, Theme } from "~/db/theme.ts";
 import { APIError } from "~/utils/errors.ts";
 import MainLayout from "@/layouts/MainLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
@@ -13,18 +14,16 @@ import HeaderActions from "#/HeaderActions.tsx";
 type Data = {
   recentGroups?: Pick<Group, "id" | "name" | "slug">[];
   existingGroup?: Group;
+  theme: Theme;
 };
 
 export const handler: Handlers<Data, WithSession> = {
   GET: (req, ctx) => {
-    const { sessionId } = getCookies(req.headers);
-
-    if (!sessionId) return ctx.render({});
-
     const recentGroups = getRecentGroups(ctx.state.session);
 
     return ctx.render({
       recentGroups,
+      theme: getTheme(ctx.state.session),
     });
   },
   POST: async (req, ctx) => {
@@ -47,6 +46,7 @@ export const handler: Handlers<Data, WithSession> = {
       if (err instanceof ExistingGroupError) {
         return ctx.render({
           existingGroup: group,
+          theme: getTheme(ctx.state.session),
         });
       }
 
@@ -80,12 +80,12 @@ export default function Home(props: PageProps<Data>) {
         <meta name="description" content="The place to rate live music with your friends" />
       </Head>
 
-      <header class="header">
+      <header class="header" color-scheme={props.data.theme}>
         <Breadcrumb items={[]} />
-        <HeaderActions />
+        <HeaderActions initialTheme={props.data.theme} />
       </header>
 
-      <main>
+      <main color-scheme={props.data.theme}>
         {props.data.recentGroups?.length
           ? (
             <>

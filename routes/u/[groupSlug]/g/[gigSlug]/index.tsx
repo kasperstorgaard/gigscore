@@ -6,11 +6,12 @@ import { getGigBySlug, Gig } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { getLocationByGig, Location } from "~/db/locations.ts";
 import { getAggregatedScore, listScores, Score } from "~/db/scores.ts";
+import { getTheme, Theme } from "~/db/theme.ts";
 import { APIError } from "~/utils/errors.ts";
 import { getLanguage } from "~/utils/request.ts";
 import { getTimeAgo } from "~/utils/formatters.ts";
 import { ScoreSnippet } from "@/ScoreSnippet.tsx";
-import MainLayout from "@/layouts/MainLayout.tsx";
+import SplitLayout from "@/layouts/SplitLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
 import HeaderActions from "#/HeaderActions.tsx";
 
@@ -21,6 +22,7 @@ type Data = {
   gig: Gig;
   location: Location | null;
   language: string;
+  theme: Theme;
 };
 
 export const handler: Handlers<Data, WithSession> = {
@@ -62,6 +64,7 @@ export const handler: Handlers<Data, WithSession> = {
         score,
         location,
         language: getLanguage(req),
+        theme: getTheme(ctx.state.session),
       });
     } catch (err) {
       console.log("ehm what?", err);
@@ -84,10 +87,13 @@ export default function GigDetails(props: PageProps<Data>) {
 
         <title>Gigscore - {props.data.gig.name}</title>
 
-        <meta name="description" content={`Check the scores for ${props.data.gig.name}`} />
+        <meta
+          name="description"
+          content={`Check the scores for ${props.data.gig.name}`}
+        />
       </Head>
 
-      <header class="header">
+      <header class="header" color-scheme={props.data.theme}>
         <Breadcrumb
           items={[{
             url: `/u/${props.data.group.slug}`,
@@ -97,12 +103,11 @@ export default function GigDetails(props: PageProps<Data>) {
             label: props.data.gig.name,
           }]}
         />
-        <HeaderActions />
+        <HeaderActions initialTheme={props.data.theme} />
       </header>
 
-      <MainLayout>
-        <main class="gig-page">
-
+      <SplitLayout>
+        <main class="gig-page" color-scheme={props.data.theme}>
           <section class="gig-page__top-section">
             <div class="gig-page__gig-details">
               <span class="kicker">
@@ -156,7 +161,7 @@ export default function GigDetails(props: PageProps<Data>) {
             </ol>
           </section>
         </main>
-      </MainLayout>
+      </SplitLayout>
     </>
   );
 }

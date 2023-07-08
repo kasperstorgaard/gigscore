@@ -12,12 +12,15 @@ import { APIError } from "~/utils/errors.ts";
 import MainLayout from "@/layouts/MainLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
 import HeaderActions from "#/HeaderActions.tsx";
+import { getTheme, Theme } from "../../../shared/db/theme.ts";
+import SplitLayout from "../../../components/layouts/SplitLayout.tsx";
 
 type Data = {
   language: string;
   group: Group;
   gigs: Gig[];
   ratedGigs: Pick<Gig, "id" | "name" | "slug">[];
+  theme: Theme;
 };
 
 export const handler: Handlers<Data, WithSession> = {
@@ -41,6 +44,7 @@ export const handler: Handlers<Data, WithSession> = {
         group,
         gigs,
         ratedGigs,
+        theme: getTheme(ctx.state.session),
       });
     } catch (err) {
       return new Response("", {
@@ -111,7 +115,7 @@ export const handler: Handlers<Data, WithSession> = {
 
 export default function GroupHome(props: PageProps<Data>) {
   return (
-    <MainLayout>
+    <SplitLayout>
       <Head>
         <link rel="stylesheet" href={asset("/components/link-section.css")} />
         <link rel="stylesheet" href={asset("/components/explainer.css")} />
@@ -121,17 +125,17 @@ export default function GroupHome(props: PageProps<Data>) {
         <meta name="description" content={`The group {props.data.group.name`} />
       </Head>
 
-      <header class="header">
+      <header class="header" color-scheme={props.data.theme}>
         <Breadcrumb
           items={[{
             url: `/u/${props.data.group.slug}`,
             label: props.data.group.name,
           }]}
         />
-        <HeaderActions />
+        <HeaderActions initialTheme={props.data.theme} />
       </header>
 
-      <main>
+      <main color-scheme={props.data.theme}>
 
         <section>
           <h2>Add gig</h2>
@@ -205,6 +209,6 @@ export default function GroupHome(props: PageProps<Data>) {
             </section>
           )}
       </main>
-    </MainLayout>
+    </SplitLayout>
   );
 }

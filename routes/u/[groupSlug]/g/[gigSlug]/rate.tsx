@@ -11,10 +11,12 @@ import GigForm from "#/GigForm.tsx";
 import FocusLayout from "@/layouts/FocusLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
 import HeaderActions from "#/HeaderActions.tsx";
+import { getTheme, Theme } from "~/db/theme.ts";
 
 type Data = {
   group: Group;
   gig: Gig;
+  theme: Theme;
 };
 
 export const handler: Handlers<Data, WithSession> = {
@@ -33,7 +35,11 @@ export const handler: Handlers<Data, WithSession> = {
 
       if (gigErr) throw gigErr;
 
-      return ctx.render({ group, gig });
+      return ctx.render({
+        group,
+        gig,
+        theme: getTheme(ctx.state.session),
+      });
     } catch (err) {
       return new Response("", {
         status: (err as APIError).status ?? 500,
@@ -107,10 +113,13 @@ export default function RatePage(props: PageProps) {
 
         <title>Gigscore - rating {props.data.gig.name}</title>
 
-        <meta name="description" content={`Create a rating for ${props.data.gig.name}`} />
+        <meta
+          name="description"
+          content={`Create a rating for ${props.data.gig.name}`}
+        />
       </Head>
 
-      <header class="header">
+      <header class="header" color-scheme={props.data.theme}>
         <Breadcrumb
           items={[{
             url: `/u/${props.data.group.slug}`,
@@ -120,10 +129,10 @@ export default function RatePage(props: PageProps) {
             label: props.data.gig.name,
           }]}
         />
-        <HeaderActions />
+        <HeaderActions initialTheme={props.data.theme} />
       </header>
 
-      <main>
+      <main color-scheme={props.data.theme}>
         <GigForm
           groupSlug={props.params.groupSlug}
           gigSlug={props.params.gigSlug}
