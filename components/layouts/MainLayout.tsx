@@ -17,11 +17,7 @@ export default function MainLayout({ children }: Props) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 
-        {/* @ts-ignore */}
-        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="preload" as="style" onLoad="this.rel ='stylesheet';this.onload=null;" />
-        <noscript>
-          <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet" />
-        </noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="crossOrigin" />
@@ -31,6 +27,8 @@ export default function MainLayout({ children }: Props) {
         <link rel="stylesheet" href={asset("/layouts/main-layout.css")} />
         <link rel="stylesheet" href={asset("/base/forms.css")} />
         <link rel="stylesheet" href={asset("/components/breadcrumbs.css")} />
+        <link rel="stylesheet" href={asset("/components/overlay.css")} />
+        <link rel="stylesheet" href={asset("/components/sidebar.css")} />
       </Head>
       
       {children}

@@ -2,7 +2,6 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/_middleware.ts";
 import * as $1 from "./routes/index.tsx";
 import * as $2 from "./routes/u/[groupSlug]/g/[gigSlug]/index.tsx";
@@ -13,7 +12,9 @@ import * as $6 from "./routes/u/[groupSlug]/locations/index.tsx";
 import * as $7 from "./routes/u/_middleware.ts";
 import * as $$0 from "./islands/GigForm.tsx";
 import * as $$1 from "./islands/HeaderActions.tsx";
-import * as $$2 from "./islands/ScoreGuides.tsx";
+import * as $$2 from "./islands/Overlay.tsx";
+import * as $$3 from "./islands/ScoreGuides.tsx";
+import * as $$4 from "./islands/Sidebar.tsx";
 
 const manifest = {
   routes: {
@@ -29,10 +30,11 @@ const manifest = {
   islands: {
     "./islands/GigForm.tsx": $$0,
     "./islands/HeaderActions.tsx": $$1,
-    "./islands/ScoreGuides.tsx": $$2,
+    "./islands/Overlay.tsx": $$2,
+    "./islands/ScoreGuides.tsx": $$3,
+    "./islands/Sidebar.tsx": $$4,
   },
   baseUrl: import.meta.url,
-  config,
 };
 
 export default manifest;
