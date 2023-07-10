@@ -26,6 +26,11 @@ body {
   grid-auto-flow: column;
 }
 
+.header-actions legend {
+  width: 100%;
+  margin-bottom: var(--space-block--s);
+}
+
 .header-actions button {
   border: none;
   outline: none;

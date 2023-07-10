@@ -5,10 +5,11 @@
   bottom: 0;
 
   display: grid;
-  grid-template-columns: minmax(280px, 66vw);
+  grid-template-columns: auto;
   grid-template-rows: 1fr;
 
-  padding: var(--size-fluid-4) var(--app-gutter);
+  max-width: min(400px, 66vw);
+  padding: var(--size-fluid-3) var(--size-fluid-3);
 
   background: var(--surface-2);
   z-index: var(--layer-4);

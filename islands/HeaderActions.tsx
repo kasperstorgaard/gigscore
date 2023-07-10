@@ -82,6 +82,8 @@ export default function HeaderActions({ initialTheme }: Props) {
           }}
         >
           <fieldset>
+            <legend>Theme</legend>
+
             {THEMES.map((value) => (
               <label key={value}>
                 <input

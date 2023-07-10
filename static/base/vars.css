@@ -20,7 +20,8 @@
 /* THEMES */
 :root {
   /* light */
-  --brand-light: var(--blue-6);
+  --brand-light: var(--indigo-5);
+  --visited-light: var(--purple-8);
   --text-1-light: var(--gray-8);
   --text-2-light: var(--gray-7);
   --surface-1-light: var(--gray-0);
@@ -33,12 +34,13 @@
   --section-divider-light: var(--gradient-3);
 
   /* pop */
-  --brand-pop: var(--orange-6);
+  --brand-pop: var(--pink-7);
+  --visited-pop: var(--pink-9);
   --text-1-pop: var(--gray-8);
   --text-2-pop: var(--gray-7);
-  --surface-1-pop: var(--gray-0);
-  --surface-2-pop: var(--gray-1);
-  --surface-3-pop: var(--gray-2);
+  --surface-1-pop: var(--gray-2);
+  --surface-2-pop: var(--gray-3);
+  --surface-3-pop: var(--pink-4);
   --surface-4-pop: var(--gray-3);
   --surface-shadow-pop: var(--gray-8-hsl);
   --shadow-strength-pop: 2%;
@@ -46,37 +48,42 @@
   --section-divider-pop: var(--gradient-2);
 
   /* metal */
-  --brand-metal: var(--orange-3);
+  --brand-metal: var(--purple-8);
+  --visited-metal: var(--purple-10);
   --text-1-metal: var(--gray-3);
   --text-2-metal: var(--gray-5);
   --surface-1-metal: var(--gray-12);
-  --surface-2-metal: var(--gray-11);
-  --surface-3-metal: var(--gray-10);
-  --surface-4-metal: var(--gray-9);
+  --surface-2-metal: var(--gray-10);
+  --surface-3-metal: var(--gray-9);
+  --surface-4-metal: var(--gray-8);
   --surface-shadow-metal: var(--gray-12-hsl);
   --shadow-strength-metal: 80%;
+  --cta-metal: var(--gradient-20);
+  --text-shadow-metal: none;
 
   --section-divider-metal: var(--gradient-6);
 
   /* rap */
-  --brand-rap: var(--orange-4);
-  --text-1-rap: var(--gray-3);
-  --text-2-rap: var(--gray-4);
-  --surface-1-rap: var(--gray-8);
-  --surface-2-rap: var(--gray-7);
-  --surface-3-rap: var(--gray-6);
-  --surface-4-rap: var(--gray-5);
-  --surface-shadow-rap: var(--gray-9-hsl);
+  --brand-rap: var(--lime-8);
+  --visited-rap: var(--purple-10);
+  --text-1-rap: var(--gray-12);
+  --text-2-rap: var(--gray-11);
+  --surface-1-rap: var(--gray-3);
+  --surface-2-rap: var(--gray-4);
+  --surface-3-rap: var(--lime-5);
+  --surface-4-rap: var(--lime-6);
+  --surface-shadow-rap: var(--camo-9-hsl);
   --shadow-strength-rap: 20%;
 
   --section-divider-rap: var(--gradient-6);
 
   /* electronica */
   --brand-electronica: var(--purple-5);
+  --visited-electronica: var(--purple-8);
   --text-1-electronica: var(--purple-9);
   --text-2-electronica: var(--purple-7);
-  --surface-1-electronica: var(--purple-0);
-  --surface-2-electronica: var(--purple-1);
+  --surface-1-electronica: var(--gray-1);
+  --surface-2-electronica: var(--gray-2);
   --surface-3-electronica: var(--purple-2);
   --surface-4-electronica: var(--purple-3);
   --surface-shadow-electronica: var(--purple-12-hsl);
@@ -85,20 +92,22 @@
   --section-divider-electronica: var(--gradient-6);
 
   /* rnb */
-  --brand-rnb: var(--purple-5);
-  --text-1-rnb: var(--purple-9);
-  --text-2-rnb: var(--purple-7);
-  --surface-1-rnb: var(--purple-0);
-  --surface-2-rnb: var(--purple-1);
-  --surface-3-rnb: var(--purple-2);
-  --surface-4-rnb: var(--purple-3);
-  --surface-shadow-rnb: var(--purple-12-hsl);
+  --brand-rnb: var(--orange-8);
+  --visited-rnb: var(--orange-8);
+  --text-1-rnb: var(--orange-9);
+  --text-2-rnb: var(--orange-7);
+  --surface-1-rnb: var(--orange-0);
+  --surface-2-rnb: var(--orange-1);
+  --surface-3-rnb: var(--orange-2);
+  --surface-4-rnb: var(--orange-3);
+  --surface-shadow-rnb: var(--orange-12-hsl);
   --shadow-strength-rnb: 2%;
 
   --section-divider-rnb: var(--gradient-6);
 
   /* afrobeat */
   --brand-afrobeat: var(--choco-5);
+  --visited-afrobeat: var(--choco-6);
   --text-1-afrobeat: var(--choco-1);
   --text-2-afrobeat: var(--choco-2);
   --surface-1-afrobeat: var(--choco-12);
@@ -118,6 +127,7 @@
   --text-1: var(--text-1-light);
   --text-2: var(--text-2-light);
   --link: var(--brand-light);
+  --link-visited: var(--visited-light);
   --surface-1: var(--surface-1-light);
   --surface-2: var(--surface-2-light);
   --surface-3: var(--surface-3-light);
@@ -133,6 +143,7 @@
   --text-1: var(--text-1-pop);
   --text-2: var(--text-2-pop);
   --link: var(--brand-pop);
+  --link-visited: var(--visited-pop);
   --surface-1: var(--surface-1-pop);
   --surface-2: var(--surface-2-pop);
   --surface-3: var(--surface-3-pop);
@@ -149,6 +160,7 @@
   --text-1: var(--text-1-rnb);
   --text-2: var(--text-2-rnb);
   --link: var(--brand-rnb);
+  --link-visited: var(--visited-rnb);
   --surface-1: var(--surface-1-rnb);
   --surface-2: var(--surface-2-rnb);
   --surface-3: var(--surface-3-rnb);
@@ -165,6 +177,7 @@
   --text-1: var(--text-1-metal);
   --text-2: var(--text-2-metal);
   --link: var(--brand-metal);
+  --link-visited: var(--visited-metal);
   --surface-1: var(--surface-1-metal);
   --surface-2: var(--surface-2-metal);
   --surface-3: var(--surface-3-metal);
@@ -183,6 +196,7 @@
   --text-1: var(--text-1-electronica);
   --text-2: var(--text-2-electronica);
   --link: var(--brand-electronica);
+  --link-visited: var(--visited-electronica);
   --surface-1: var(--surface-1-electronica);
   --surface-2: var(--surface-2-electronica);
   --surface-3: var(--surface-3-electronica);

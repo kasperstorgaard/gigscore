@@ -7,7 +7,7 @@ import { createGroup, ExistingGroupError, Group } from "~/db/groups.ts";
 import { getRecentGroups } from "~/db/session.ts";
 import { getTheme, Theme } from "~/db/theme.ts";
 import { APIError } from "~/utils/errors.ts";
-import MainLayout from "@/layouts/MainLayout.tsx";
+import SplitLayout from "@/layouts/SplitLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
 import HeaderActions from "#/HeaderActions.tsx";
 
@@ -70,7 +70,7 @@ export const handler: Handlers<Data, WithSession> = {
 // TODO: add 404 handler
 export default function Home(props: PageProps<Data>) {
   return (
-    <MainLayout>
+    <SplitLayout>
       <Head>
         <link rel="stylesheet" href={asset("/components/link-section.css")} />
         <link rel="stylesheet" href={asset("/components/explainer.css")} />
@@ -157,6 +157,6 @@ export default function Home(props: PageProps<Data>) {
           )
           : null}
       </main>
-    </MainLayout>
+    </SplitLayout>
   );
 }

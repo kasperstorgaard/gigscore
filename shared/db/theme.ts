@@ -10,5 +10,5 @@ export function setTheme(session: Session, theme: Theme) {
 
 export function getTheme(session: Session) {
   const theme = session.get("theme") as Theme;
-  return theme ?? "pop";
+  return theme ?? "metal";
 }

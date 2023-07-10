@@ -5,15 +5,14 @@ import { WithSession } from "fresh_session";
 import { createGig, Gig, listGigs } from "~/db/gigs.ts";
 import { getGroupBySlug, Group } from "~/db/groups.ts";
 import { createLocation } from "~/db/locations.ts";
+import { getTheme, Theme } from "~/db/theme.ts";
 import { getRatedGigs } from "~/db/session.ts";
 import { getLanguage } from "~/utils/request.ts";
 import { APIError } from "~/utils/errors.ts";
 
-import MainLayout from "@/layouts/MainLayout.tsx";
 import { Breadcrumb } from "@/Breadcrumb.tsx";
 import HeaderActions from "#/HeaderActions.tsx";
-import { getTheme, Theme } from "../../../shared/db/theme.ts";
-import SplitLayout from "../../../components/layouts/SplitLayout.tsx";
+import SplitLayout from "@/layouts/SplitLayout.tsx";
 
 type Data = {
   language: string;
