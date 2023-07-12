@@ -18,122 +18,26 @@
 }
 
 /* THEMES */
+
 :root {
-  /* light */
-  --brand-light: var(--indigo-5);
-  --visited-light: var(--purple-8);
-  --text-1-light: var(--gray-8);
-  --text-2-light: var(--gray-7);
-  --surface-1-light: var(--gray-0);
-  --surface-2-light: var(--gray-1);
-  --surface-3-light: var(--gray-2);
-  --surface-4-light: var(--gray-3);
-  --surface-shadow-light: var(--gray-8-hsl);
-  --shadow-strength-light: 2%;
-
-  --section-divider-light: var(--gradient-3);
-
   /* pop */
-  --brand-pop: var(--pink-7);
-  --visited-pop: var(--pink-9);
-  --text-1-pop: var(--gray-8);
-  --text-2-pop: var(--gray-7);
-  --surface-1-pop: var(--gray-2);
-  --surface-2-pop: var(--gray-3);
-  --surface-3-pop: var(--pink-4);
-  --surface-4-pop: var(--gray-3);
+  --brand-pop: var(--pink-5);
+  --visited-pop: var(--pink-7);
+  --text-1-pop: var(--pink-9);
+  --text-2-pop: var(--pink-7);
+  --surface-1-pop: var(--gray-0);
+  --surface-2-pop: var(--pink-1);
+  --surface-3-pop: var(--pink-2);
+  --surface-4-pop: var(--pink-3);
   --surface-shadow-pop: var(--gray-8-hsl);
   --shadow-strength-pop: 2%;
 
+  --surface-1-pop-flipped: var(--gray-2);
+  --surface-2-pop-flipped: var(--indigo-5);
+  --text-1-pop-flipped: var(--gray-11);
+  --text-2-pop-flipped: var(--gray-12);
+
   --section-divider-pop: var(--gradient-2);
-
-  /* metal */
-  --brand-metal: var(--purple-8);
-  --visited-metal: var(--purple-10);
-  --text-1-metal: var(--gray-3);
-  --text-2-metal: var(--gray-5);
-  --surface-1-metal: var(--gray-12);
-  --surface-2-metal: var(--gray-10);
-  --surface-3-metal: var(--gray-9);
-  --surface-4-metal: var(--gray-8);
-  --surface-shadow-metal: var(--gray-12-hsl);
-  --shadow-strength-metal: 80%;
-  --cta-metal: var(--gradient-20);
-  --text-shadow-metal: none;
-
-  --section-divider-metal: var(--gradient-6);
-
-  /* rap */
-  --brand-rap: var(--lime-8);
-  --visited-rap: var(--purple-10);
-  --text-1-rap: var(--gray-12);
-  --text-2-rap: var(--gray-11);
-  --surface-1-rap: var(--gray-3);
-  --surface-2-rap: var(--gray-4);
-  --surface-3-rap: var(--lime-5);
-  --surface-4-rap: var(--lime-6);
-  --surface-shadow-rap: var(--camo-9-hsl);
-  --shadow-strength-rap: 20%;
-
-  --section-divider-rap: var(--gradient-6);
-
-  /* electronica */
-  --brand-electronica: var(--purple-5);
-  --visited-electronica: var(--purple-8);
-  --text-1-electronica: var(--purple-9);
-  --text-2-electronica: var(--purple-7);
-  --surface-1-electronica: var(--gray-1);
-  --surface-2-electronica: var(--gray-2);
-  --surface-3-electronica: var(--purple-2);
-  --surface-4-electronica: var(--purple-3);
-  --surface-shadow-electronica: var(--purple-12-hsl);
-  --shadow-strength-electronica: 2%;
-
-  --section-divider-electronica: var(--gradient-6);
-
-  /* rnb */
-  --brand-rnb: var(--orange-8);
-  --visited-rnb: var(--orange-8);
-  --text-1-rnb: var(--orange-9);
-  --text-2-rnb: var(--orange-7);
-  --surface-1-rnb: var(--orange-0);
-  --surface-2-rnb: var(--orange-1);
-  --surface-3-rnb: var(--orange-2);
-  --surface-4-rnb: var(--orange-3);
-  --surface-shadow-rnb: var(--orange-12-hsl);
-  --shadow-strength-rnb: 2%;
-
-  --section-divider-rnb: var(--gradient-6);
-
-  /* afrobeat */
-  --brand-afrobeat: var(--choco-5);
-  --visited-afrobeat: var(--choco-6);
-  --text-1-afrobeat: var(--choco-1);
-  --text-2-afrobeat: var(--choco-2);
-  --surface-1-afrobeat: var(--choco-12);
-  --surface-2-afrobeat: var(--choco-11);
-  --surface-3-afrobeat: var(--choco-10);
-  --surface-4-afrobeat: var(--choco-9);
-  --surface-shadow-afrobeat: 25deg 65% 11%;
-  --shadow-strength-afrobeat: 50%;
-
-  --section-divider-afrobeat: var(--gradient-6);
-}
-
-[color-scheme="light"] {
-  color-scheme: light;
-
-  --brand: var(--brand-light);
-  --text-1: var(--text-1-light);
-  --text-2: var(--text-2-light);
-  --link: var(--brand-light);
-  --link-visited: var(--visited-light);
-  --surface-1: var(--surface-1-light);
-  --surface-2: var(--surface-2-light);
-  --surface-3: var(--surface-3-light);
-  --surface-4: var(--surface-4-light);
-  --surface-shadow: var(--surface-shadow-light);
-  --shadow-strength: var(--shadow-strength-light);
 }
 
 [color-scheme="pop"] {
@@ -142,15 +46,35 @@
   --brand: var(--brand-pop);
   --text-1: var(--text-1-pop);
   --text-2: var(--text-2-pop);
+  --text-1-flipped: var(--text-1-pop-flipped);
+  --text-2-flipped: var(--text-2-pop-flipped);
   --link: var(--brand-pop);
   --link-visited: var(--visited-pop);
   --surface-1: var(--surface-1-pop);
   --surface-2: var(--surface-2-pop);
+  --surface-1-flipped: var(--surface-1-pop-flipped);
+  --surface-2-flipped: var(--surface-2-pop-flipped);
   --surface-3: var(--surface-3-pop);
   --surface-4: var(--surface-4-pop);
   --surface-shadow: var(--surface-shadow-pop);
   --shadow-strength: var(--shadow-strength-pop);
   --section-divider: var(--section-divider-pop);
+}
+
+:root {
+  /* rnb */
+  --brand-rnb: var(--orange-8);
+  --visited-rnb: var(--orange-8);
+  --text-1-rnb: var(--gray-9);
+  --text-2-rnb: var(--gray-7);
+  --surface-1-rnb: var(--gray-1);
+  --surface-2-rnb: var(--gray-2);
+  --surface-3-rnb: var(--orange-2);
+  --surface-4-rnb: var(--orange-3);
+  --surface-shadow-rnb: var(--orange-12-hsl);
+  --shadow-strength-rnb: 2%;
+
+  --section-divider-rnb: var(--gradient-6);
 }
 
 [color-scheme="rnb"] {
@@ -170,6 +94,28 @@
   --section-divider: var(--section-divider-rnb);
 }
 
+:root {
+  /* metal */
+  --brand-metal: var(--purple-8);
+  --visited-metal: var(--purple-6);
+  --text-1-metal: var(--gray-0);
+  --text-2-metal: var(--gray-2);
+  --text-1-metal-flipped: var(--gray-12);
+  --text-2-metal-flipped: var(--gray-10);
+  --surface-1-metal: var(--gray-12);
+  --surface-2-metal: var(--gray-10);
+  --surface-3-metal: var(--gray-9);
+  --surface-4-metal: var(--gray-8);
+  --surface-1-metal-flipped: var(--gray-0);
+  --surface-2-metal-flipped: var(--gray-4);
+  --surface-shadow-metal: var(--gray-12-hsl);
+  --shadow-strength-metal: 80%;
+  --cta-metal: var(--gradient-20);
+  --text-shadow-metal: none;
+
+  --section-divider-metal: var(--gradient-6);
+}
+
 [color-scheme="metal"] {
   color-scheme: dark;
   
@@ -185,9 +131,35 @@
   --surface-shadow: var(--surface-shadow-metal);
   --shadow-strength: var(--shadow-strength-metal);
   --section-divider: var(--section-divider-metal);
+
+  --surface-1-flipped: var(--surface-1-metal-flipped);
+  --surface-2-flipped: var(--surface-2-metal-flipped);
+  --text-1-flipped: var(--text-1-metal-flipped);
+  --text-2-flipped: var(--text-2-metal-flipped);
 }
 
+:root {
+  /* electronica */
+  --brand-electronica: var(--cyan-4);
+  --visited-electronica: var(--purple-6);
+  --text-1-electronica: var(--purple-3);
+  --text-2-electronica: var(--cyan-3);
 
+  --surface-1-electronica: var(--gray-8);
+  --surface-2-electronica: var(--gray-9);
+  --surface-3-electronica: var(--gray-10);
+  --surface-4-electronica: var(--purple-11);
+
+  --text-1-electronica-flipped: var(--gray-8);
+  --text-2-electronica-flipped: var(--gray-9);
+  --surface-1-electronica-flipped: var(--gray-1);
+  --surface-2-electronica-flipped: var(--cyan-2);
+
+  --surface-shadow-electronica: var(--purple-12-hsl);
+  --shadow-strength-electronica: 2%;
+
+  --section-divider-electronica: var(--gradient-6);
+}
 
 [color-scheme="electronica"] {
   color-scheme: light;
@@ -195,15 +167,35 @@
   --brand: var(--brand-electronica);
   --text-1: var(--text-1-electronica);
   --text-2: var(--text-2-electronica);
+  --text-1-flipped: var(--text-1-electronica-flipped);
+  --text-2-flipped: var(--text-2-electronica-flipped);
   --link: var(--brand-electronica);
   --link-visited: var(--visited-electronica);
   --surface-1: var(--surface-1-electronica);
   --surface-2: var(--surface-2-electronica);
   --surface-3: var(--surface-3-electronica);
   --surface-4: var(--surface-4-electronica);
+  --surface-1-flipped: var(--surface-1-electronica-flipped);
+  --surface-2-flipped: var(--surface-2-electronica-flipped);
   --surface-shadow: var(--surface-shadow-electronica);
   --shadow-strength: var(--shadow-strength-electronica);
   --section-divider: var(--section-divider-electronica);
+}
+
+:root {
+  /* rap */
+  --brand-rap: var(--lime-8);
+  --visited-rap: var(--purple-10);
+  --text-1-rap: var(--gray-12);
+  --text-2-rap: var(--gray-11);
+  --surface-1-rap: var(--gray-3);
+  --surface-2-rap: var(--gray-4);
+  --surface-3-rap: var(--lime-5);
+  --surface-4-rap: var(--lime-6);
+  --surface-shadow-rap: var(--camo-9-hsl);
+  --shadow-strength-rap: 20%;
+
+  --section-divider-rap: var(--gradient-6);
 }
 
 [color-scheme="rap"] {
@@ -220,6 +212,22 @@
   --surface-shadow: var(--surface-shadow-rap);
   --shadow-strength: var(--shadow-strength-rap);
   --section-divider: var(--section-divider-rap);
+}
+
+:root {
+  /* afrobeat */
+  --brand-afrobeat: var(--choco-5);
+  --visited-afrobeat: var(--choco-6);
+  --text-1-afrobeat: var(--choco-1);
+  --text-2-afrobeat: var(--choco-2);
+  --surface-1-afrobeat: var(--choco-12);
+  --surface-2-afrobeat: var(--choco-11);
+  --surface-3-afrobeat: var(--choco-10);
+  --surface-4-afrobeat: var(--choco-9);
+  --surface-shadow-afrobeat: 25deg 65% 11%;
+  --shadow-strength-afrobeat: 50%;
+
+  --section-divider-afrobeat: var(--gradient-6);
 }
 
 [color-scheme="afrobeat"] {

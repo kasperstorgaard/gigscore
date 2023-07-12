@@ -24,6 +24,13 @@ main > section {
   line-height: var(--font-lineheight-3);
 }
 
+main > section + section {
+  --surface-1: var(--surface-1-flipped);
+  --surface-2: var(--surface-2-flipped);
+  --text-1: var(--text-1-flipped);
+  --text-2: var(--text-2-flipped);
+}
+
 @media (min-width: 1024px) {
   main {
     grid-template-columns: repeat(2, 1fr);

@@ -107,7 +107,7 @@ export default function Home(props: PageProps<Data>) {
           )
           : null}
 
-        <section color-scheme="light">
+        <section >
           <h2>Create a group</h2>
 
           <form method="POST" action="/">
@@ -132,7 +132,7 @@ export default function Home(props: PageProps<Data>) {
 
         {!props.data.recentGroups?.length
           ? (
-            <section class="explainer" color-scheme="light">
+            <section class="explainer" >
               <h4>What is a group?</h4>
               <p>A place for you and your friends to rate gigs.</p>
               <p>

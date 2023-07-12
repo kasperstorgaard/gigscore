@@ -162,7 +162,7 @@ export default function GroupHome(props: PageProps<Data>) {
 
         {props.data.gigs.length
           ? (
-            <section class="link-section" color-scheme="light">
+            <section class="link-section" >
               <h3>Latest gigs</h3>
 
               <ol>
@@ -198,7 +198,7 @@ export default function GroupHome(props: PageProps<Data>) {
             </section>
           )
           : (
-            <section class="explainer" color-scheme="light">
+            <section class="explainer" >
               <h4>What is a gig?</h4>
 
               <p>
