@@ -67,7 +67,6 @@ export const handler: Handlers<Data, WithSession> = {
         theme: getTheme(ctx.state.session),
       });
     } catch (err) {
-      console.log("ehm what?", err);
       return new Response("", {
         status: (err as APIError).status ?? 500,
         statusText: (err as APIError).statusText ?? err.message,
@@ -137,11 +136,15 @@ export default function GigDetails(props: PageProps<Data>) {
             </aside>
 
             <aside class="gig-page__score-figure">
-              <ScoreSnippet score={props.data.score} hasCaption />
+              <ScoreSnippet
+                score={props.data.score}
+                theme={props.data.theme}
+                hasCaption
+              />
             </aside>
           </section>
 
-          <section class="score-list" >
+          <section class="score-list">
             <h3>Latest scores</h3>
 
             <ol>
@@ -155,7 +158,7 @@ export default function GigDetails(props: PageProps<Data>) {
                       })}
                     </i>
                   </div>
-                  <ScoreSnippet score={score} />
+                  <ScoreSnippet score={score} theme={props.data.theme} />
                 </li>
               ))}
             </ol>

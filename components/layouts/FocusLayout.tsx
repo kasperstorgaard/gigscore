@@ -5,7 +5,7 @@ type Props = {
   children: ComponentChildren;
 };
 
-export default function MainLayout({ children }: Props) {
+export default function FocusLayout({ children }: Props) {
   return (
     <>
       <Head>

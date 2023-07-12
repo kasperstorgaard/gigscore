@@ -103,7 +103,7 @@ export const handler: Handlers<Data, WithSession> = {
   },
 };
 
-export default function RatePage(props: PageProps) {
+export default function RatePage(props: PageProps<Data>) {
   return (
     <FocusLayout>
       <Head>
@@ -133,10 +133,13 @@ export default function RatePage(props: PageProps) {
       </header>
 
       <main color-scheme={props.data.theme}>
-        <GigForm
-          groupSlug={props.params.groupSlug}
-          gigSlug={props.params.gigSlug}
-        />
+        <section>
+          <GigForm
+            groupSlug={props.params.groupSlug}
+            gigSlug={props.params.gigSlug}
+            theme={props.data.theme}
+          />
+        </section>
       </main>
     </FocusLayout>
   );

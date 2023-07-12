@@ -4,18 +4,24 @@ import { useMemo, useState } from "preact/hooks";
 import { createRef } from "preact";
 import { JSX } from "preact";
 import { getObjectAverage } from "~/utils/math.ts";
+import { createThemeFormatter } from "~/utils/theme.ts";
+import { Theme } from "~/db/theme.ts";
+
 import ScoreGuides from "./ScoreGuides.tsx";
 
 type Props = {
   gigSlug: string;
   groupSlug: string;
+  theme: Theme;
 };
 
 export default function GigForm({
   gigSlug,
   groupSlug,
+  theme,
 }: Props) {
   const containerRef = createRef<HTMLDivElement>();
+  const themed = createThemeFormatter(theme);
 
   const [values, setValues] = useState({
     catchyness: 3,
@@ -52,7 +58,7 @@ export default function GigForm({
         <section class="gig-form__section">
           <ScoreInput
             value={values.catchyness}
-            label="Catchyness"
+            label={themed("Catchyness")}
             name="catchyness"
           />
 
@@ -78,7 +84,7 @@ export default function GigForm({
         <section class="gig-form__section">
           <ScoreInput
             value={values.vocals}
-            label="Vocals"
+            label={themed("Vocals")}
             name="vocals"
           />
 
@@ -92,7 +98,11 @@ export default function GigForm({
         </section>
 
         <section class="gig-form__section">
-          <ScoreInput value={values.sound} label="Sound" name="sound" />
+          <ScoreInput
+            value={values.sound}
+            label={themed("Sound")}
+            name="sound"
+          />
 
           <ScoreGuides>
             <blockquote>A bass that could replace your heartbeat?</blockquote>
@@ -106,7 +116,7 @@ export default function GigForm({
         <section class="gig-form__section">
           <ScoreInput
             value={values.immersion}
-            label="Immersion"
+            label={themed("Immersion")}
             name="immersion"
           />
 
@@ -122,7 +132,7 @@ export default function GigForm({
         <section class="gig-form__section">
           <ScoreInput
             value={values.performance}
-            label="Performance"
+            label={themed("Performance")}
             name="performance"
           />
 

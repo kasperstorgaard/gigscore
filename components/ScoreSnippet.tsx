@@ -1,11 +1,16 @@
 import { Score } from "~/db/scores.ts";
+import { Theme } from "~/db/theme.ts";
+import { createThemeFormatter } from "~/utils/theme.ts";
 
 type Props = {
   score: Omit<Score, "id" | "createdAt">;
+  theme: Theme;
   hasCaption?: boolean;
 };
 
-export function ScoreSnippet({ score, hasCaption }: Props) {
+export function ScoreSnippet({ score, hasCaption, theme }: Props) {
+  const themed = createThemeFormatter(theme);
+
   const values = [
     score.catchyness,
     score.vocals,
@@ -31,11 +36,11 @@ export function ScoreSnippet({ score, hasCaption }: Props) {
       {hasCaption && (
         <figcaption>
           {/* TODO: theme the ratings */}
-          <span>catchyness</span>
-          <span>vocals</span>
-          <span>sound</span>
-          <span>immersion</span>
-          <span>performance</span>
+          <span>{themed("catchyness")}</span>
+          <span>{themed("vocals")}</span>
+          <span>{themed("sound")}</span>
+          <span>{themed("immersion")}</span>
+          <span>{themed("performance")}</span>
         </figcaption>
       )}
     </div>
